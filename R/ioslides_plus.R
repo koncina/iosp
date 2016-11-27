@@ -1,29 +1,29 @@
 #' @export
 ioslides_plus <- function(logo = NULL,
-                                  slide_level = 2,
-                                  incremental = FALSE,
-                                  fig_width = 7.5,
-                                  fig_height = 4.5,
-                                  fig_retina = 2,
-                                  fig_caption = TRUE,
-                                  dev = 'png',
-                                  df_print = "default",
-                                  smart = TRUE,
-                                  self_contained = TRUE,
-                                  widescreen = FALSE,
-                                  smaller = FALSE,
-                                  transition = "default",
-                                  mathjax = "default",
-                                  analytics = NULL,
-                                  template = NULL,
-                                  css = NULL,
-                                  includes = NULL,
-                                  keep_md = FALSE,
-                                  lib_dir = NULL,
-                                  md_extensions = NULL,
-                                  pandoc_args = NULL,
-                                  extra_dependencies = NULL,
-                                  ...) {
+                          slide_level = 2,
+                          incremental = FALSE,
+                          fig_width = 7.5,
+                          fig_height = 4.5,
+                          fig_retina = 2,
+                          fig_caption = TRUE,
+                          dev = 'png',
+                          df_print = "default",
+                          smart = TRUE,
+                          self_contained = TRUE,
+                          widescreen = FALSE,
+                          smaller = FALSE,
+                          transition = "default",
+                          mathjax = "default",
+                          analytics = NULL,
+                          template = NULL,
+                          css = NULL,
+                          includes = NULL,
+                          keep_md = FALSE,
+                          lib_dir = NULL,
+                          md_extensions = NULL,
+                          pandoc_args = NULL,
+                          extra_dependencies = NULL,
+                          ...) {
 
   # base pandoc options for all output
   args <- c()
@@ -69,7 +69,8 @@ ioslides_plus <- function(logo = NULL,
 
   # html dependency for ioslides
   extra_dependencies <- append(extra_dependencies,
-                               list(html_dependency_ioslides()))
+                               list(html_dependency_ioslides(),
+                                    html_dependency_iosplus()))
 
   # analytics
   if(!is.null(analytics))
@@ -186,12 +187,12 @@ ioslides_plus <- function(logo = NULL,
     }
 
     rmarkdown::pandoc_convert(input = input_file,
-                   to = rmarkdown::relative_to(dirname(input_file), lua_writer),
-                   from = rmarkdown:::from_rmarkdown(fig_caption),
-                   output = output_tmpfile,
-                   options = args,
-                   citeproc = run_citeproc,
-                   verbose = verbose)
+                              to = rmarkdown::relative_to(dirname(input_file), lua_writer),
+                              from = rmarkdown:::from_rmarkdown(fig_caption),
+                              output = output_tmpfile,
+                              options = args,
+                              citeproc = run_citeproc,
+                              verbose = verbose)
 
     # read the slides
     slides_lines <- readLines(output_tmpfile, warn = FALSE, encoding = "UTF-8")
@@ -223,19 +224,19 @@ ioslides_plus <- function(logo = NULL,
   rmarkdown::output_format(
     knitr = rmarkdown::knitr_options_html(fig_width, fig_height, fig_retina, keep_md, dev),
     pandoc = rmarkdown::pandoc_options(to = "html",
-                            from = rmarkdown:::from_rmarkdown(fig_caption, md_extensions),
-                            args = args),
+                                       from = rmarkdown:::from_rmarkdown(fig_caption, md_extensions),
+                                       args = args),
     keep_md = keep_md,
     clean_supporting = self_contained,
     df_print = df_print,
     pre_processor = pre_processor,
     post_processor = post_processor,
     base_format = rmarkdown::html_document_base(smart = smart, lib_dir = lib_dir,
-                                     self_contained = self_contained,
-                                     mathjax = mathjax,
-                                     pandoc_args = pandoc_args,
-                                     extra_dependencies = extra_dependencies,
-                                     bootstrap_compatible = TRUE, ...))
+                                                self_contained = self_contained,
+                                                mathjax = mathjax,
+                                                pandoc_args = pandoc_args,
+                                                extra_dependencies = extra_dependencies,
+                                                bootstrap_compatible = TRUE, ...))
 }
 
 
@@ -247,7 +248,7 @@ html_dependency_ioslides <- function() {
     script = c(
       "js/modernizr.custom.45394.js",
       "js/prettify/prettify.js",
-      "js/prettify/lang-r.js",
+      #"js/prettify/lang-r.js", # Removing lang-r as we will override it
       "js/prettify/lang-yaml.js",
       "js/hammer.js",
       "js/slide-controller.js",
@@ -257,6 +258,20 @@ html_dependency_ioslides <- function() {
       "fonts/fonts.css",
       "theme/css/default.css",
       "theme/css/phone.css")
+  )
+}
+
+html_dependency_iosplus <- function() {
+  htmltools::htmlDependency(
+    name = "iosp",
+    version = "0.1",
+    src = "/home/eric/R/x86_64-pc-linux-gnu-library/3.3/iosp/rmd/iosp",
+    script = c(
+      "js/lang-r.js"
+    ),
+    stylesheet = c(
+      "css/iosp.css"
+    )
   )
 }
 
