@@ -1,0 +1,493 @@
+/* Adjusting logo */
+.gdbar img {
+  width: 150px !important;
+  height: 150px !important;
+  margin: 8px 8px;
+}
+
+.gdbar {
+  width: 400px !important;
+  height: 170px !important;
+}
+
+/* Headers */
+h1 {
+  font-size: 20pt;
+}
+
+slides > slide > hgroup:not(.auto-fadein) {
+  height: 45px;
+}
+
+slides > slide > hgroup > h2 {
+  font-size: 30px;
+  line-height: 25px;
+}
+
+slides > slide > hgroup > h3 {
+  font-style: italic;
+  line-height: 25px;
+  position: relative;
+  top: -1em;
+  left: 50%;
+  width: 50%;
+  text-align: right;
+  z-index: 999;
+}
+
+/* End of headers */
+
+/*
+  Bootstrap like grid
+  from http://www.w3schools.com/css/css_rwd_grid.asp
+*/
+
+* {
+  box-sizing: border-box;
+}
+
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+
+.box.col-1 {width: 6.33%;}
+.box.col-2 {width: 14.66%;}
+.box.col-3 {width: 23%;}
+.box.col-4 {width: 31.33%;}
+.box.col-5 {width: 39.66%;}
+.box.col-6 {width: 48%;}
+.box.col-7 {width: 56.33%;}
+.box.col-8 {width: 64.66%;}
+.box.col-9 {width: 73%;}
+.box.col-10 {width: 81.33%;}
+.box.col-11 {width: 89.66%;}
+.box.col-12 {width: 98%;}
+
+[class*="col-"] {
+  float: left;
+  padding: 15px;
+}
+
+.box {
+
+}
+
+[class*="col-"] > h3 {
+  position: relative;
+  line-height: 35px;
+  font-size: 25px;
+}
+
+[class*="col-"].box > p {
+  margin-bottom: 0;
+}
+
+[class*="col-"].box > h3:first-child {
+  /*border-top-left-radius: 5px;
+  border-top-right-radius: 5px;*/
+  margin: -15px -15px 10px -15px;
+  padding-left: 10px;
+  padding-bottom: 5px;
+}
+
+[class*="col-"].box {
+  margin: 0 1%;
+  box-shadow: 10px 10px 8px 1px rgba(0, 0, 0, 0.2), 1px 3px 3px 2px rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  border: 1px solid lightgray;
+}
+
+div.box > ul {
+  margin-bottom: 0;
+  line-height: 1em;
+}
+
+.row {
+  margin-bottom: 1em;
+}
+
+.row::after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+.row + p {
+  margin-top: 1em;
+}
+
+.bottom, .middle, .stretch {
+  display: flex;
+}
+
+div.bottom > div {
+  align-self: flex-end;
+}
+
+div.middle > div {
+  align-self: center;
+}
+
+
+slides > slide article strong {
+  font-weight: bold;
+}
+
+slides > slide article em {
+  font-style: italic;
+}
+
+slides > slide article pre + p, slides > slide article table + p {
+  margin-top: 1em; /* Increase space between code, table and next paragraph*/
+}
+
+/* Custom prettyprint colors: cobalt*/
+
+pre.prettyprint {
+  background: #002240;
+  color: #ffffff;
+  box-shadow: 10px 10px 8px 1px rgba(0, 0, 0, 0.2), 1px 3px 3px 2px rgba(0, 0, 0, 0.5);
+  border-top-right-radius: 5px;
+  /*border-bottom-right-radius: 5px;*/
+  margin-right: 1%;
+}
+pre.prettyprint .str { color: #3ad900; } /* string      */
+pre.prettyprint .kwd { color: #ff9d00; } /* keyword     */
+pre.prettyprint .com { color: #0088ff; } /* comment     */
+pre.prettyprint .typ { color: #bfa4a4; } /* type        */
+pre.prettyprint .lit { color: #ff80e1; } /* literal     */
+pre.prettyprint .pun { color: #bed6ff; } /* punctuation */
+pre.prettyprint .pln { /* plaintext   */
+  color: #9effff;
+  font-weight: bold;
+}
+pre.prettyprint .tag { color: #9effff; } /* tag         */
+pre.prettyprint .dec { color: #fff; }    /* declaration #ff9d00*/
+/* End of prettyprint*/
+
+pre:not(.prettyprint) {
+  color: #c7254e;
+  background: rgba(0, 34, 64, 0.2);
+  margin-top: -10px;
+  border-bottom-right-radius: 5px;
+  box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.3);
+}
+
+.codefont pre {
+    font-size: 11px;
+    line-height: 9px;
+}
+
+code {
+  color: #c7254e;
+  /*white-space: pre;*/
+  background-color: rgba(0, 0, 0, 0.04);
+  border-color: black;
+}
+
+pre {
+  margin-bottom: 10px;
+  width: 106%;
+  left: -60px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+[class*="col-"] > pre {
+  left: 0;
+  width: 100%;
+  padding-left: 20px;
+}
+
+[class*="col-"].box > pre {
+  box-shadow: inset 3px 1px 5px 3px rgba(0, 0, 0, 0.3)
+  /*box-shadow: inset 3px 3px 5px 2px rgba(0, 0, 0, 0.3);*/
+}
+
+[class*="col-"].box > pre.prettyprint {
+  box-shadow: none;
+}
+
+.shadow {
+  /*box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7);*/
+  box-shadow: 10px 10px 8px 1px rgba(0, 0, 0, 0.2), 1px 3px 3px 2px rgba(0, 0, 0, 0.5);
+  padding: 5px 10px 5px 10px;
+  margin: 20px;
+  border-radius: 5px;
+}
+
+slides > slide:not(.nobackground):before {
+  width: 50px;
+  height: 50px;
+  background-size: 50px 50px;
+  bottom: 5px;
+  left: 30px;
+}
+
+.codefont pre {
+    font-size: 11px;
+    line-height: 9px;
+}
+
+
+.wrapper {
+  text-align: center;
+}
+
+.red-quote {
+  border-left: 15px solid red;
+  background-color: #ffad99;
+}
+
+/* from https://codepen.io/maxds/pen/DcveB */
+article > blockquote {
+  display: block;
+  background: #f9f9f9;
+  padding: 15px 20px 15px 45px;
+  margin: 0 0 20px;
+  position: relative;
+
+  /*Font*/
+  font-family: Georgia, serif;
+  font-size: 16px;
+  line-height: 1.2;
+  /*text-align: justify;*/
+
+  border-left: 15px solid #ccc;
+  /*box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7);*/
+  box-shadow: 10px 10px 8px 1px rgba(0, 0, 0, 0.2), 1px 3px 3px 2px rgba(0, 0, 0, 0.5);
+}
+
+article > blockquote::before {
+  content: "\201C"; /*Unicode for Left Double Quote*/
+
+  /*Font*/
+  font-family: Georgia, serif;
+  font-size: 60px;
+  font-weight: bold;
+  color: #999;
+
+  /*Positioning*/
+  position: absolute;
+  left: 10px;
+  top:5px;
+}
+
+blockquote::after {
+  /*Reset to make sure*/
+  content: "";
+}
+
+slides > slide > article blockquote > p {
+  margin-bottom:0;
+}
+
+/* Cite styling adapted from http://www.webmaster-source.com/2012/04/24/pure-css-blockquote-styling/ */
+cite {
+  /*color: #999999;*/
+  /*font-size: 16px;*/
+  font-style: italic;
+}
+
+blockquote cite {
+  font-size: 14px;
+  display: block;
+  margin-top: 5px;
+}
+
+blockquote cite:before {
+  content: "\2014 \2009";
+}
+
+/* blockquote colors */
+
+blockquote.bg-red {
+  border-left: 15px solid #991f00;
+}
+
+blockquote.bg-red::before {
+  color : #991f00;
+}
+
+blockquote.bg-blue {
+  border-left: 15px solid #005c99;
+}
+
+blockquote.bg-blue::before {
+  color : #005c99;
+}
+
+blockquote.bg-green {
+  border-left: 15px solid #1f7a1f;
+}
+
+blockquote.bg-green::before {
+  color: #1f7a1f;
+}
+
+blockquote.bg-yellow {
+  border-left: 15px solid #999900;
+}
+
+blockquote.bg-yellow::before {
+  color: #999900;
+}
+/* Style for keyboard keys */
+/* From http://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+kbd
+{
+    -moz-border-radius:3px;
+    -moz-box-shadow:0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+    -webkit-border-radius:3px;
+    -webkit-box-shadow:0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+    background-color:#f7f7f7;
+    border:1px solid #ccc;
+    border-radius:3px;
+    box-shadow:0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+    color:#333;
+    display:inline-block;
+    font-family:Arial,Helvetica,sans-serif;
+    /*font-size:11px;*/
+    line-height:1.4;
+    margin:0 .1em;
+    padding:.1em .6em;
+    text-shadow:0 1px 0 #fff;
+}
+
+
+slides > slide article ul li ul li::before, slides > slide article ul > li::before {
+  content: '';
+}
+
+slides > slide article ul {
+  list-style-type: disc;
+}
+
+slides > slide article ul > li > ul {
+  list-style-type: circle;
+}
+
+.float-r {
+  position: relative;
+  float: right;
+  z-index: 999;
+}
+
+.float-l {
+  position: relative;
+  float: left;
+  z-index: 999;
+}
+
+div.float-r img {
+  display: flex;
+}
+
+div.left {
+	width: 45%;
+	float: left;
+}
+
+div.right {
+	width: 45%;
+	float: right;
+}
+
+slides > slide > hgroup + article {
+  margin-top: 0;
+}
+
+.vs1 {
+  margin-top: 1em;
+}
+
+.vs2 {
+  margin-top: 2em;
+}
+
+.vs3 {
+  margin-top: 3em;
+}
+
+slides > slide {
+  color: black;
+}
+
+div.center {
+  display: block;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+/* Background colors (for the boxes) */
+/* red, green are already defined by ioslides for font-colors */
+
+.bg-yellow {
+  background-color: #ffff99;
+}
+
+.box.bg-yellow {
+  border: 2px solid #999900;
+}
+
+.box.bg-yellow > h3:first-child {
+  background-color: #999900;
+  color: black;
+}
+
+.bg-red {
+  background-color: #ffad99;
+}
+
+.box.bg-red {
+  border: 2px solid #991f00;
+}
+
+.box.bg-red > h3:first-child {
+  background: #991f00;
+  color: lightgray;
+}
+
+.bg-green {
+  background-color: #adebad;
+}
+
+.box.bg-green {
+  border:2px solid #1f7a1f;
+}
+
+.box.bg-green > h3:first-child {
+  background-color: #1f7a1f;
+  color: lightgray;
+}
+
+.bg-blue {
+  background-color: #99d6ff; /* 80% */
+
+}
+
+.box.bg-blue {
+  border: 2px solid #005c99; /* 30% */
+}
+
+.box.bg-blue > h3:first-child {
+  background-color: #005c99; /* 30% */
+  color: lightgray;
+}
+
+.exercise {
+  background-color: #e6ffe6;
+  width: 100%;
+  height: 85%;
+  border-radius: 5px;
+  padding: 10px;
+}

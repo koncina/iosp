@@ -1,5 +1,5 @@
 #' @export
-ioslides_presentation <- function(logo = NULL,
+ioslides_plus <- function(logo = NULL,
                                   slide_level = 2,
                                   incremental = FALSE,
                                   fig_width = 7.5,
@@ -35,7 +35,7 @@ ioslides_presentation <- function(logo = NULL,
   # pagedtables
   if (identical(df_print, "paged")) {
     extra_dependencies <- append(extra_dependencies,
-                                 list(html_dependency_pagedtable()))
+                                 list(rmarkdown:::html_dependency_pagedtable()))
 
   }
 
@@ -50,14 +50,14 @@ ioslides_presentation <- function(logo = NULL,
   else
     stop('transition must be "default", "faster", "slower" or a ',
          'numeric value (representing seconds)', call. = FALSE)
-  args <- c(args, pandoc_variable_arg("transition", transition))
+  args <- c(args, rmarkdown::pandoc_variable_arg("transition", transition))
 
   # additional css
   for (css_file in css)
-    args <- c(args, "--css", pandoc_path_arg(css_file))
+    args <- c(args, "--css", rmarkdown::pandoc_path_arg(css_file))
 
   # content includes
-  args <- c(args, includes_to_pandoc_args(includes))
+  args <- c(args, rmarkdown::includes_to_pandoc_args(includes))
 
   # template path and assets
   if (!is.null(template) && file.exists(template))
@@ -65,7 +65,7 @@ ioslides_presentation <- function(logo = NULL,
   else
     args <- c(args,
               "--template",
-              pandoc_path_arg(rmarkdown_system_file("rmd/ioslides/default.html")))
+              rmarkdown::pandoc_path_arg(rmarkdown:::rmarkdown_system_file("rmd/ioslides/default.html")))
 
   # html dependency for ioslides
   extra_dependencies <- append(extra_dependencies,
@@ -73,7 +73,7 @@ ioslides_presentation <- function(logo = NULL,
 
   # analytics
   if(!is.null(analytics))
-    args <- c(args, pandoc_variable_arg("analytics", analytics))
+    args <- c(args, rmarkdown::pandoc_variable_arg("analytics", analytics))
 
   # pre-processor for arguments that may depend on the name of the
   # the input file (e.g. ones that need to copy supporting files)
@@ -88,7 +88,7 @@ ioslides_presentation <- function(logo = NULL,
     args <- c()
 
     # create the files dir if it doesn't exist
-    if (!dir_exists(files_dir))
+    if (!rmarkdown:::dir_exists(files_dir))
       dir.create(files_dir)
 
     # logo
@@ -101,9 +101,9 @@ ioslides_presentation <- function(logo = NULL,
           logo_ext <- "png"
         logo_path <- file.path(files_dir, paste("logo", logo_ext, sep = "."))
         file.copy(from = logo, to = logo_path)
-        logo_path <- normalized_relative_to(output_dir, logo_path)
+        logo_path <- rmarkdown:::normalized_relative_to(output_dir, logo_path)
       } else {
-        logo_path <- pandoc_path_arg(logo_path)
+        logo_path <- rmarkdown::pandoc_path_arg(logo_path)
       }
       args <- c(args, "--variable", paste("logo=", logo_path, sep = ""))
     }
@@ -139,13 +139,13 @@ ioslides_presentation <- function(logo = NULL,
 
     # determine whether we need to run citeproc
     input_lines <- readLines(input_file, warn = FALSE)
-    run_citeproc <- citeproc_required(metadata, input_lines)
+    run_citeproc <- rmarkdown:::citeproc_required(metadata, input_lines)
 
     # write settings to file
     settings <- c()
     add_setting <- function(name, value) {
       settings <<- c(settings, paste("local", name, "=",
-                                    ifelse(value, "true", "false")))
+                                     ifelse(value, "true", "false")))
     }
     add_setting("fig_caption", fig_caption)
     add_setting("incremental", incremental)
@@ -162,7 +162,7 @@ ioslides_presentation <- function(logo = NULL,
 
     # append main body of script
     file.append(lua_writer,
-                rmarkdown_system_file("rmd/ioslides/ioslides_presentation.lua"))
+                rmarkdown:::rmarkdown_system_file("rmd/ioslides/ioslides_presentation.lua"))
 
     output_tmpfile <- tempfile("ioslides-output", fileext = ".html")
     on.exit(unlink(output_tmpfile), add = TRUE)
@@ -171,7 +171,7 @@ ioslides_presentation <- function(logo = NULL,
     # duration of the Pandoc command. Without this, Pandoc fails when attempting
     # to hand UTF-8 encoded non-ASCII characters over to the custom Lua writer.
     # See https://github.com/rstudio/rmarkdown/issues/134
-    if (is_windows()) {
+    if (rmarkdown:::is_windows()) {
       # 'chcp' returns e.g., "Active code page: 437"; strip characters and parse
       # the number
       codepage <- as.numeric(gsub("\\D", "", system2("chcp", stdout = TRUE)))
@@ -185,9 +185,9 @@ ioslides_presentation <- function(logo = NULL,
       }
     }
 
-    pandoc_convert(input = input_file,
-                   to = relative_to(dirname(input_file), lua_writer),
-                   from = from_rmarkdown(fig_caption),
+    rmarkdown::pandoc_convert(input = input_file,
+                   to = rmarkdown::relative_to(dirname(input_file), lua_writer),
+                   from = rmarkdown:::from_rmarkdown(fig_caption),
                    output = output_tmpfile,
                    options = args,
                    citeproc = run_citeproc,
@@ -198,7 +198,7 @@ ioslides_presentation <- function(logo = NULL,
 
     # base64 encode if needed
     if (self_contained) {
-      base64_encoder <- base64_image_encoder()
+      base64_encoder <- rmarkdown:::base64_image_encoder()
       slides_lines <- base64_encoder(slides_lines)
     }
 
@@ -220,17 +220,17 @@ ioslides_presentation <- function(logo = NULL,
   }
 
   # return format
-  output_format(
-    knitr = knitr_options_html(fig_width, fig_height, fig_retina, keep_md, dev),
-    pandoc = pandoc_options(to = "html",
-                            from = from_rmarkdown(fig_caption, md_extensions),
+  rmarkdown::output_format(
+    knitr = rmarkdown::knitr_options_html(fig_width, fig_height, fig_retina, keep_md, dev),
+    pandoc = rmarkdown::pandoc_options(to = "html",
+                            from = rmarkdown:::from_rmarkdown(fig_caption, md_extensions),
                             args = args),
     keep_md = keep_md,
     clean_supporting = self_contained,
     df_print = df_print,
     pre_processor = pre_processor,
     post_processor = post_processor,
-    base_format = html_document_base(smart = smart, lib_dir = lib_dir,
+    base_format = rmarkdown::html_document_base(smart = smart, lib_dir = lib_dir,
                                      self_contained = self_contained,
                                      mathjax = mathjax,
                                      pandoc_args = pandoc_args,
@@ -240,10 +240,10 @@ ioslides_presentation <- function(logo = NULL,
 
 
 html_dependency_ioslides <- function() {
-  htmlDependency(
+  htmltools::htmlDependency(
     name = "ioslides",
     version = "13.5.1",
-    src = rmarkdown_system_file("rmd/ioslides/ioslides-13.5.1"),
+    src = rmarkdown:::rmarkdown_system_file("rmd/ioslides/ioslides-13.5.1"),
     script = c(
       "js/modernizr.custom.45394.js",
       "js/prettify/prettify.js",
@@ -257,7 +257,6 @@ html_dependency_ioslides <- function() {
       "fonts/fonts.css",
       "theme/css/default.css",
       "theme/css/phone.css")
-    )
+  )
 }
-
 
