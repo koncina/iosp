@@ -265,7 +265,7 @@ html_dependency_iosplus <- function() {
   htmltools::htmlDependency(
     name = "iosp",
     version = "0.1",
-    src = "/home/eric/R/x86_64-pc-linux-gnu-library/3.3/iosp/rmd/iosp",
+    src = system.file("rmd", "iosp", package = "iosp"),
     script = c(
       "js/lang-r.js"
     ),
