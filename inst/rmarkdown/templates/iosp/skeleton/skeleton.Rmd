@@ -1,0 +1,34 @@
+---
+title: "IOSlides plus dev demo"
+author: "Eric Koncina"
+date: "27 novembre 2016"
+output:
+  iosp::ioslides_plus: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Slide with columns as boxes
+
+Just a proof of concept. I changed the original lua file from `ioslides_presentation`.
+
+### Box 1{.col-4 .box .bg-red}
+
+Test 1
+
+### Box 2{.col-6 .box .bg-green}
+
+- line 1
+- line 2
+
+### Box 3{.col-6 .box .bg-blue}
+
+This box has again a width of 6 col: it will be rendered in a new row
+
+### {.col-12}
+
+We are able to exit the box using an empty `###` header and setting a 12 col wide row.
+
+## second slide

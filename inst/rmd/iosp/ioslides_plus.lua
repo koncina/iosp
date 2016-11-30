@@ -4,6 +4,9 @@ local notes = {}
 
 -- Rendering state
 local in_slide = false
+local in_column = false
+local in_row = false
+local col_count = 0
 local build_slide = false
 local in_notes = false
 
@@ -51,6 +54,24 @@ local function CompleteSlide()
   if (in_slide) then
     in_slide = false
     return  "</article></slide>"
+  else
+    return ""
+  end
+end
+
+local function CompleteColumn()
+  if (in_column) then
+    in_column = false
+    return  "</div>"
+  else
+    return ""
+  end
+end
+
+local function CompleteRow()
+  if (in_row) then
+    in_row = false
+    return  "</div>"
   else
     return ""
   end
@@ -227,6 +248,32 @@ function Header(lev, s, attr)
     end
   end
 
+  if lev == 3 then
+     -- complete previous column
+    local preface = CompleteColumn()
+    -- start a new column
+    in_column = true
+
+    local col_width = string.match(attr["class"], "col%-(%d+)")
+
+    if col_width then
+      col_count = col_count + tonumber(col_width)
+    end
+
+    if col_count > 12 then
+      preface = preface .. CompleteRow() .. "<div class = 'row'>"
+      col_count = 0
+      in_row = true
+    end
+    if (in_row == false) then
+      preface = preface .. "<div class = 'row'>"
+      in_row = true
+    end
+    header = "<div class = '" .. attr["class"] .. "'><h3>" .. s .. "</h3>"
+
+    return preface .. header
+  end
+
   -- trick: as lev value 2 is used in code below to start a new slide
   -- we force all lev <= slide_level as new slides
   if lev > 2 and lev <= slide_level then
@@ -242,8 +289,8 @@ function Header(lev, s, attr)
   -- treat level 2 headers as slides
   if lev == 2 then
 
-    -- complete previous slide
-    local preface = CompleteSlide()
+    -- complete previous column and slide
+    local preface = CompleteColumn() .. CompleteSlide()
 
     -- start a new slide
     in_slide = true
