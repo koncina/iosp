@@ -3,7 +3,8 @@ title: "IOSlides plus dev demo"
 author: "Eric Koncina"
 date: "27 novembre 2016"
 output:
-  iosp::ioslides_plus: default
+  iosp::ioslides_plus:
+    preview: yes
 ---
 
 ```{r setup, include=FALSE}
@@ -32,3 +33,17 @@ This box has again a width of 6 col: it will be rendered in a new row
 We are able to exit the box using an empty `###` header and setting a 12 col wide row.
 
 ## second slide
+
+Trying to use `---` to exit a column as suggested [here](https://github.com/koncina/iosp/issues/5).
+
+### Box{.col-6 .box .bg-blue}
+
+Now we are inside the box
+
+---
+
+Now we are outside the box in a new line
+
+---
+
+Now we created a new slide

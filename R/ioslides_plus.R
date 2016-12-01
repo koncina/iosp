@@ -23,6 +23,7 @@ ioslides_plus <- function(logo = NULL,
                           md_extensions = NULL,
                           pandoc_args = NULL,
                           extra_dependencies = NULL,
+                          preview = FALSE, # Allow to install dev/lua branch but disable the "preview" functions as long as they are not stable
                           ...) {
 
   # base pandoc options for all output
@@ -162,9 +163,13 @@ ioslides_plus <- function(logo = NULL,
     args <- c(args, "--slide-level", as.character(slide_level))
 
     # append main body of script
-    file.append(lua_writer,
-                system.file("rmd", "iosp", "ioslides_plus.lua", package = "iosp"))
-               # rmarkdown:::rmarkdown_system_file("rmd/ioslides/ioslides_presentation.lua"))
+    if (isTRUE(preview)) {
+      file.append(lua_writer,
+                  system.file("rmd", "iosp", "ioslides_plus.lua", package = "iosp"))
+    } else {
+      file.append(lua_writer,
+                  rmarkdown:::rmarkdown_system_file("rmd/ioslides/ioslides_presentation.lua"))
+    }
 
     output_tmpfile <- tempfile("ioslides-output", fileext = ".html")
     on.exit(unlink(output_tmpfile), add = TRUE)

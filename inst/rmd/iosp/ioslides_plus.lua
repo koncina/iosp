@@ -289,8 +289,12 @@ function Header(lev, s, attr)
   -- treat level 2 headers as slides
   if lev == 2 then
 
+    if (in_column) and s == "" then
+      return CompleteColumn() .. CompleteRow()
+    end
+
     -- complete previous column and slide
-    local preface = CompleteColumn() .. CompleteSlide()
+    local preface = CompleteColumn() .. CompleteRow() .. CompleteSlide()
 
     -- start a new slide
     in_slide = true
