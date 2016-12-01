@@ -53,3 +53,19 @@ You can specify the author of a citation using `|`
 You can also change the background color of the block setting a background color class
 
 > This is a citation with a red background | author{.bg-red}
+
+## Image size
+
+### {.col-6}
+
+```{r, echo = FALSE}
+plot(cars)
+```
+
+Images in a column are adjusted to the column width (or height). On the right side, when using the `nofit` class, the image is not resized and might not fit in the column.
+
+### {.col-6 .nofit}
+
+```{r, echo = FALSE}
+plot(cars)
+```
