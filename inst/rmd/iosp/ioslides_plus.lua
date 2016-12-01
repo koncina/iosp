@@ -32,6 +32,30 @@ local function escape(s, in_attribute)
 end
 
 
+-- from http://stackoverflow.com/a/6707799
+local escape_lua_pattern
+do
+  local matches =
+  {
+    ["^"] = "%^";
+    ["$"] = "%$";
+    ["("] = "%(";
+    [")"] = "%)";
+    ["%"] = "%%";
+    ["."] = "%.";
+    ["["] = "%[";
+    ["]"] = "%]";
+    ["*"] = "%*";
+    ["+"] = "%+";
+    ["-"] = "%-";
+    ["?"] = "%?";
+  }
+
+  escape_lua_pattern = function(s)
+    return (s:gsub(".", matches))
+  end
+end
+
 -- Helper function to convert an attributes table into
 -- a string that can be put into HTML tags.
 local function attributes(attr)
@@ -333,6 +357,7 @@ function BlockQuote(s)
   -- if this is a list then blockquote means invert the default
   -- incremental behavior
   local prefix = string.sub(s, 1, 3)
+  local author = ""
   if prefix == "<ol" or prefix == "<ul" then
     if not incremental then
       s = s:gsub(prefix .. ">", prefix .. " class = 'build'>", 1)
@@ -341,7 +366,31 @@ function BlockQuote(s)
     end
     return s
   else
-    return "<blockquote>\n" .. s .. "\n</blockquote>"
+    -- extract optional color class (expecting only a single class attribute for now)
+    local class = string.match(s, "{%.(.*)}")
+    
+    if class then
+      s = string.gsub(s, escape_lua_pattern("{." .. class .. "}"), "")
+      class = " class = '" .. class .. "'"
+    else
+      class = ""
+    end
+    -- Dont' know how to cleanly escape the string in order to get string.gsub to work
+    -- Instead we will use string.sub...
+
+
+    -- s = string.sub(s, class , "test")
+    --if (class) then
+    --  class = "class = '" .. class .. "'"
+    --end
+    
+    -- extract optional author
+    local i, j = string.find(s, "|")
+    if i then
+      author = "<cite>" .. string.sub(s, i+1, string.len(s)) .. "</cite>"
+      s = string.sub(s, 1, i-1)
+    end
+    return "<blockquote" .. class .. ">\n" .. s .. author .. "\n</blockquote>"
   end
 end
 

@@ -43,3 +43,13 @@ This box exhibits a title bar
 This box not...
 
 %end%
+
+## Blockquotes
+
+You can specify the author of a citation using `|`
+
+> This is a citation | author
+
+You can also change the background color of the block setting a background color class
+
+> This is a citation with a red background | author{.bg-red}
