@@ -28,22 +28,18 @@ Test 1
 
 This box has again a width of 6 col: it will be rendered in a new row
 
-### {.col-12}
+%end%
 
-We are able to exit the box using an empty `###` header and setting a 12 col wide row.
+We are able to exit the box and row using the keyword `%end%` as suggested [here](https://github.com/koncina/iosp/issues/5).
 
-## second slide
-
-Trying to use `---` to exit a column as suggested [here](https://github.com/koncina/iosp/issues/5).
+## Box without title bar
 
 ### Box{.col-6 .box .bg-blue}
 
-Now we are inside the box
+This box exhibits a title bar
 
----
+###{.col-6 .box .bg-blue}
 
-Now we are outside the box in a new line
+This box not...
 
----
-
-Now we created a new slide
+%end%

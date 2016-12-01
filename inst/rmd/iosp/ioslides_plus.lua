@@ -221,6 +221,9 @@ function Plain(s)
 end
 
 function Para(s)
+  if (s == "%end%") then -- %end% keyword will exit a column and row
+    return CompleteColumn() .. CompleteRow()
+  end
   return "<p>" .. s .. "</p>"
 end
 
@@ -249,7 +252,7 @@ function Header(lev, s, attr)
   end
 
   if lev == 3 then
-     -- complete previous column
+    -- complete previous column
     local preface = CompleteColumn()
     -- start a new column
     in_column = true
@@ -269,9 +272,15 @@ function Header(lev, s, attr)
       preface = preface .. "<div class = 'row'>"
       in_row = true
     end
-    header = "<div class = '" .. attr["class"] .. "'><h3>" .. s .. "</h3>"
-
-    return preface .. header
+    
+    -- if header is empty we open the box but do not set the h3 header
+    if (s == "") then
+      header =  s
+    else
+      header = "<h3>" .. s .. "</h3>"
+    end
+    
+    return preface .. "<div class = '" .. attr["class"] .. "'>" .. header
   end
 
   -- trick: as lev value 2 is used in code below to start a new slide
@@ -288,11 +297,6 @@ function Header(lev, s, attr)
 
   -- treat level 2 headers as slides
   if lev == 2 then
-
-    if (in_column) and s == "" then
-      return CompleteColumn() .. CompleteRow()
-    end
-
     -- complete previous column and slide
     local preface = CompleteColumn() .. CompleteRow() .. CompleteSlide()
 
