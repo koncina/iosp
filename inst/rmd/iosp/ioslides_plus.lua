@@ -95,6 +95,7 @@ end
 local function CompleteRow()
   if (in_row) then
     in_row = false
+    col_count = 0
     return  "</div>"
   else
     return ""
@@ -282,16 +283,17 @@ function Header(lev, s, attr)
     in_column = true
 
     local col_width = string.match(attr["class"], "col%-(%d+)")
-
+    
     if col_width then
       col_count = col_count + tonumber(col_width)
     end
-
+    
     if col_count > 12 then
       preface = preface .. CompleteRow() .. "<div class = 'row'>"
       col_count = 0
       in_row = true
     end
+    
     if (in_row == false) then
       preface = preface .. "<div class = 'row'>"
       in_row = true
