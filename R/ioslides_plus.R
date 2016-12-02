@@ -68,11 +68,18 @@ ioslides_plus <- function(logo = NULL,
               "--template",
               rmarkdown::pandoc_path_arg(rmarkdown:::rmarkdown_system_file("rmd/ioslides/default.html")))
 
-  # html dependency for ioslides
-  extra_dependencies <- append(extra_dependencies,
-                               list(html_dependency_ioslides(),
-                                    html_dependency_iosplus()))
-
+  if (isTRUE(preview)) {
+    # html dependency for ioslides
+    extra_dependencies <- append(extra_dependencies,
+                                 list(html_dependency_ioslides(),
+                                      html_dependency_iosplus()))
+  } else {
+    # html dependency for ioslides
+    extra_dependencies <- append(extra_dependencies,
+                                 list(html_dependency_ioslides(),
+                                      html_dependency_iosplus_legacy()))
+  }
+  
   # analytics
   if(!is.null(analytics))
     args <- c(args, rmarkdown::pandoc_variable_arg("analytics", analytics))
@@ -277,6 +284,20 @@ html_dependency_iosplus <- function() {
     ),
     stylesheet = c(
       "css/iosp.css"
+    )
+  )
+}
+
+html_dependency_iosplus_legacy <- function() {
+  htmltools::htmlDependency(
+    name = "iosp",
+    version = "0.1",
+    src = system.file("rmd", "iosp", package = "iosp"),
+    script = c(
+      "js/lang-r.js"
+    ),
+    stylesheet = c(
+      "css/iosp-legacy.css"
     )
   )
 }

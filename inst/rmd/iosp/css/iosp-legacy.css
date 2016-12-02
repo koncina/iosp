@@ -118,9 +118,7 @@ div.box > ul {
 }
 
 .row {
-  display: flex;
-  margin-bottom: 0.5em;
-  margin-top: 0.5em;
+  margin-bottom: 1em;
 }
 
 .row::after {
@@ -133,19 +131,15 @@ div.box > ul {
   margin-top: 1em;
 }
 
-div.row > div, div.row > div.top {
-  align-self: flex-start;
+.bottom, .middle, .stretch {
+  display: flex;
 }
 
-div.row > div.stretch {
-  align-self: inherit;
-}
-
-div.row > div.bottom {
+div.bottom > div {
   align-self: flex-end;
 }
 
-div.row > div.middle {
+div.middle > div {
   align-self: center;
 }
 

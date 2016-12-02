@@ -44,6 +44,110 @@ This box not...
 
 %end%
 
+## Align boxes
+
+### Box 1{.col-4 .bg-red .box}
+
+A smaller box
+
+### Box 2{.col-4 .bg-red .box}
+
+A bigger box
+
+- item 1
+- item 2
+- item 3
+
+### Box 3{.col-4 .bg-red .box}
+
+An intermediate one...
+
+%end%
+
+You can use the `stretch` class to tretch the height to the row height.
+
+### Box 1{.col-4 .bg-red .box .stretch}
+
+A smaller box
+
+### Box 2{.col-4 .bg-red .box .stretch}
+
+A bigger box
+
+- item 1
+- item 2
+- item 3
+
+### Box 3{.col-4 .bg-red .box .stretch}
+
+An intermediate one...
+
+## Align boxes | continued...
+
+You can also use the `bottom` class
+
+### Box 1{.col-4 .bg-red .box .bottom}
+
+A smaller box
+
+### Box 2{.col-4 .bg-red .box .bottom}
+
+A bigger box
+
+- item 1
+- item 2
+- item 3
+
+### Box 3{.col-4 .bg-red .box .bottom}
+
+An intermediate one...
+
+%end%
+
+Or the `middle` class
+
+### Box 1{.col-4 .bg-red .box .middle}
+
+A smaller box
+
+### Box 2{.col-4 .bg-red .box .middle}
+
+A bigger box
+
+- item 1
+- item 2
+- item 3
+
+### Box 3{.col-4 .bg-red .box .middle}
+
+An intermediate one...
+
+## Align boxes | continued...
+
+You can also **mix** the classes
+
+### bottom{.col-3 .bg-red .box .bottom}
+
+- 1
+- 2
+- 3
+
+### top {.col-3 .bg-red .box}
+
+- 1
+- 2
+- 3
+- 4
+
+### middle{.col-3 .bg-red .box .middle}
+
+- 1
+- 2
+
+### stretch{.col-3 .bg-red .box .stretch}
+
+- 1
+
 ## Blockquotes
 
 You can specify the author of a citation using `|`
