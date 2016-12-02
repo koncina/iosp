@@ -291,7 +291,7 @@ html_dependency_iosplus <- function() {
   htmltools::htmlDependency(
     name = "iosp",
     version = "0.1",
-    src = system.file("rmd", "iosp", package = "iosp"),
+    src = system.file("rmd", "iosp", "libs", package = "iosp"),
     script = c(
       "js/lang-r.js"
     ),
@@ -305,7 +305,7 @@ html_dependency_iosplus_legacy <- function() {
   htmltools::htmlDependency(
     name = "iosp",
     version = "0.1",
-    src = system.file("rmd", "iosp", package = "iosp"),
+    src = system.file("rmd", "iosp", "libs", package = "iosp"),
     script = c(
       "js/lang-r.js"
     ),
