@@ -232,10 +232,23 @@ ioslides_plus <- function(logo = NULL,
 
     output_file
   }
-
+  
+  
+  
+  hook_chunk <- function(x, options) {
+    # If "row" is set, we wrap the chunk in a row. 
+    if (isTRUE(options$row)) {
+      x <- paste0(c("<div class = \"row\">", x, "</div>"), collapse = "\n")
+    }
+    return(x)
+  }
+  
+  knitr = rmarkdown::knitr_options_html(fig_width, fig_height, fig_retina, keep_md, dev)
+  knitr$knit_hooks$chunk  <- hook_chunk
+  
   # return format
   rmarkdown::output_format(
-    knitr = rmarkdown::knitr_options_html(fig_width, fig_height, fig_retina, keep_md, dev),
+    knitr = knitr,
     pandoc = rmarkdown::pandoc_options(to = "html",
                                        from = rmarkdown:::from_rmarkdown(fig_caption, md_extensions),
                                        args = args),

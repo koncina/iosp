@@ -377,15 +377,7 @@ function BlockQuote(s)
     else
       class = ""
     end
-    -- Dont' know how to cleanly escape the string in order to get string.gsub to work
-    -- Instead we will use string.sub...
 
-
-    -- s = string.sub(s, class , "test")
-    --if (class) then
-    --  class = "class = '" .. class .. "'"
-    --end
-    
     -- extract optional author
     local i, j = string.find(s, "|")
     if i then
