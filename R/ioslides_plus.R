@@ -79,7 +79,7 @@ ioslides_plus <- function(logo = NULL,
                                  list(html_dependency_ioslides(),
                                       html_dependency_iosplus_legacy()))
   }
-  
+
   # analytics
   if(!is.null(analytics))
     args <- c(args, rmarkdown::pandoc_variable_arg("analytics", analytics))
@@ -232,20 +232,27 @@ ioslides_plus <- function(logo = NULL,
 
     output_file
   }
-  
-  
-  
+
   hook_chunk <- function(x, options) {
-    # If "row" is set, we wrap the chunk in a row. 
+    # Adapted from the knitr hook_chunk (md)
+    fence_char = '`'
+    fence = paste(rep(fence_char, 3), collapse = '')
+    x = gsub(paste0('[\n]{2,}(', fence, '|    )'), '\n\n\\1', x)
+    x = gsub('[\n]+$', '', x)
+    x = gsub('^[\n]+', '\n', x)
+    # If "row" is set, we wrap the chunk in a row.
     if (isTRUE(options$row)) {
-      x <- paste0(c("<div class = \"row\">", x, "</div>"), collapse = "\n")
+      x <- gsub(paste0("\n([", fence_char, "]{3,})\n+\\1r\n"), "\n\\1\n\n</div>\n<div class = \"row\">\n\\1r\n", x)
+      x <- paste0("\n<div class = \"row\">\n", x, "\n</div>\n")
     }
-    return(x)
+    if (is.null(s <- options$indent)) return(x)
+    line_prompt(x, prompt = s, continue = s)
   }
-  
+
+
   knitr = rmarkdown::knitr_options_html(fig_width, fig_height, fig_retina, keep_md, dev)
   knitr$knit_hooks$chunk  <- hook_chunk
-  
+
   # return format
   rmarkdown::output_format(
     knitr = knitr,
