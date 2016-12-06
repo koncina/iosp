@@ -119,6 +119,7 @@ div.box > ul {
 
 .row {
   display: flex;
+  display: -webkit-flex;
   margin-bottom: 0.5em;
   margin-top: 0.5em;
 }
@@ -401,6 +402,7 @@ slides > slide article ul > li > ul {
 
 div.float-r img {
   display: flex;
+  display: -webkit-flex;
 }
 
 div.left {

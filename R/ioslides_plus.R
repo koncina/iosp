@@ -232,21 +232,38 @@ ioslides_plus <- function(logo = NULL,
 
     output_file
   }
-
+  
+  # Didn't find a regex only way to manage the combination of multiple sources (rows) that might also contain multiple outputs (e.g. warning and output)
+  wrap_col <- function(x, col_width = c(6, 6)) {
+    paste0("\n<div class = \"row\"><div class = \"col-", col_width[1], "\">\n",
+           gsub("\n+```[^r]\n+(.*)", paste0("\n```\n</div><div class = \"col-", col_width[2], "\">\n\\1"), x), "\n</div></div>\n")
+  }
+  
   hook_chunk <- function(x, options) {
-    # Adapted from the knitr hook_chunk (md)
+    # Adapted from the knitr hook_chunk (hooks-md.R)
     fence_char = '`'
     fence = paste(rep(fence_char, 3), collapse = '')
     x = gsub(paste0('[\n]{2,}(', fence, '|    )'), '\n\n\\1', x)
     x = gsub('[\n]+$', '', x)
     x = gsub('^[\n]+', '\n', x)
-    # If "row" is set, we wrap the chunk in a row.
-    if (isTRUE(options$row)) {
-      x <- gsub(paste0("\n([", fence_char, "]{3,})\n+\\1r\n"), "\n\\1\n\n</div>\n<div class = \"row\">\n\\1r\n", x)
-      x <- paste0("\n<div class = \"row\">\n", x, "\n</div>\n")
+    
+    # If "row" is set (TRUE or a vector with 2 values), we wrap the chunk in a row.
+    if (is.numeric(options$row) && length(options$row) == 2 && sum(options$row) < 13) {
+      row <- TRUE
+      col <- options$row
+    } else if (isTRUE(options$row)) {
+      row <- TRUE
+      col <- c(6, 6)
+    } else row <- FALSE
+    
+    if (row) {
+      x <- gsub(paste0("\n([", fence_char, "]{3,})\n+\\1r\n"), "\n\\1\n\n```splitrow```\n\\1r\n", x)
+      x <- strsplit(x, "```splitrow```")
+      x <- lapply(x, wrap_col, col)
+      x <- paste0(unlist(x), collapse = "\n")
     }
     if (is.null(s <- options$indent)) return(x)
-    line_prompt(x, prompt = s, continue = s)
+    knitr:::line_prompt(x, prompt = s, continue = s)
   }
 
 
