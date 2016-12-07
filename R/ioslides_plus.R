@@ -233,12 +233,6 @@ ioslides_plus <- function(logo = NULL,
     output_file
   }
   
-  # Didn't find a regex only way to manage the combination of multiple sources (rows) that might also contain multiple outputs (e.g. warning and output)
-  wrap_col <- function(x, col_width = c(6, 6)) {
-    paste0("\n<div class = \"row\"><div class = \"col-", col_width[1], "\">\n",
-           gsub("\n+```[^r]\n+(.*)", paste0("\n```\n</div><div class = \"col-", col_width[2], "\">\n\\1"), x), "\n</div></div>\n")
-  }
-  
   hook_chunk <- function(x, options) {
     # Adapted from the knitr hook_chunk (hooks-md.R)
     fence_char = '`'
@@ -250,22 +244,34 @@ ioslides_plus <- function(logo = NULL,
     # If "row" is set (TRUE or a vector with 2 values), we wrap the chunk in a row.
     if (is.numeric(options$row) && length(options$row) == 2 && sum(options$row) < 13) {
       row <- TRUE
-      col <- options$row
+      col_width <- options$row
     } else if (isTRUE(options$row)) {
       row <- TRUE
-      col <- c(6, 6)
+      col_width <- c(6, 6)
     } else row <- FALSE
     
+    # Should I change the following lines and use options$engine instead of the hardcoded r?
     if (row) {
-      x <- gsub(paste0("\n([", fence_char, "]{3,})\n+\\1r\n"), "\n\\1\n\n```splitrow```\n\\1r\n", x)
-      x <- strsplit(x, "```splitrow```")
-      x <- lapply(x, wrap_col, col)
-      x <- paste0(unlist(x), collapse = "\n")
+      # Trying to detect multiple source chunks to place them in different rows
+      # Matching the fence and extracting positions
+      m <- gregexpr(paste0("\n([", fence_char, "]{3,})\n+\\1r\n"), x)[[1]]
+      if (m != -1) {
+        m <-  c(1, m + 4, nchar(x))
+        x <- lapply(1:(length(m) - 1), function(i) substr(x, m[i], m[i + 1]))
+      }
+      # Splitting columns (After the source chunk is closed)
+      x <- lapply(x, function(s) {p <- regexpr("\n+```[^r]\n+", s) + 4; c(substr(s, 1, p), substr(s, p, nchar(s)))})
+      if (isTRUE(options$collapse)) {
+        x <- lapply(1:2, function(i) gsub(paste0('\n([', fence_char, ']{3,})\n+\\1(r)?\n'), "\n", paste0(unlist(lapply(x, `[[`, i)), collapse = "\n")))
+        x <- paste0("\n<div class = \"col-", col_width, "\">\n", x, "\n</div>\n", collapse = "\n")
+      } else {
+        x <- lapply(x, function(v) paste0("\n<div class = \"col-", col_width, "\">\n", v, "\n</div>\n", collapse = "\n"))
+      }
+      x <- paste0("\n<div class = \"row\">", x, "</div>\n", collapse = "\n")
     }
     if (is.null(s <- options$indent)) return(x)
     knitr:::line_prompt(x, prompt = s, continue = s)
   }
-
 
   knitr = rmarkdown::knitr_options_html(fig_width, fig_height, fig_retina, keep_md, dev)
   knitr$knit_hooks$chunk  <- hook_chunk
@@ -288,7 +294,6 @@ ioslides_plus <- function(logo = NULL,
                                                 extra_dependencies = extra_dependencies,
                                                 bootstrap_compatible = TRUE, ...))
 }
-
 
 html_dependency_ioslides <- function() {
   htmltools::htmlDependency(
@@ -338,4 +343,3 @@ html_dependency_iosplus_legacy <- function() {
     )
   )
 }
-
