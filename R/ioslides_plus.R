@@ -232,7 +232,7 @@ ioslides_plus <- function(logo = NULL,
 
     output_file
   }
-  
+
   hook_chunk <- function(x, options) {
     # Adapted from the knitr hook_chunk (hooks-md.R)
     fence_char = '`'
@@ -240,16 +240,16 @@ ioslides_plus <- function(logo = NULL,
     x = gsub(paste0('[\n]{2,}(', fence, '|    )'), '\n\n\\1', x)
     x = gsub('[\n]+$', '', x)
     x = gsub('^[\n]+', '\n', x)
-    
+
     # If "row" is set (TRUE or a vector with 2 values), we wrap the chunk in a row.
-    if (is.numeric(options$row) && length(options$row) == 2 && sum(options$row) < 13) {
+    if (options$engine == "R" && is.numeric(options$row) && length(options$row) == 2 && sum(options$row) < 13) {
       row <- TRUE
       col_width <- options$row
     } else if (isTRUE(options$row)) {
       row <- TRUE
       col_width <- c(6, 6)
     } else row <- FALSE
-    
+
     # Should I change the following lines and use options$engine instead of the hardcoded r?
     if (row) {
       # Trying to detect multiple source chunks to place them in different rows
@@ -269,6 +269,7 @@ ioslides_plus <- function(logo = NULL,
       }
       x <- paste0("\n<div class = \"row\">", x, "</div>\n", collapse = "\n")
     }
+    x <- paste0("\n<div class = \"code-chunk\">\n", x, "\n</div>\n")
     if (is.null(s <- options$indent)) return(x)
     knitr:::line_prompt(x, prompt = s, continue = s)
   }
