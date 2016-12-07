@@ -164,6 +164,31 @@ slides > slide article pre + p, slides > slide article table + p {
 
 /* Custom prettyprint colors: cobalt*/
 
+.code-chunk > div.row {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  display: -webkit-flex;
+}
+
+.code-chunk > div.row > div
+{
+  margin: 0;
+  padding: 0;
+  display: flex;
+  display: -webkit-flex;
+  align-self: stretch;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+}
+
+.code-chunk > div.row > div pre {
+  height: 100%;
+  flex: 1;
+  -webkit-flex: 1;
+  padding: 0 0 0 10px;
+}
+
 pre.prettyprint {
   background: #002240;
   color: #ffffff;
