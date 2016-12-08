@@ -46,6 +46,7 @@ slides > slide > hgroup > h3 {
   box-sizing: border-box;
 }
 
+/*
 .col-1 {width: 8.33%;}
 .col-2 {width: 16.66%;}
 .col-3 {width: 25%;}
@@ -71,10 +72,39 @@ slides > slide > hgroup > h3 {
 .box.col-10 {width: 81.33%;}
 .box.col-11 {width: 89.66%;}
 .box.col-12 {width: 98%;}
+*/
+
+.col-1 {width: 6.33%;}
+.col-2 {width: 14.66%;}
+.col-3 {width: 23%;}
+.col-4 {width: 31.33%;}
+.col-5 {width: 39.66%;}
+.col-6 {width: 48%;}
+.col-7 {width: 56.33%;}
+.col-8 {width: 64.66%;}
+.col-9 {width: 73%;}
+.col-10 {width: 81.33%;}
+.col-11 {width: 89.66%;}
+.col-12 {width: 98%;}
+
+.chunk > .row > .col-1 {width: 8.33%;}
+.chunk > .row > .col-2 {width: 16.66%;}
+.chunk > .row > .col-3 {width: 25%;}
+.chunk > .row > .col-4 {width: 33.33%;}
+.chunk > .row > .col-5 {width: 41.66%;}
+.chunk > .row > .col-6 {width: 50%;}
+.chunk > .row > .col-7 {width: 58.33%;}
+.chunk > .row > .col-8 {width: 66.66%;}
+.chunk > .row > .col-9 {width: 75%;}
+.chunk > .row > .col-10 {width: 83.33%;}
+.chunk > .row > .col-11 {width: 91.66%;}
+.chunk > .row > .col-12 {width: 100%;}
+
 
 [class*="col-"] {
   float: left;
   padding: 15px;
+  margin: 0 1%;
 }
 
 [class*="col-"] > h3 {
@@ -88,15 +118,12 @@ slides > slide > hgroup > h3 {
 }
 
 [class*="col-"].box > h3:first-child {
-  /*border-top-left-radius: 5px;
-  border-top-right-radius: 5px;*/
   margin: -15px -15px 10px -15px;
   padding-left: 10px;
   padding-bottom: 5px;
 }
 
 [class*="col-"].box {
-  margin: 0 1%;
   box-shadow: 10px 10px 8px 1px rgba(0, 0, 0, 0.2), 1px 3px 3px 2px rgba(0, 0, 0, 0.5);
   border-radius: 5px;
   border: 1px solid lightgray;
@@ -136,18 +163,22 @@ div.box > ul {
 
 div.row > div, div.row > div.top {
   align-self: flex-start;
+  -webkit-align-self: flex-start;
 }
 
 div.row > div.stretch {
-  align-self: inherit;
+  align-self: stretch;
+  -webkit-align-self: stretch;
 }
 
 div.row > div.bottom {
   align-self: flex-end;
+  -webkit-align-self: flex-end;
 }
 
 div.row > div.middle {
   align-self: center;
+  -webkit-align-self: center;
 }
 
 slides > slide article strong {
@@ -164,19 +195,19 @@ slides > slide article pre + p, slides > slide article table + p {
 
 /* Custom prettyprint colors: cobalt*/
 
-
-.chunk {
-  /*box-shadow: 10px 10px 8px 1px rgba(0, 0, 0, 0.2), 1px 3px 3px 2px rgba(0, 0, 0, 0.5);*/
+slides > slide article .chunk {
   padding: 10px 10px 10px 10px;
-  margin: 20px;
+  padding: 0;
+  margin: 0.5em 1%;
   border-radius: 5px;
   background: #2b557a;
   overflow: hidden;
+  border: 2px solid #002240;
 }
 
 
-.shadow.chunk {
-  padding: 0;
+.box > .shadow.chunk {
+  box-shadow: none;
 }
 
 .chunk > div.row {
@@ -203,6 +234,7 @@ slides > slide article pre + p, slides > slide article table + p {
   display: flex;
   display: -webkit-flex;
   align-self: stretch;
+  -webkit-align-self: stretch;
   flex-direction: column;
   -webkit-flex-direction: column;
 }
@@ -218,19 +250,15 @@ slides > slide article pre + p, slides > slide article table + p {
 }
 
 [class*="col-"] > .chunk {
-  /*margin-top: -15px;*/
-  /*margin: -15px calc(-15px + 1%);*/
-  padding: 0;
+  margin: -15px;
 }
 
 pre.prettyprint {
   background: #2b557a;
   color: #ffffff;
-  /*box-shadow: 10px 10px 8px 1px rgba(0, 0, 0, 0.2), 1px 3px 3px 2px rgba(0, 0, 0, 0.5);
-  border-top-right-radius: 5px;*/
-  /*border-bottom-right-radius: 5px;*/
-  /*margin-right: 1%;*/
+  border-left: 15px solid #204260;
 }
+
 pre.prettyprint .str { color: #3ad900; } /* string      */
 pre.prettyprint .kwd { color: #ff9d00; } /* keyword     */
 pre.prettyprint .com { color: #0088ff; } /* comment     */
@@ -249,16 +277,12 @@ pre:not(.prettyprint) {
   color: #ffffff;
   background: #0b355a;
   padding-left: 5px;
-  /*background: -webkit-linear-gradient(-90deg, #2b557a, #002240); 
-  background: -o-linear-gradient(-90deg, #2b557a, #002240);
-  background: -moz-linear-gradient(-90deg, #2b557a, #002240); 
-  background: linear-gradient(-90deg, #2b557a, #002240);*/
   border-left: 15px solid #002240;
 }
 
 .codefont pre {
-    font-size: 11px;
-    line-height: 9px;
+  font-size: 11px;
+  line-height: 9px;
 }
 
 code {
@@ -267,7 +291,6 @@ code {
   background-color: rgba(0, 0, 0, 0.04);
   border-color: black;
 }
-
 
 pre {
   margin-bottom: 0;
@@ -279,23 +302,8 @@ pre {
   word-wrap: break-word;
 }
 
-[class*="col-"] > pre {
-  left: 0;
-  width: 100%;
-  padding-left: 20px;
-}
-
-[class*="col-"].box > pre {
-  box-shadow: inset 3px 1px 5px 3px rgba(0, 0, 0, 0.3)
-  /*box-shadow: inset 3px 3px 5px 2px rgba(0, 0, 0, 0.3);*/
-}
-
-[class*="col-"].box > pre.prettyprint {
-  box-shadow: none;
-}
 
 .shadow {
-  /*box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7);*/
   box-shadow: 10px 10px 8px 1px rgba(0, 0, 0, 0.2), 1px 3px 3px 2px rgba(0, 0, 0, 0.5);
   padding: 5px 10px 5px 10px;
   margin: 20px;
@@ -314,7 +322,6 @@ slides > slide:not(.nobackground):before {
     font-size: 11px;
     line-height: 9px;
 }
-
 
 .wrapper {
   text-align: center;
@@ -532,7 +539,7 @@ div.center {
 
 .box.bg-red > h3:first-child {
   background: #991f00;
-  color: lightgray;
+  color: #fff;
 }
 
 .bg-green {
@@ -545,7 +552,7 @@ div.center {
 
 .box.bg-green > h3:first-child {
   background-color: #1f7a1f;
-  color: lightgray;
+  color: #fff;
 }
 
 .bg-blue {
@@ -559,7 +566,31 @@ div.center {
 
 .box.bg-blue > h3:first-child {
   background-color: #005c99; /* 30% */
-  color: lightgray;
+  color: #fff;
+}
+
+.bg-cobalt {
+  background-color: #002240;
+}
+
+.box.bg-cobalt {
+  border: 2px solid #002240;
+}
+
+.box.bg-cobalt > .chunk {
+  border: none;
+  margin-top: 0;
+  border-radius: 0;
+}
+
+.box.bg-cobalt > h3 + .chunk {
+  margin-top: -10px;
+}
+
+
+.box.bg-cobalt > h3:first-child {
+  background-color: #002240;
+  color: #fff;
 }
 
 .exercise {
