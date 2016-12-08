@@ -267,10 +267,10 @@ ioslides_plus <- function(logo = NULL,
       }
       x <- paste0("\n<div class = \"row\">", x, "</div>\n", collapse = "\n")
     }
-    
+
     # If code chunks are present we wrap them in a container div
     if (grepl("\n+```(r)?\n+", x)) {
-      x <- paste0("\n<div class = \"chunk", ifelse(isTRUE(options$shadow), " shadow", ""), "\">\n", x, "\n</div>\n")
+      x <- paste0("\n<div class = \"chunk ", paste(options$class, collapse = " "), "\">\n", x, "\n</div>\n")
     }
     x = gsub('[\n]+$', '', x)
     x = gsub('^[\n]+', '\n', x)
@@ -281,7 +281,7 @@ ioslides_plus <- function(logo = NULL,
   knitr = rmarkdown::knitr_options_html(fig_width, fig_height, fig_retina, keep_md, dev)
   knitr$knit_hooks$chunk  <- hook_chunk
   knitr$opts_chunk$comment <- NA
-  knitr$opts_chunk$shadow <- TRUE
+  knitr$opts_chunk$class <- "shadow"
 
   # return format
   rmarkdown::output_format(

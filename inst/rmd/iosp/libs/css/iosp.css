@@ -276,7 +276,7 @@ pre.prettyprint .dec { color: #fff; }    /* declaration #ff9d00*/
 pre:not(.prettyprint) {
   color: #ffffff;
   background: #0b355a;
-  padding-left: 5px;
+  padding-left: 10px;
   border-left: 15px solid #002240;
 }
 
@@ -295,7 +295,7 @@ code {
 pre {
   margin-bottom: 0;
   margin-top: 0;
-  padding: 5px 0 5px 30px;
+  padding: 5px 0 5px 10px;
   width: 100%;
   left: 0;
   white-space: pre-wrap;
