@@ -238,8 +238,6 @@ ioslides_plus <- function(logo = NULL,
     fence_char = '`'
     fence = paste(rep(fence_char, 3), collapse = '')
     x = gsub(paste0('[\n]{2,}(', fence, '|    )'), '\n\n\\1', x)
-    x = gsub('[\n]+$', '', x)
-    x = gsub('^[\n]+', '\n', x)
 
     # If "row" is set (TRUE or a vector with 2 values), we wrap the chunk in a row.
     if (options$engine == "R" && is.numeric(options$row) && length(options$row) == 2 && sum(options$row) < 13) {
@@ -269,13 +267,21 @@ ioslides_plus <- function(logo = NULL,
       }
       x <- paste0("\n<div class = \"row\">", x, "</div>\n", collapse = "\n")
     }
-    x <- paste0("\n<div class = \"code-chunk\">\n", x, "\n</div>\n")
+    
+    # If code chunks are present we wrap them in a container div
+    if (grepl("\n+```(r)?\n+", x)) {
+      x <- paste0("\n<div class = \"chunk", ifelse(isTRUE(options$shadow), " shadow", ""), "\">\n", x, "\n</div>\n")
+    }
+    x = gsub('[\n]+$', '', x)
+    x = gsub('^[\n]+', '\n', x)
     if (is.null(s <- options$indent)) return(x)
     knitr:::line_prompt(x, prompt = s, continue = s)
   }
 
   knitr = rmarkdown::knitr_options_html(fig_width, fig_height, fig_retina, keep_md, dev)
   knitr$knit_hooks$chunk  <- hook_chunk
+  knitr$opts_chunk$comment <- NA
+  knitr$opts_chunk$shadow <- TRUE
 
   # return format
   rmarkdown::output_format(
