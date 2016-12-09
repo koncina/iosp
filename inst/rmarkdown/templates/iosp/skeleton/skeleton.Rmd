@@ -173,3 +173,97 @@ Images in a column are adjusted to the column width (or height). On the right si
 ```{r, echo = FALSE}
 plot(cars)
 ```
+
+# Code chunks
+
+## Base code chunks
+
+```{r, echo = TRUE}
+x <- 1:10
+x * 2
+x * 3
+```
+With `eval = FALSE`
+
+```{r, eval = FALSE, echo = TRUE}
+x <- 1:10
+x * 2
+x * 3
+```
+
+With `echo = FALSE`
+
+```{r, echo = FALSE}
+x <- 1:10
+x * 2
+x * 3
+```
+
+## Display chunks by row{.smaller}
+
+You can use the `row` chunk option to display the source and results side by side. Set `row = TRUE`:
+
+```{r, echo = TRUE, row = TRUE}
+x <- 1:10
+x * 2
+x * 3
+```
+
+You can also set the width of each columns in a vector (sum < 12)
+
+```{r, echo = TRUE, row = c(4, 8)}
+x <- 1:10
+x * 2
+x * 3
+```
+
+Setting the `collapse = TRUE` option will merge the rows:
+
+```{r, echo = TRUE, row = c(4, 8), collapse = TRUE}
+x <- 1:10
+x * 2
+x * 3
+```
+
+## Chunks generating plots
+
+
+```{r, echo = TRUE}
+# This is a comment
+plot(cars)
+```
+
+## Chunks generating plots | side by side
+
+```{r, echo = TRUE, row = c(4, 8)}
+# This is a comment
+plot(cars)
+```
+
+## Chunks in a column or box layout{.smaller}
+
+### Box {.col-4 .box .bg-red .stretch}
+
+This is a red box
+
+###With a title{.col-8 .bg-cobalt .box}
+
+```{r, echo = TRUE}
+x <- 1:10
+x * 2
+x * 3
+```
+
+###{.col-6}
+
+```{r, echo = TRUE, row = TRUE}
+x <- 1:10
+x * 2
+x * 3
+```
+
+###{.col-6}
+
+```{r, echo = TRUE, row = c(4, 8)}
+plot(cars)
+```
