@@ -200,7 +200,7 @@ slides > slide article .chunk {
   padding: 0;
   margin: 0.5em 1%;
   border-radius: 5px;
-  background: #2b557a;
+  background: #bfccd7;
   overflow: hidden;
   border: 2px solid #002240;
 }
@@ -229,7 +229,7 @@ slides > slide article .chunk {
 
 .chunk > div.row > div {
   margin: 0;
-  margin-right: 5px;
+  /*margin-right: 5px;*/
   padding: 0;
   display: flex;
   display: -webkit-flex;
@@ -239,9 +239,9 @@ slides > slide article .chunk {
   -webkit-flex-direction: column;
 }
 
-.chunk > div.row > div:last-child {
+/*.chunk > div.row > div:last-child {
   margin-right: 0;
-}
+}*/
 
 .chunk > div.row > div pre {
   height: 100%;
@@ -256,7 +256,7 @@ slides > slide article .chunk {
 pre.prettyprint {
   background: #2b557a;
   color: #ffffff;
-  border-left: 15px solid #204260;
+  border-left: 15px solid #002240;
 }
 
 pre.prettyprint .str { color: #3ad900; } /* string      */
@@ -274,10 +274,10 @@ pre.prettyprint .dec { color: #fff; }    /* declaration #ff9d00*/
 /* End of prettyprint*/
 
 pre:not(.prettyprint) {
-  color: #ffffff;
-  background: #0b355a;
+  color: #51283e;
+  background: #bfccd7;
   padding-left: 10px;
-  border-left: 15px solid #002240;
+  border-left: 15px solid #5a7184;
 }
 
 .codefont pre {
