@@ -148,6 +148,34 @@ You can also **mix** the classes
 
 - 1
 
+## Offsetting boxes
+
+You can add an offset on the left side of a box using the `offset-x` class where $1 \leq x \leq 11$
+
+### Box{.col-4 .box .bg-red}
+
+Test
+
+### Box{.col-4 .offset-4 .box .bg-red}
+
+Test
+
+### Box{.col-2 .offset-2 .box .bg-red}
+
+Test
+
+### Box{.col-8 .box .bg-red}
+
+Test
+
+### {.col-1 .offset-11 .box .bg-blue}
+
+A
+
+### {.col-1 .box .bg-blue}
+
+B
+
 ## Blockquotes
 
 You can specify the author of a citation using `|`

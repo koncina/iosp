@@ -283,29 +283,38 @@ function Header(lev, s, attr)
     in_column = true
 
     local col_width = string.match(attr["class"], "col%-(%d+)")
-    
+    local col_offset = string.match(attr["class"], "offset%-(%d+)")
+
     if col_width then
       col_count = col_count + tonumber(col_width)
+    else
+      col_width = 0
     end
-    
+
+    if col_offset then
+      col_count = col_count + tonumber(col_offset)
+    else
+      col_offset = 0
+    end
+
     if col_count > 12 then
       preface = preface .. CompleteRow() .. "<div class = 'row'>"
-      col_count = 0
+      col_count = tonumber(col_offset) + tonumber(col_width)
       in_row = true
     end
-    
+
     if (in_row == false) then
       preface = preface .. "<div class = 'row'>"
       in_row = true
     end
-    
+
     -- if header is empty we open the box but do not set the h3 header
     if (s == "") then
       header =  s
     else
       header = "<h3>" .. s .. "</h3>"
     end
-    
+
     return preface .. "<div class = '" .. attr["class"] .. "'>" .. header
   end
 
@@ -370,7 +379,7 @@ function BlockQuote(s)
   else
     -- extract optional color class (expecting only a single class attribute for now)
     local class = string.match(s, "{%.(.*)}")
-    
+
     if class then
       s = string.gsub(s, escape_lua_pattern("{." .. class .. "}"), "")
       class = " class = '" .. class .. "'"
