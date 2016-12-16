@@ -19,12 +19,16 @@ slides > slide > hgroup:not(.auto-fadein) {
   height: 45px;
 }
 
+slides > slide.title-slide hgroup h1 {
+  line-height: 1;
+}
+
 slides > slide > hgroup > h2 {
   font-size: 30px;
   line-height: 25px;
 }
 
-slides > slide > hgroup > h3 {
+slides > slide:not(.segue) > hgroup > h3 {
   font-style: italic;
   line-height: 25px;
   position: relative;
@@ -33,6 +37,10 @@ slides > slide > hgroup > h3 {
   width: 50%;
   text-align: right;
   z-index: 999;
+}
+
+slides > slide.segue article {
+  text-align: right;
 }
 
 /* End of headers */
