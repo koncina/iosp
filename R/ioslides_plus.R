@@ -23,7 +23,6 @@ ioslides_plus <- function(logo = NULL,
                           md_extensions = NULL,
                           pandoc_args = NULL,
                           extra_dependencies = NULL,
-                          preview = FALSE, # Allow to install dev/lua branch but disable the "preview" functions as long as they are not stable
                           footer = NULL,
                           ...) {
 
@@ -68,22 +67,14 @@ ioslides_plus <- function(logo = NULL,
     args <- c(args,
               "--template",
               system.file("rmd", "iosp", "default.html", package = "iosp"))
-              #rmarkdown::pandoc_path_arg(rmarkdown:::rmarkdown_system_file("rmd/ioslides/default.html")))
-  
-  if (isTRUE(preview)) {
-    # html dependency for ioslides
-    extra_dependencies <- append(extra_dependencies,
+              
+  # html dependency for ioslides
+  extra_dependencies <- append(extra_dependencies,
                                  list(html_dependency_ioslides(),
                                       html_dependency_iosplus()))
-  } else {
-    # html dependency for ioslides
-    extra_dependencies <- append(extra_dependencies,
-                                 list(html_dependency_ioslides(),
-                                      html_dependency_iosplus_legacy()))
-  }
 
   # analytics
-  if(!is.null(analytics))
+  if (!is.null(analytics))
     args <- c(args, rmarkdown::pandoc_variable_arg("analytics", analytics))
 
   # pre-processor for arguments that may depend on the name of the
@@ -176,13 +167,8 @@ ioslides_plus <- function(logo = NULL,
     args <- c(args, "--slide-level", as.character(slide_level))
 
     # append main body of script
-    if (isTRUE(preview)) {
-      file.append(lua_writer,
-                  system.file("rmd", "iosp", "ioslides_plus.lua", package = "iosp"))
-    } else {
-      file.append(lua_writer,
-                  rmarkdown:::rmarkdown_system_file("rmd/ioslides/ioslides_presentation.lua"))
-    }
+    file.append(lua_writer,
+                system.file("rmd", "iosp", "ioslides_plus.lua", package = "iosp"))
 
     output_tmpfile <- tempfile("ioslides-output", fileext = ".html")
     on.exit(unlink(output_tmpfile), add = TRUE)
@@ -228,7 +214,7 @@ ioslides_plus <- function(logo = NULL,
     # substitute slides for the sentinel line
     sentinel_line <- grep("^RENDERED_SLIDES$", output_lines)
     if (length(sentinel_line) == 1) {
-      preface_lines <- c(output_lines[1:sentinel_line[1]-1])
+      preface_lines <- c(output_lines[1:sentinel_line[1] - 1])
       suffix_lines <- c(output_lines[-(1:sentinel_line[1])])
       output_lines <- c(preface_lines, slides_lines, suffix_lines)
       writeLines(output_lines, output_file, useBytes = TRUE)
@@ -339,20 +325,6 @@ html_dependency_iosplus <- function() {
     ),
     stylesheet = c(
       "css/iosp.css"
-    )
-  )
-}
-
-html_dependency_iosplus_legacy <- function() {
-  htmltools::htmlDependency(
-    name = "iosp",
-    version = "0.1",
-    src = system.file("rmd", "iosp", "libs", package = "iosp"),
-    script = c(
-      "js/lang-r.js"
-    ),
-    stylesheet = c(
-      "css/iosp-legacy.css"
     )
   )
 }

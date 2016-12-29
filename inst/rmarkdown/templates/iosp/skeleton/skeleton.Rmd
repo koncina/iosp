@@ -4,7 +4,7 @@ author: "Eric Koncina"
 date: "27 novembre 2016"
 output:
   iosp::ioslides_plus:
-    preview: yes
+    footer: "Created with ioslides plus"
 ---
 
 ```{r setup, include=FALSE}
