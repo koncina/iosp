@@ -277,45 +277,41 @@ function Header(lev, s, attr)
   end
 
   if lev == 3 then
-    -- complete previous column
-    local preface = CompleteColumn()
-    -- start a new column
-    in_column = true
-
     local col_width = string.match(attr["class"], "col%-(%d+)")
     local col_offset = string.match(attr["class"], "offset%-(%d+)")
 
     if col_width then
-      col_count = col_count + tonumber(col_width)
-    else
-      col_width = 0
-    end
+      -- complete previous column
+      local preface = CompleteColumn()
+      -- start a new column
+      in_column = true
 
-    if col_offset then
-      col_count = col_count + tonumber(col_offset)
-    else
-      col_offset = 0
-    end
+      if not col_offset then
+        col_offset = 0
+      end
+    
+      col_count = col_count + tonumber(col_offset) + tonumber(col_width)
 
-    if col_count > 12 then
-      preface = preface .. CompleteRow() .. "<div class = 'row'>"
-      col_count = tonumber(col_offset) + tonumber(col_width)
-      in_row = true
-    end
+      if (col_count > 12) then
+        preface = preface .. CompleteRow() .. "<div class = 'row'>"
+        col_count = tonumber(col_offset) + tonumber(col_width)
+        in_row = true
+      end
 
-    if (in_row == false) then
+      if (in_row == false) then
       preface = preface .. "<div class = 'row'>"
       in_row = true
     end
 
-    -- if header is empty we open the box but do not set the h3 header
-    if (s == "") then
+      -- if header is empty we open the box but do not set the h3 header
+      if (s == "") then
       header =  s
     else
       header = "<h3>" .. s .. "</h3>"
     end
 
-    return preface .. "<div class = '" .. attr["class"] .. "'>" .. header
+      return preface .. "<div class = '" .. attr["class"] .. "'>" .. header
+    end
   end
 
   -- trick: as lev value 2 is used in code below to start a new slide
