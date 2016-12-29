@@ -24,6 +24,7 @@ ioslides_plus <- function(logo = NULL,
                           pandoc_args = NULL,
                           extra_dependencies = NULL,
                           preview = FALSE, # Allow to install dev/lua branch but disable the "preview" functions as long as they are not stable
+                          footer = NULL,
                           ...) {
 
   # base pandoc options for all output
@@ -66,8 +67,9 @@ ioslides_plus <- function(logo = NULL,
   else
     args <- c(args,
               "--template",
-              rmarkdown::pandoc_path_arg(rmarkdown:::rmarkdown_system_file("rmd/ioslides/default.html")))
-
+              system.file("rmd", "iosp", "default.html", package = "iosp"))
+              #rmarkdown::pandoc_path_arg(rmarkdown:::rmarkdown_system_file("rmd/ioslides/default.html")))
+  
   if (isTRUE(preview)) {
     # html dependency for ioslides
     extra_dependencies <- append(extra_dependencies,
@@ -117,6 +119,10 @@ ioslides_plus <- function(logo = NULL,
       args <- c(args, "--variable", paste("logo=", logo_path, sep = ""))
     }
 
+    if (!is.null(footer)) {
+      args <- c(args, "--variable", paste0("footer=", footer))
+    }
+    
     # return additional args
     args
   }
