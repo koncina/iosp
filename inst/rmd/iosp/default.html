@@ -82,40 +82,6 @@ $endif$
       transition: opacity 0.6s ease-in $transition$s;
       opacity: 0;
     }
-
-$if(logo)$
-    slides > slide:not(.nobackground):before {
-      font-size: 12pt;
-      font-style: italic;
-      content: "$if(footer)$$footer$$endif$";
-      position: absolute;
-      bottom: 20px;
-      left: 60px;
-      padding-left: 60px;
-      height: 30px;
-      line-height: 1.9;
-      background: url($logo$) no-repeat 0 50%;
-      -webkit-background-size: 50px 50px;
-      -moz-background-size: 50px 50px;
-      -o-background-size: 50px 50px;
-      background-size: 50px 50px;
-      padding-left: 60px;
-    }
-$else$
-$if(footer)$
-    slides > slide:not(.nobackground):before {
-      font-size: 12pt;
-      font-style: italic;
-      content: "$footer$";
-      position: absolute;
-      bottom: 20px;
-      left: 60px;
-      padding-left: 0;
-      height: 30px;
-      line-height: 1.9;
-    }
-$endif$
-$endif$
   </style>
 
 $for(css)$
@@ -175,6 +141,19 @@ $if(mathjax-url)$
     script.type = "text/javascript";
     script.src  = "$mathjax-url$";
     document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+$endif$
+
+$if(logo)$
+<script>
+  (function () {
+    footers = document.getElementsByClassName('footer');
+    //imgsrc = document.getElementsByClassName("gdbar")[0].getElementsByTagName('img')[0].src;
+    [].slice.call(footers).forEach(function (footer) {
+      footer.innerHTML = "<img src=$logo$>" + footer.innerHTML; // This is the same behaviour as the standard ioslides: logo is not self-contained
+      //footer.innerHTML = "<img src=\"" + imgsrc + "\">" + footer.innerHTML; // disabling to avoid binary data replication...
+    });
   })();
 </script>
 $endif$

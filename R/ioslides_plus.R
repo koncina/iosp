@@ -109,10 +109,6 @@ ioslides_plus <- function(logo = NULL,
       }
       args <- c(args, "--variable", paste("logo=", logo_path, sep = ""))
     }
-
-    if (!is.null(footer)) {
-      args <- c(args, "--variable", paste0("footer=", footer))
-    }
     
     # return additional args
     args
@@ -121,13 +117,20 @@ ioslides_plus <- function(logo = NULL,
   # post processor that renders our markdown using our custom lua
   # renderer and then inserts it into the main file
   post_processor <- function(metadata, input_file, output_file, clean, verbose) {
-
     # setup args
     args <- c()
 
     # add any custom pandoc args
     args <- c(args, pandoc_args)
-
+    
+    # Create footer
+    footer <- metadata[["output"]][["iosp::ioslides_plus"]][["footer"]]
+    # Converting md links to html
+    footer <- gsub("\\[([^\\[\\]\\(\\)]*)\\]\\(([^\\[\\]\\(\\)]*)\\)", "<a href='\\2'>\\1</a>", footer, perl = TRUE)
+    # Creating html links from urls (http://stackoverflow.com/questions/3809401/what-is-a-good-regular-expression-to-match-a-url)
+    footer <- gsub("(https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*))", "<a href=\\1>\\1</a>", footer, perl = TRUE)
+    # logo will be handled using javascript and pandoc template (I don't know how to get the appropriate path to the logo from here...)
+    
     # attempt to create the output writer alongside input file
     lua_writer <- file.path(dirname(input_file), "ioslides_presentation.lua")
     tryCatch({
@@ -169,7 +172,6 @@ ioslides_plus <- function(logo = NULL,
     # append main body of script
     file.append(lua_writer,
                 system.file("rmd", "iosp", "ioslides_plus.lua", package = "iosp"))
-
     output_tmpfile <- tempfile("ioslides-output", fileext = ".html")
     on.exit(unlink(output_tmpfile), add = TRUE)
 
@@ -217,6 +219,7 @@ ioslides_plus <- function(logo = NULL,
       preface_lines <- c(output_lines[1:sentinel_line[1] - 1])
       suffix_lines <- c(output_lines[-(1:sentinel_line[1])])
       output_lines <- c(preface_lines, slides_lines, suffix_lines)
+      output_lines <- gsub("IOSP_FOOTER", paste("<div class ='footer'>", footer, "</div>"), output_lines)
       writeLines(output_lines, output_file, useBytes = TRUE)
     } else {
       stop("Slides placeholder not found in slides HTML", call. = FALSE)

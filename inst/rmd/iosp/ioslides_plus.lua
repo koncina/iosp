@@ -77,7 +77,7 @@ end
 local function CompleteSlide()
   if (in_slide) then
     in_slide = false
-    return  "</article></slide>"
+    return  "</article>IOSP_FOOTER</slide>"
   else
     return ""
   end
