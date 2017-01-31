@@ -67,7 +67,7 @@ ioslides_plus <- function(logo = NULL,
     args <- c(args,
               "--template",
               system.file("rmd", "iosp", "default.html", package = "iosp"))
-              
+
   # html dependency for ioslides
   extra_dependencies <- append(extra_dependencies,
                                  list(html_dependency_ioslides(),
@@ -109,7 +109,7 @@ ioslides_plus <- function(logo = NULL,
       }
       args <- c(args, "--variable", paste("logo=", logo_path, sep = ""))
     }
-    
+
     # return additional args
     args
   }
@@ -122,15 +122,15 @@ ioslides_plus <- function(logo = NULL,
 
     # add any custom pandoc args
     args <- c(args, pandoc_args)
-    
+
     # Create footer
     footer <- metadata[["output"]][["iosp::ioslides_plus"]][["footer"]]
     # Converting md links to html
     footer <- gsub("\\[([^\\[\\]\\(\\)]*)\\]\\(([^\\[\\]\\(\\)]*)\\)", "<a href='\\2'>\\1</a>", footer, perl = TRUE)
     # Creating html links from urls (http://stackoverflow.com/questions/3809401/what-is-a-good-regular-expression-to-match-a-url)
-    footer <- gsub("(https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*))", "<a href=\\1>\\1</a>", footer, perl = TRUE)
+    # footer <- gsub("(https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*))", "<a href=\\1>\\1</a>", footer, perl = TRUE)
     # logo will be handled using javascript and pandoc template (I don't know how to get the appropriate path to the logo from here...)
-    
+
     # attempt to create the output writer alongside input file
     lua_writer <- file.path(dirname(input_file), "ioslides_presentation.lua")
     tryCatch({
