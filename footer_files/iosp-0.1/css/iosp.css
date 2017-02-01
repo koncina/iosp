@@ -1,0 +1,663 @@
+/* Adjusting logo */
+slides > slide > .gdbar img {
+  width: auto;
+  height: 150px;
+  max-width: 300px;
+  margin: 10px 10px 10px auto;
+}
+
+slides > slide > .gdbar {
+  width: 400px;
+  height: 170px;
+}
+
+/* Footer */
+slides > .nobackground > .footer  {
+   visibility: hidden;
+}
+
+slides > .nobackground + .footer {
+  visibility: hidden;
+}
+  
+slides > slide:not(.nobackground) > .footer {
+  position: absolute;
+  bottom: 20px;
+  left: 60px;
+  line-height: 1.9;
+  font-size: 12pt;
+  font-style: italic;
+}
+
+slides > slide > .footer > img {
+  max-height: 30px;
+  vertical-align: text-bottom;;
+  margin-right: 8px;
+  /* Preventing image to be draggable as it is not a css background image anymore
+  http://stackoverflow.com/questions/12906789/preventing-an-image-from-being-draggable-or-selectable-without-using-js */
+  /*user-drag: none; */
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  pointer-events: none;
+}
+
+slides > slide > .footer > a {
+  border-bottom: none;
+}
+
+/* Headers */
+h1 {
+  font-size: 20pt;
+}
+
+slides > slide > hgroup:not(.auto-fadein) {
+  height: 45px;
+}
+
+slides > slide.title-slide hgroup h1 {
+  line-height: 1;
+}
+
+slides > slide > hgroup > h2 {
+  font-size: 30px;
+  line-height: 25px;
+}
+
+slides > slide:not(.segue) > hgroup > h3 {
+  font-style: italic;
+  line-height: 25px;
+  position: relative;
+  top: -1em;
+  left: 50%;
+  width: 50%;
+  text-align: right;
+  z-index: 999;
+}
+
+slides > slide.segue article {
+  text-align: right;
+}
+
+/* End of headers */
+
+/*
+  Bootstrap like grid
+  from http://www.w3schools.com/css/css_rwd_grid.asp
+*/
+
+* {
+  box-sizing: border-box;
+}
+
+/*
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+
+.box.col-1 {width: 6.33%;}
+.box.col-2 {width: 14.66%;}
+.box.col-3 {width: 23%;}
+.box.col-4 {width: 31.33%;}
+.box.col-5 {width: 39.66%;}
+.box.col-6 {width: 48%;}
+.box.col-7 {width: 56.33%;}
+.box.col-8 {width: 64.66%;}
+.box.col-9 {width: 73%;}
+.box.col-10 {width: 81.33%;}
+.box.col-11 {width: 89.66%;}
+.box.col-12 {width: 98%;}
+*/
+
+.col-1 {width: 6.33%;}
+.col-2 {width: 14.66%;}
+.col-3 {width: 23%;}
+.col-4 {width: 31.33%;}
+.col-5 {width: 39.66%;}
+.col-6 {width: 48%;}
+.col-7 {width: 56.33%;}
+.col-8 {width: 64.66%;}
+.col-9 {width: 73%;}
+.col-10 {width: 81.33%;}
+.col-11 {width: 89.66%;}
+.col-12 {width: 98%;}
+
+.chunk > .row > .col-1 {width: 8.33%;}
+.chunk > .row > .col-2 {width: 16.66%;}
+.chunk > .row > .col-3 {width: 25%;}
+.chunk > .row > .col-4 {width: 33.33%;}
+.chunk > .row > .col-5 {width: 41.66%;}
+.chunk > .row > .col-6 {width: 50%;}
+.chunk > .row > .col-7 {width: 58.33%;}
+.chunk > .row > .col-8 {width: 66.66%;}
+.chunk > .row > .col-9 {width: 75%;}
+.chunk > .row > .col-10 {width: 83.33%;}
+.chunk > .row > .col-11 {width: 91.66%;}
+.chunk > .row > .col-12 {width: 100%;}
+
+.row .row > [class*="col-"] {
+  padding: 0;
+}
+
+.row .row {
+  margin: 0;
+}
+
+[class*="col-"] ul:last-child {
+  margin-bottom: 0;
+}
+
+[class*="col-"].offset-1 {margin-left: 9.33%;}
+[class*="col-"].offset-2 {margin-left: 17.66%;}
+[class*="col-"].offset-3 {margin-left: 26%;}
+[class*="col-"].offset-4 {margin-left: 34.33%;}
+[class*="col-"].offset-5 {margin-left: 42.66%;}
+[class*="col-"].offset-6 {margin-left: 51%;}
+[class*="col-"].offset-7 {margin-left: 59.33%;}
+[class*="col-"].offset-8 {margin-left: 67.66%;}
+[class*="col-"].offset-9 {margin-left: 76%;}
+[class*="col-"].offset-10 {margin-left: 84.33%;}
+[class*="col-"].offset-11 {margin-left: 92.66%;}
+
+[class*="col-"] {
+  float: left;
+  padding: 15px;
+  margin: 0 1%;
+}
+
+[class*="col-"] > h3 {
+  position: relative;
+  line-height: 35px;
+  font-size: 25px;
+}
+
+[class*="col-"].box > p {
+  margin-bottom: 0;
+}
+
+[class*="col-"].box > h3:first-child {
+  margin: -15px -15px 10px -15px;
+  padding-left: 10px;
+  padding-bottom: 5px;
+}
+
+[class*="col-"].box {
+  box-shadow: 10px 10px 8px 1px rgba(0, 0, 0, 0.2), 1px 3px 3px 2px rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  border: 1px solid lightgray;
+}
+
+[class*="col-"] img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+[class*="col-"].nofit img {
+  max-width: none;
+  max-height: none;
+}
+
+div.box > ul {
+  margin-bottom: 0;
+  line-height: 1em;
+}
+
+.row {
+  display: flex;
+  display: -webkit-flex;
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
+}
+
+.row::after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+.row + p {
+  margin-top: 1em;
+}
+
+div.row > div, div.row > div.top {
+  align-self: flex-start;
+  -webkit-align-self: flex-start;
+}
+
+div.row > div.stretch {
+  align-self: stretch;
+  -webkit-align-self: stretch;
+}
+
+div.row > div.bottom {
+  align-self: flex-end;
+  -webkit-align-self: flex-end;
+}
+
+div.row > div.middle {
+  align-self: center;
+  -webkit-align-self: center;
+}
+
+slides > slide article strong {
+  font-weight: bold;
+}
+
+slides > slide article em {
+  font-style: italic;
+}
+
+slides > slide article pre + p, slides > slide article table + p {
+  margin-top: 1em; /* Increase space between code, table and next paragraph*/
+}
+
+/* Custom prettyprint colors: cobalt*/
+
+slides > slide article .chunk {
+  padding: 10px 10px 10px 10px;
+  padding: 0;
+  margin: 0.5em 1%;
+  border-radius: 5px;
+  background: #bfccd7;
+  overflow: hidden;
+  border: 2px solid #002240;
+}
+
+
+.box > .shadow.chunk {
+  box-shadow: none;
+}
+
+.chunk > div.row {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  display: -webkit-flex;
+}
+
+.chunk p {
+  margin: 0;
+}
+
+.chunk img {
+  padding: 10px;
+  display: block;
+  margin: auto;
+}
+
+.chunk > div.row > div {
+  margin: 0;
+  /*margin-right: 5px;*/
+  padding: 0;
+  display: flex;
+  display: -webkit-flex;
+  align-self: stretch;
+  -webkit-align-self: stretch;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+}
+
+/*.chunk > div.row > div:last-child {
+  margin-right: 0;
+}*/
+
+.chunk > div.row > div pre {
+  height: 100%;
+  flex: 1;
+  -webkit-flex: 1;
+}
+
+[class*="col-"] > .chunk {
+  margin: -15px;
+}
+
+pre.prettyprint {
+  background: #2b557a;
+  color: #ffffff;
+  border-left: 15px solid #002240;
+}
+
+pre.prettyprint .str { color: #3ad900; } /* string      */
+pre.prettyprint .kwd { color: #ff9d00; } /* keyword     */
+pre.prettyprint .com { color: #0088ff; } /* comment     */
+pre.prettyprint .typ { color: #bfa4a4; } /* type        */
+pre.prettyprint .lit { color: #ff80e1; } /* literal     */
+pre.prettyprint .pun { color: #bed6ff; } /* punctuation */
+pre.prettyprint .pln { /* plaintext   */
+  color: #9effff;
+  font-weight: bold;
+}
+pre.prettyprint .tag { color: #9effff; } /* tag         */
+pre.prettyprint .dec { color: #fff; }    /* declaration #ff9d00*/
+/* End of prettyprint*/
+
+pre:not(.prettyprint) {
+  color: #51283e;
+  background: #bfccd7;
+  padding-left: 10px;
+  border-left: 15px solid #5a7184;
+}
+
+.codefont pre {
+  font-size: 11px;
+  line-height: 9px;
+}
+
+code {
+  color: #c7254e;
+  /*white-space: pre;*/
+  background-color: rgba(0, 0, 0, 0.04);
+  border-color: black;
+}
+
+pre {
+  margin-bottom: 0;
+  margin-top: 0;
+  padding: 5px 0 5px 10px;
+  width: 100%;
+  left: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+
+.shadow {
+  box-shadow: 10px 10px 8px 1px rgba(0, 0, 0, 0.2), 1px 3px 3px 2px rgba(0, 0, 0, 0.5);
+  padding: 5px 10px 5px 10px;
+  margin: 20px;
+  border-radius: 5px;
+}
+
+.codefont pre {
+    font-size: 11px;
+    line-height: 9px;
+}
+
+.wrapper {
+  text-align: center;
+}
+
+.red-quote {
+  border-left: 15px solid red;
+  background-color: #ffad99;
+}
+
+/* from https://codepen.io/maxds/pen/DcveB */
+article > blockquote {
+  display: block;
+  background: #f9f9f9;
+  padding: 15px 20px 15px 45px;
+  margin: 0 0 20px;
+  position: relative;
+
+  /*Font*/
+  font-family: Georgia, serif;
+  font-size: 16px;
+  line-height: 1.2;
+  /*text-align: justify;*/
+
+  border-left: 15px solid #ccc;
+  /*box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7);*/
+  box-shadow: 10px 10px 8px 1px rgba(0, 0, 0, 0.2), 1px 3px 3px 2px rgba(0, 0, 0, 0.5);
+}
+
+article > blockquote::before {
+  content: "\201C"; /*Unicode for Left Double Quote*/
+
+  /*Font*/
+  font-family: Georgia, serif;
+  font-size: 60px;
+  font-weight: bold;
+  color: #999;
+
+  /*Positioning*/
+  position: absolute;
+  left: 10px;
+  top:5px;
+}
+
+blockquote::after {
+  /*Reset to make sure*/
+  content: "";
+}
+
+slides > slide > article blockquote > p {
+  margin-bottom:0;
+}
+
+/* Cite styling adapted from http://www.webmaster-source.com/2012/04/24/pure-css-blockquote-styling/ */
+cite {
+  /*color: #999999;*/
+  /*font-size: 16px;*/
+  font-style: italic;
+}
+
+blockquote cite {
+  font-size: 14px;
+  display: block;
+  margin-top: 5px;
+}
+
+blockquote cite:before {
+  content: "\2014 \2009";
+}
+
+/* blockquote colors */
+
+blockquote.bg-red {
+  border-left: 15px solid #991f00;
+}
+
+blockquote.bg-red::before {
+  color : #991f00;
+}
+
+blockquote.bg-blue {
+  border-left: 15px solid #005c99;
+}
+
+blockquote.bg-blue::before {
+  color : #005c99;
+}
+
+blockquote.bg-green {
+  border-left: 15px solid #1f7a1f;
+}
+
+blockquote.bg-green::before {
+  color: #1f7a1f;
+}
+
+blockquote.bg-yellow {
+  border-left: 15px solid #999900;
+}
+
+blockquote.bg-yellow::before {
+  color: #999900;
+}
+/* Style for keyboard keys */
+/* From http://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+kbd
+{
+    -moz-border-radius:3px;
+    -moz-box-shadow:0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+    -webkit-border-radius:3px;
+    -webkit-box-shadow:0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+    background-color:#f7f7f7;
+    border:1px solid #ccc;
+    border-radius:3px;
+    box-shadow:0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+    color:#333;
+    display:inline-block;
+    font-family:Arial,Helvetica,sans-serif;
+    /*font-size:11px;*/
+    line-height:1.4;
+    margin:0 .1em;
+    padding:.1em .6em;
+    text-shadow:0 1px 0 #fff;
+}
+
+
+slides > slide article ul li ul li::before, slides > slide article ul > li::before {
+  content: '';
+}
+
+slides > slide article ul {
+  list-style-type: disc;
+}
+
+slides > slide article ul > li > ul {
+  list-style-type: circle;
+}
+
+.float-r {
+  position: relative;
+  float: right;
+  z-index: 999;
+}
+
+.float-l {
+  position: relative;
+  float: left;
+  z-index: 999;
+}
+
+div.float-r img {
+  display: flex;
+  display: -webkit-flex;
+}
+
+div.left {
+	width: 45%;
+	float: left;
+}
+
+div.right {
+	width: 45%;
+	float: right;
+}
+
+slides > slide > hgroup + article {
+  margin-top: 0;
+}
+
+.vs1 {
+  margin-top: 1em;
+}
+
+.vs2 {
+  margin-top: 2em;
+}
+
+.vs3 {
+  margin-top: 3em;
+}
+
+slides > slide {
+  color: black;
+}
+
+div.center {
+  display: block;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+/* Background colors (for the boxes) */
+/* red, green are already defined by ioslides for font-colors */
+
+.bg-yellow {
+  background-color: #ffff99;
+}
+
+.box.bg-yellow {
+  border: 2px solid #999900;
+}
+
+.box.bg-yellow > h3:first-child {
+  background-color: #999900;
+  color: black;
+}
+
+.bg-red {
+  background-color: #ffad99;
+}
+
+.box.bg-red {
+  border: 2px solid #991f00;
+}
+
+.box.bg-red > h3:first-child {
+  background: #991f00;
+  color: #fff;
+}
+
+.bg-green {
+  background-color: #adebad;
+}
+
+.box.bg-green {
+  border:2px solid #1f7a1f;
+}
+
+.box.bg-green > h3:first-child {
+  background-color: #1f7a1f;
+  color: #fff;
+}
+
+.bg-blue {
+  background-color: #99d6ff; /* 80% */
+
+}
+
+.box.bg-blue {
+  border: 2px solid #005c99; /* 30% */
+}
+
+.box.bg-blue > h3:first-child {
+  background-color: #005c99; /* 30% */
+  color: #fff;
+}
+
+.bg-cobalt {
+  background-color: #002240;
+}
+
+.box.bg-cobalt {
+  border: 2px solid #002240;
+}
+
+.box.bg-cobalt > .chunk {
+  border: none;
+  margin-top: 0;
+  border-radius: 0;
+}
+
+.box.bg-cobalt > h3 + .chunk {
+  margin-top: -10px;
+}
+
+
+.box.bg-cobalt > h3:first-child {
+  background-color: #002240;
+  color: #fff;
+}
+
+.exercise {
+  background-color: #e6ffe6;
+  width: 100%;
+  height: 85%;
+  border-radius: 5px;
+  padding: 10px;
+}
