@@ -31,7 +31,7 @@ slides > slide:not(.nobackground) > .footer {
 
 slides > slide > .footer > img {
   max-height: 30px;
-  vertical-align: bottom;
+  vertical-align: text-bottom;;
   margin-right: 8px;
   /* Preventing image to be draggable as it is not a css background image anymore
   http://stackoverflow.com/questions/12906789/preventing-an-image-from-being-draggable-or-selectable-without-using-js */
