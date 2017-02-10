@@ -123,14 +123,12 @@ ioslides_plus <- function(logo = NULL,
     # add any custom pandoc args
     args <- c(args, pandoc_args)
 
-    # Create footer
-    footer <- metadata[["output"]][["iosp::ioslides_plus"]][["footer"]]
     # Converting md links to html
     footer <- gsub("\\[([^\\[\\]\\(\\)]*)\\]\\(([^\\[\\]\\(\\)]*)\\)", "<a href='\\2'>\\1</a>", footer, perl = TRUE)
     # Creating html links from urls (http://stackoverflow.com/questions/3809401/what-is-a-good-regular-expression-to-match-a-url)
     footer <- gsub("(?<!href=')(https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*))", "<a href=\\1>\\1</a>", footer, perl = TRUE)
     # logo will be handled using javascript and pandoc template (I don't know how to get the appropriate path to the logo from here...)
-
+    
     # attempt to create the output writer alongside input file
     lua_writer <- file.path(dirname(input_file), "ioslides_presentation.lua")
     tryCatch({
@@ -164,6 +162,9 @@ ioslides_plus <- function(logo = NULL,
 
     # Set level of slide header (used by ioslides_presentation.lua)
     settings <- c(settings, sprintf("local slide_level = %s", slide_level))
+    # Adding footer to lua (paste0 will handle NULL or character(0) better than sprintf)
+    settings <- c(settings, paste0("local footer = \"", footer, "\""))
+                  
     writeLines(settings, lua_writer, useBytes = TRUE)
 
     # For consistency add as pandoc argument
@@ -219,7 +220,6 @@ ioslides_plus <- function(logo = NULL,
       preface_lines <- c(output_lines[1:sentinel_line[1] - 1])
       suffix_lines <- c(output_lines[-(1:sentinel_line[1])])
       output_lines <- c(preface_lines, slides_lines, suffix_lines)
-      output_lines <- gsub("IOSP_FOOTER", paste("<div class ='footer'>", footer, "</div>"), output_lines)
       writeLines(output_lines, output_file, useBytes = TRUE)
     } else {
       stop("Slides placeholder not found in slides HTML", call. = FALSE)
