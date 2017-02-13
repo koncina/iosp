@@ -1,0 +1,70 @@
+---
+title: "IOSlides custom box colours"
+author: "Eric Koncina"
+date: "`r Sys.Date()`"
+output:
+  iosp::ioslides_plus:
+    smaller: yes
+    footer: "Created with [ioslides plus](https://github.com/koncina/iosp)"
+    lib_dir: libs
+    self_contained: no
+    box_colours:
+      bg-my_colour: "slateblue2"
+      bg-my_colour2: ["tomato3", "tomato2"]
+      bg-my_colour3: ["springgreen4", header_text: "#FFD700"]
+---
+
+## Colour definition
+
+The `iosp` package provides the `add_box_colour(name, bg, bg_header, text, text_header)` function to declare additional background colours.
+Where:
+
+- `name` is the **mandatory** name of the new colour (which will be prefixed with `bg-` if it is omitted).
+- `bg` is the **mandatory** background colour in a format recognized by `col2rgb()`:
+    + A colour name listed by `colours()`.
+    + A hexadecimal colour code (_e.g._ `#FF11GG`).
+- `header_bg` is the _optional_ header background colour.
+- `text` is the _optional_ text colour. If `text = NULL`, the text will be either black or white depending on `bg` (using the algorithm presended in [this post](http://stackoverflow.com/a/1855903)).
+- `header_text` is the _optional_ header text colour. If `header_text = NULL`, the text will be either black or white depending on `header_bg`.
+
+## Using `add_box_colour()` | in the yaml header
+
+You can either define your colours in the yaml header or in a chunk.
+
+```
+title: "IOSlides custom box colours"
+output:
+  iosp::ioslides_plus:
+    box_colours:
+      bg-my_colour: "slateblue2"
+      bg-my_colour2: ["tomato3", "tomato2"]
+      bg-my_colour3: ["springgreen4", header_text: "FFD700"]
+```
+
+### Box{.box .col-4 .bg-my_colour .stretch}
+
+First box based on the _slateblue2_ colour.
+
+### Box{.box .col-4 .bg-my_colour2 .stretch}
+
+Box with a _tomato3_ background colour and a _tomato2_ header background colour.
+
+### Box{.box .col-4 .bg-my_colour3 .stretch}
+
+Box with a _springgreen4_ background colour and a _gold_ (`#FFD700`) header text.
+
+
+## Using `add_box_colour()` | in a chunk
+
+Set the chunk `results` option to `"asis"` (you might also want to hide the chunk with `echo = FALSE`).
+
+```{r, results = "asis"}
+iosp::add_box_colour("my_colour4", "snow3", text = "violetred")
+#  equivalent to iosp::add_box_colour("bg-my_colour4", "snow3", text = "violetred")
+```
+
+We omitted the `bg-` prefix in the colour definition but should nevertheless use the `.bg-my_snow` class to render the box:
+
+### Box{.box .col-4 .bg-my_colour4}
+
+A box using the `bg-my_colour4` colour defined in a chunk.

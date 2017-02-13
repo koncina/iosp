@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>IOSlides custom box colours</title>
+
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="generator" content="pandoc" />
+
+
+
+  <meta name="date" content="2017-02-13" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <base target="_blank">
+
+  <script type="text/javascript">
+    var SLIDE_CONFIG = {
+      // Slide settings
+      settings: {
+                title: 'IOSlides custom box colours',
+                        useBuilds: true,
+        usePrettify: true,
+        enableSlideAreas: true,
+        enableTouch: true,
+                      },
+
+      // Author information
+      presenters: [
+            {
+        name:  'Eric Koncina' ,
+        company: '',
+        gplus: '',
+        twitter: '',
+        www: '',
+        github: ''
+      },
+            ]
+    };
+  </script>
+
+  <style type="text/css">
+
+    b, strong {
+      font-weight: bold;
+    }
+
+    em {
+      font-style: italic;
+    }
+
+    slides > slide {
+      -webkit-transition: all 0.4s ease-in-out;
+      -moz-transition: all 0.4s ease-in-out;
+      -o-transition: all 0.4s ease-in-out;
+      transition: all 0.4s ease-in-out;
+    }
+
+    .auto-fadein {
+      -webkit-transition: opacity 0.6s ease-in;
+      -webkit-transition-delay: 0.4s;
+      -moz-transition: opacity 0.6s ease-in 0.4s;
+      -o-transition: opacity 0.6s ease-in 0.4s;
+      transition: opacity 0.6s ease-in 0.4s;
+      opacity: 0;
+    }
+  </style>
+
+
+  <link href="libs/ioslides-13.5.1/fonts/fonts.css" rel="stylesheet" />
+  <link href="libs/ioslides-13.5.1/theme/css/default.css" rel="stylesheet" />
+  <link href="libs/ioslides-13.5.1/theme/css/phone.css" rel="stylesheet" />
+  <script src="libs/ioslides-13.5.1/js/modernizr.custom.45394.js"></script>
+  <script src="libs/ioslides-13.5.1/js/prettify/prettify.js"></script>
+  <script src="libs/ioslides-13.5.1/js/prettify/lang-yaml.js"></script>
+  <script src="libs/ioslides-13.5.1/js/hammer.js"></script>
+  <script src="libs/ioslides-13.5.1/js/slide-controller.js"></script>
+  <script src="libs/ioslides-13.5.1/js/slide-deck.js"></script>
+  <link href="libs/iosp-0.1/css/iosp.css" rel="stylesheet" />
+  <script src="libs/iosp-0.1/js/lang-r.js"></script>
+  <style type="text/css">
+  
+    .bg-my_colour {
+      background-color: #7A67EE;
+    }
+  
+    .box.bg-my_colour {
+      border: 2px solid #3D3477;
+      color: #fff;
+    }
+  
+    .box.bg-my_colour > h3:first-child {
+      background-color: #3D3477;
+      color: #fff;
+    }
+  
+    .bg-my_colour2 {
+      background-color: #CD4F39;
+    }
+  
+    .box.bg-my_colour2 {
+      border: 2px solid #EE5C42;
+      color: #fff;
+    }
+  
+    .box.bg-my_colour2 > h3:first-child {
+      background-color: #EE5C42;
+      color: #000;
+    }
+  
+    .bg-my_colour3 {
+      background-color: #008B45;
+    }
+  
+    .box.bg-my_colour3 {
+      border: 2px solid #004622;
+      color: #fff;
+    }
+  
+    .box.bg-my_colour3 > h3:first-child {
+      background-color: #004622;
+      color: #FFD700;
+    }
+  </style>
+
+</head>
+
+<body style="opacity: 0">
+
+<slides>
+
+  <slide class="title-slide segue nobackground">
+        <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title><!-- populated from slide_config.json --></h1>
+      <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+            <p style="margin-top: 6px; margin-left: -2px;">2017-02-13</p>
+          </hgroup>
+  </slide>
+
+<slide class=''><hgroup><h2>Colour definition</h2></hgroup><article  id="colour-definition" class="smaller ">
+
+<p>The <code>iosp</code> package provides the <code>add_box_colour(name, bg, bg_header, text, text_header)</code> function to declare additional background colours. Where:</p>
+
+<ul>
+<li><code>name</code> is the <strong>mandatory</strong> name of the new colour (which will be prefixed with <code>bg-</code> if it is omitted).</li>
+<li><code>bg</code> is the <strong>mandatory</strong> background colour in a format recognized by <code>col2rgb()</code>:
+
+<ul>
+<li>A colour name listed by <code>colours()</code>.</li>
+<li>A hexadecimal colour code (<em>e.g.</em> <code>#FF11GG</code>).</li>
+</ul></li>
+<li><code>header_bg</code> is the <em>optional</em> header background colour.</li>
+<li><code>text</code> is the <em>optional</em> text colour. If <code>text = NULL</code>, the text will be either black or white depending on <code>bg</code> (using the algorithm presended in <a href='http://stackoverflow.com/a/1855903' title=''>this post</a>).</li>
+<li><code>header_text</code> is the <em>optional</em> header text colour. If <code>header_text = NULL</code>, the text will be either black or white depending on <code>header_bg</code>.</li>
+</ul>
+
+</article><div class ="footer">Created with <a href='https://github.com/koncina/iosp'>ioslides plus</a></div></slide><slide class=''><hgroup><h2>Using <code>add_box_colour()</code> </h2><h3> in the yaml header</h3></hgroup><article  id="using-add_box_colour-in-the-yaml-header" class="smaller ">
+
+<p>You can either define your colours in the yaml header or in a chunk.</p>
+
+<pre >title: &quot;IOSlides custom box colours&quot;
+output:
+  iosp::ioslides_plus:
+    box_colours:
+      bg-my_colour: &quot;slateblue2&quot;
+      bg-my_colour2: [&quot;tomato3&quot;, &quot;tomato2&quot;]
+      bg-my_colour3: [&quot;springgreen4&quot;, header_text: &quot;FFD700&quot;]</pre>
+
+<div class = 'row'><div class = 'box col-4 bg-my_colour stretch'><h3>Box</h3>
+
+<p>First box based on the <em>slateblue2</em> colour.</p>
+
+</div><div class = 'box col-4 bg-my_colour2 stretch'><h3>Box</h3>
+
+<p>Box with a <em>tomato3</em> background colour and a <em>tomato2</em> header background colour.</p>
+
+</div><div class = 'box col-4 bg-my_colour3 stretch'><h3>Box</h3>
+
+<p>Box with a <em>springgreen4</em> background colour and a <em>gold</em> (<code>#FFD700</code>) header text.</p>
+
+</div></div></article><div class ="footer">Created with <a href='https://github.com/koncina/iosp'>ioslides plus</a></div></slide><slide class=''><hgroup><h2>Using <code>add_box_colour()</code> </h2><h3> in a chunk</h3></hgroup><article  id="using-add_box_colour-in-a-chunk" class="smaller ">
+
+<p>Set the chunk <code>results</code> option to <code>&quot;asis&quot;</code> (you might also want to hide the chunk with <code>echo = FALSE</code>).</p>
+
+<div class="chunk shadow">
+<pre class = 'prettyprint lang-r'>iosp::add_box_colour(&quot;my_colour4&quot;, &quot;snow3&quot;, text = &quot;violetred&quot;)</pre>
+
+<style type="text/css">
+
+  .bg-my_colour4 {
+    background-color: #CDC9C9;
+  }
+
+  .box.bg-my_colour4 {
+    border: 2px solid #666464;
+    color: #D02090;
+  }
+
+  .box.bg-my_colour4 > h3:first-child {
+    background-color: #666464;
+    color: #fff;
+  }
+</style>
+
+<pre class = 'prettyprint lang-r'>#  equivalent to iosp::add_box_colour(&quot;bg-my_colour4&quot;, &quot;snow3&quot;, text = &quot;violetred&quot;)</pre></div>
+
+<p>We omitted the <code>bg-</code> prefix in the colour definition but should nevertheless use the <code>.bg-my_snow</code> class to render the box:</p>
+
+<div class = 'row'><div class = 'box col-4 bg-my_colour4'><h3>Box</h3>
+
+<p>A box using the <code>bg-my_colour4</code> colour defined in a chunk.</p></article><div class ="footer">Created with <a href='https://github.com/koncina/iosp'>ioslides plus</a></div></slide>
+
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+
+<!-- map slide visiblity events into shiny -->
+<script>
+  (function() {
+    if (window.jQuery) {
+       window.jQuery(document).on('slideleave', function(e) {
+         window.jQuery(e.target).trigger('hidden');
+      });
+       window.jQuery(document).on('slideenter', function(e) {
+         window.jQuery(e.target).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+</body>
+</html>
