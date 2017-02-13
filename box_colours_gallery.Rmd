@@ -1,0 +1,49 @@
+---
+title: "Box colours gallery"
+author: "Eric Koncina"
+date: "`r Sys.Date()`"
+output:
+  iosp::ioslides_plus:
+    self_contained: no
+    smaller: yes
+    widescreen: yes
+    lib_dir: libs
+    footer: "Created with [ioslides plus](https://github.com/koncina/iosp)"
+---
+
+## Slide with columns as boxes
+
+This is a gallery of the colours that would be rendered using the colours defined in R (`colors()`)
+For the chosen colour `<colourname>` simply complete the yaml header as follows:
+
+```
+title: "IOSlides custom box colours"
+output:
+  iosp::ioslides_plus:
+    box_colours:
+      <colourname>: <colourname>
+```
+
+To attribute the colour to the box add the appropriate class as follows: 
+
+```
+### Header {.col-x .box .bg-<colourname>}
+```
+
+## Generation of the gallery
+
+The chunks below were used to generate the gallery:
+
+```{r, results = "asis", echo = TRUE}
+# First we define all the css themes:
+css_styles <- paste(lapply(colors(), function(x) iosp::add_box_colour(x, x)), collapse = "\n")
+cat(paste("<style>", css_styles, "</style>"))
+```
+
+
+```{r, results = "asis", echo = TRUE}
+boxes <- lapply(colors(), function(x) sprintf("### Header {.col-3 .box .bg-%s}\n%s\n", x, x))
+boxes <- paste(boxes, c(rep("", 19), "## Colours gallery"), sep = "\n")
+boxes <- paste(boxes, collapse = "\n")
+cat(paste("## Colours gallery", boxes, sep = "\n"))
+```
