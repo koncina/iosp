@@ -77,7 +77,7 @@ end
 local function CompleteSlide()
   if (in_slide) then
     in_slide = false
-    return  '</article><div class ="footer">' .. footer .. '</div></slide>'
+    return  '</article><div class = "footer">' .. footer .. '</div></slide>'
   else
     return ""
   end
@@ -277,6 +277,11 @@ function Header(lev, s, attr)
   end
 
   if lev == 3 then
+
+    -- Expanding css class for simplified box calls
+    attr["class"] = string.gsub(attr["class"], "box%-(%d+)%-(%w+)", "box col-%1 bg-%2") -- width and colour
+    attr["class"] = string.gsub(attr["class"], "box%-(%d+)", "box col-%1") -- width alone
+
     local col_width = string.match(attr["class"], "col%-(%d+)")
     local col_offset = string.match(attr["class"], "offset%-(%d+)")
 
@@ -289,7 +294,7 @@ function Header(lev, s, attr)
       if not col_offset then
         col_offset = 0
       end
-    
+
       col_count = col_count + tonumber(col_offset) + tonumber(col_width)
 
       if (col_count > 12) then
