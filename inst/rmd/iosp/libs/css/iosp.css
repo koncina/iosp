@@ -700,3 +700,33 @@ https://github.com/koncina/iosp/issues/9 */
   background-color: #cecece;
   color: black;
 }
+
+/* added font-size from http://www.htmlref.com/examples/chapter10/font_properties_src.html */
+
+.xx-small {
+  font-size: xx-small;
+}
+.x-small {
+  font-size: x-small;
+}
+.small {
+  font-size: small;
+}
+.medium {
+  font-size: medium;
+}
+.large {
+  font-size: large;
+}
+.x-large {
+  font-size: x-large;
+}
+.xx-large {
+  font-size: xx-large;
+}
+.smaller {
+  font-size: smaller;
+}
+.larger {
+  font-size: larger;
+}
