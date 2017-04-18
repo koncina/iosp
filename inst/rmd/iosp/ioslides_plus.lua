@@ -279,11 +279,18 @@ function Header(lev, s, attr)
   if lev == 3 then
 
     -- Expanding css class for simplified box calls
+    attr["class"] = string.gsub(attr["class"], "box%-(%d+)%-(%d+)%-(%w+)", "box col-%1 offset-%2 bg-%3") -- width, offset and colour
     attr["class"] = string.gsub(attr["class"], "box%-(%d+)%-(%w+)", "box col-%1 bg-%2") -- width and colour
     attr["class"] = string.gsub(attr["class"], "box%-(%d+)", "box col-%1") -- width alone
 
     local col_width = string.match(attr["class"], "col%-(%d+)")
     local col_offset = string.match(attr["class"], "offset%-(%d+)")
+
+    -- Setting default box width to 6
+    if (col_width == nil and string.find(attr["class"], "box")) then
+      col_width = 6
+      attr["class"] = attr["class"] .. " col-6"
+    end
 
     if col_width then
       -- complete previous column
