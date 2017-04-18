@@ -184,6 +184,7 @@ slides > slide.segue article {
 
 [class*="col-"].box > p {
   margin-bottom: 0;
+  vertical-align: inherit;
 }
 
 [class*="col-"].box > h3:first-child {
@@ -320,7 +321,17 @@ slides > slide article .chunk {
 }
 
 [class*="col-"] > .chunk {
-  margin: -15px;
+   /*margin: -15px;*/
+   margin-right: -15px;
+   margin-left: -15px;
+}
+
+[class*="col-"] > h3 + div.chunk {
+  margin-top: -15px;
+}
+
+[class*="col-"] > div.chunk:last-child {
+  margin-bottom: -15px;
 }
 
 pre.prettyprint {
@@ -574,6 +585,13 @@ div.center {
   margin-left:auto;
   margin-right:auto;
 }
+
+.vmiddle {
+  vertical-align: middle;
+}
+
+
+
 
 /* Background colors (for the boxes) */
 /* red, green are already defined by ioslides for font-colors */
