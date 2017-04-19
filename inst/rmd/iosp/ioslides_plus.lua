@@ -284,7 +284,13 @@ function Header(lev, s, attr)
 
     local col_width = string.match(attr["class"], "col%-(%d+)")
     local col_offset = string.match(attr["class"], "offset%-(%d+)")
-
+    
+    local row_class = ""
+    if string.find(attr["class"], "build") or build_slide then
+      row_class = " build"
+      attr["class"] = string.gsub(attr["class"], "build", "")
+    end
+    
     -- Setting default box width to 6
     if (col_width == nil and string.find(attr["class"], "box")) then
       col_width = 6
@@ -304,13 +310,13 @@ function Header(lev, s, attr)
       col_count = col_count + tonumber(col_offset) + tonumber(col_width)
 
       if (col_count > 12) then
-        preface = preface .. CompleteRow() .. "<div class = 'row'>"
+        preface = preface .. CompleteRow() .. "<div class = 'row" .. row_class .. "'>"
         col_count = tonumber(col_offset) + tonumber(col_width)
         in_row = true
       end
 
       if (in_row == false) then
-      preface = preface .. "<div class = 'row'>"
+      preface = preface .. "<div class = 'row" .. row_class .. "'>"
       in_row = true
     end
 
