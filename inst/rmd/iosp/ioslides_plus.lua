@@ -74,15 +74,6 @@ function Blocksep()
   return "\n\n"
 end
 
-local function CompleteSlide()
-  if (in_slide) then
-    in_slide = false
-    return  '</article><div class = "footer">' .. footer .. '</div></slide>'
-  else
-    return ""
-  end
-end
-
 local function CompleteColumn()
   if (in_column) then
     in_column = false
@@ -102,6 +93,14 @@ local function CompleteRow()
   end
 end
 
+local function CompleteSlide()
+  if (in_slide) then
+    in_slide = false
+    return  CompleteColumn() .. CompleteRow() .. '</article><div class = "footer">' .. footer .. '</div></slide>'
+  else
+    return ""
+  end
+end
 
 -- This function is called once for the whole document. Parameters:
 -- body is a string, metadata is a table, variables is a table.
@@ -341,7 +340,7 @@ function Header(lev, s, attr)
   -- treat level 2 headers as slides
   if lev == 2 then
     -- complete previous column and slide
-    local preface = CompleteColumn() .. CompleteRow() .. CompleteSlide()
+    local preface = CompleteSlide()
 
     -- start a new slide
     in_slide = true
