@@ -3,21 +3,21 @@
 IOSlides Plus
 =============
 
-The goal of **iosp** is to extends [ioslides\_presentation](http://rmarkdown.rstudio.com/ioslides_presentation_format.html) with a custom `css` and a fixed prettyprint javascript
+The goal of **iosp** is to extend [ioslides\_presentation](http://rmarkdown.rstudio.com/ioslides_presentation_format.html) mainly using a customized `css`.
 
 The main **features** are:
 
--   easily create boxes with/out titles in the [bootstrap](http://getbootstrap.com/) fashion using the third level `###`
--   create your own background colors for boxes filling
--   align top / middle / bottom adjacent boxes
--   offset boxes to center or justify along the slide' width
+-   easily create boxes with optional titles in the [bootstrap](http://getbootstrap.com/) fashion using third level headers (`###`)
+-   adjust the width and horizontal position (offset) of boxes
+-   define custom box background colours
+-   specify alignment of adjacent boxes (top / middle / bottom)
 -   prettier code highlighting
--   easy footer
+-   easy footer with hyperlink
 
 Installation
 ------------
 
-You can install iosp from github with:
+You can install `iosp` from github with:
 
 ``` r
 # install.packages("devtools")
@@ -52,12 +52,12 @@ The following `Rmd` code
 
     We are able to exit the box and row using the keyword `%end%` as suggested [here](https://github.com/koncina/iosp/issues/5).
 
-Give this slide output:
+will produce the output:
 
 ![](demo.png)
 
-Custom colors
--------------
+Custom colours
+--------------
 
 see example with [box\_colour](https://koncina.github.io/iosp/box_colours.html)
 
