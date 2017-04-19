@@ -60,7 +60,7 @@ ioslides_plus <- function(logo = NULL,
     args <- c(args, "--css", rmarkdown::pandoc_path_arg(css_file))
   
   # Path to the box_colours css file which is created in the preprocessor
-  # The file will be removed after knitting (call to on_exit())
+  # The file will be removed after knitting
   css_colour_file <- NULL
   
   # content includes
@@ -201,7 +201,7 @@ ioslides_plus <- function(logo = NULL,
                 system.file("rmd", "iosp", "ioslides_plus.lua", package = "iosp"))
     output_tmpfile <- tempfile("ioslides-output", fileext = ".html")
     on.exit(unlink(output_tmpfile), add = TRUE)
-    
+    on.exit(unlink(css_colour_file), add = TRUE)
     # on Windows, cache the current codepage and set it to 65001 (UTF-8) for the
     # duration of the Pandoc command. Without this, Pandoc fails when attempting
     # to hand UTF-8 encoded non-ASCII characters over to the custom Lua writer.
@@ -252,10 +252,6 @@ ioslides_plus <- function(logo = NULL,
     }
     
     output_file
-  }
-  
-  on_exit <- function() {
-    if (!is.null(css_colour_file)) unlink(css_colour_file)
   }
   
   hook_chunk <- function(x, options) {
@@ -319,7 +315,6 @@ ioslides_plus <- function(logo = NULL,
     df_print = df_print,
     pre_processor = pre_processor,
     post_processor = post_processor,
-    on_exit = on_exit,
     base_format = rmarkdown::html_document_base(smart = smart, lib_dir = lib_dir,
                                                 self_contained = self_contained,
                                                 mathjax = mathjax,
