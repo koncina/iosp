@@ -184,6 +184,7 @@ slides > slide.segue article {
 
 [class*="col-"].box > p {
   margin-bottom: 0;
+  vertical-align: inherit;
 }
 
 [class*="col-"].box > h3:first-child {
@@ -196,6 +197,7 @@ slides > slide.segue article {
   box-shadow: 10px 10px 8px 1px rgba(0, 0, 0, 0.2), 1px 3px 3px 2px rgba(0, 0, 0, 0.5);
   border-radius: 5px;
   border: 1px solid lightgray;
+  z-index: 10;
 }
 
 [class*="col-"] img {
@@ -319,7 +321,17 @@ slides > slide article .chunk {
 }
 
 [class*="col-"] > .chunk {
-  margin: -15px;
+   /*margin: -15px;*/
+   margin-right: -15px;
+   margin-left: -15px;
+}
+
+[class*="col-"] > h3 + div.chunk {
+  margin-top: -15px;
+}
+
+[class*="col-"] > div.chunk:last-child {
+  margin-bottom: -15px;
 }
 
 pre.prettyprint {
@@ -394,7 +406,7 @@ pre {
 }
 
 /* from https://codepen.io/maxds/pen/DcveB */
-article > blockquote {
+slides > slide article blockquote {
   display: block;
   background: #f9f9f9;
   padding: 15px 20px 15px 45px;
@@ -412,7 +424,7 @@ article > blockquote {
   box-shadow: 10px 10px 8px 1px rgba(0, 0, 0, 0.2), 1px 3px 3px 2px rgba(0, 0, 0, 0.5);
 }
 
-article > blockquote::before {
+slides > slide article blockquote::before {
   content: "\201C"; /*Unicode for Left Double Quote*/
 
   /*Font*/
@@ -427,12 +439,12 @@ article > blockquote::before {
   top:5px;
 }
 
-blockquote::after {
+slides > slide article blockquote::after {
   /*Reset to make sure*/
   content: "";
 }
 
-slides > slide > article blockquote > p {
+slides > slide article blockquote > p {
   margin-bottom:0;
 }
 
@@ -443,13 +455,13 @@ cite {
   font-style: italic;
 }
 
-blockquote cite {
+slides > slide article blockquote cite {
   font-size: 14px;
   display: block;
   margin-top: 5px;
 }
 
-blockquote cite:before {
+slides > slide article blockquote cite:before {
   content: "\2014 \2009";
 }
 
@@ -574,6 +586,13 @@ div.center {
   margin-right:auto;
 }
 
+.vmiddle {
+  vertical-align: middle;
+}
+
+
+
+
 /* Background colors (for the boxes) */
 /* red, green are already defined by ioslides for font-colors */
 
@@ -618,6 +637,7 @@ div.center {
 
 .bg-blue {
   background-color: #99d6ff; /* 80% */
+
 }
 
 .box.bg-blue {
@@ -679,4 +699,34 @@ https://github.com/koncina/iosp/issues/9 */
 .box.bg-white > h3:first-child {
   background-color: #cecece;
   color: black;
+}
+
+/* added font-size from http://www.htmlref.com/examples/chapter10/font_properties_src.html */
+
+.xx-small {
+  font-size: xx-small;
+}
+.x-small {
+  font-size: x-small;
+}
+.small {
+  font-size: small;
+}
+.medium {
+  font-size: medium;
+}
+.large {
+  font-size: large;
+}
+.x-large {
+  font-size: x-large;
+}
+.xx-large {
+  font-size: xx-large;
+}
+.smaller {
+  font-size: smaller;
+}
+.larger {
+  font-size: larger;
 }

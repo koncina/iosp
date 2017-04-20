@@ -38,7 +38,7 @@ output:
     box_colours:
       bg-my_colour: "slateblue2"
       bg-my_colour2: ["tomato3", "tomato2"]
-      bg-my_colour3: ["springgreen4", header_text: "FFD700"]
+      bg-my_colour3: ["springgreen4", header_text: "#FFD700"]
 ```
 
 ### Box{.box .col-4 .bg-my_colour .stretch}

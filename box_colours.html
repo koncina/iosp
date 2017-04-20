@@ -10,7 +10,7 @@
 
 
 
-  <meta name="date" content="2017-02-13" />
+  <meta name="date" content="2017-04-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -138,7 +138,7 @@
       <h1 data-config-title><!-- populated from slide_config.json --></h1>
       <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
       <p data-config-presenter><!-- populated from slide_config.json --></p>
-            <p style="margin-top: 6px; margin-left: -2px;">2017-02-13</p>
+            <p style="margin-top: 6px; margin-left: -2px;">2017-04-20</p>
           </hgroup>
   </slide>
 
@@ -159,7 +159,7 @@
 <li><code>header_text</code> is the <em>optional</em> header text colour. If <code>header_text = NULL</code>, the text will be either black or white depending on <code>header_bg</code>.</li>
 </ul>
 
-</article><div class ="footer">Created with <a href='https://github.com/koncina/iosp'>ioslides plus</a></div></slide><slide class=''><hgroup><h2>Using <code>add_box_colour()</code> </h2><h3> in the yaml header</h3></hgroup><article  id="using-add_box_colour-in-the-yaml-header" class="smaller ">
+</article><div class = "footer">Created with <a href='https://github.com/koncina/iosp'>ioslides plus</a></div></slide><slide class=''><hgroup><h2>Using <code>add_box_colour()</code> </h2><h3> in the yaml header</h3></hgroup><article  id="using-add_box_colour-in-the-yaml-header" class="smaller ">
 
 <p>You can either define your colours in the yaml header or in a chunk.</p>
 
@@ -169,7 +169,7 @@ output:
     box_colours:
       bg-my_colour: &quot;slateblue2&quot;
       bg-my_colour2: [&quot;tomato3&quot;, &quot;tomato2&quot;]
-      bg-my_colour3: [&quot;springgreen4&quot;, header_text: &quot;FFD700&quot;]</pre>
+      bg-my_colour3: [&quot;springgreen4&quot;, header_text: &quot;#FFD700&quot;]</pre>
 
 <div class = 'row'><div class = 'box col-4 bg-my_colour stretch'><h3>Box</h3>
 
@@ -183,7 +183,7 @@ output:
 
 <p>Box with a <em>springgreen4</em> background colour and a <em>gold</em> (<code>#FFD700</code>) header text.</p>
 
-</div></div></article><div class ="footer">Created with <a href='https://github.com/koncina/iosp'>ioslides plus</a></div></slide><slide class=''><hgroup><h2>Using <code>add_box_colour()</code> </h2><h3> in a chunk</h3></hgroup><article  id="using-add_box_colour-in-a-chunk" class="smaller ">
+</div></div></article><div class = "footer">Created with <a href='https://github.com/koncina/iosp'>ioslides plus</a></div></slide><slide class=''><hgroup><h2>Using <code>add_box_colour()</code> </h2><h3> in a chunk</h3></hgroup><article  id="using-add_box_colour-in-a-chunk" class="smaller ">
 
 <p>Set the chunk <code>results</code> option to <code>&quot;asis&quot;</code> (you might also want to hide the chunk with <code>echo = FALSE</code>).</p>
 
@@ -213,7 +213,7 @@ output:
 
 <div class = 'row'><div class = 'box col-4 bg-my_colour4'><h3>Box</h3>
 
-<p>A box using the <code>bg-my_colour4</code> colour defined in a chunk.</p></article><div class ="footer">Created with <a href='https://github.com/koncina/iosp'>ioslides plus</a></div></slide>
+<p>A box using the <code>bg-my_colour4</code> colour defined in a chunk.</p></article><div class = "footer">Created with <a href='https://github.com/koncina/iosp'>ioslides plus</a></div></slide>
 
 
   <slide class="backdrop"></slide>
@@ -225,7 +225,7 @@ output:
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>
