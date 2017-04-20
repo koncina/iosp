@@ -1,0 +1,27 @@
+---
+title: "Example slide for README"
+output:
+  iosp::ioslides_plus:
+    footer: "Created with [ioslides plus](https://github.com/koncina/iosp)"
+---
+
+## Slide with columns and boxes
+
+IOSlides Plus extends `ioslides_presentation` and allows to easily create boxes:
+
+### Box 1{.box-4 .bg-red}
+
+Test 1
+
+### Box 2{.box-6 .bg-green}
+
+- line 1
+- line 2
+
+### Box 3{.box-6 .bg-blue}
+
+This box has again a width of 6 col: it will be rendered in a new row.
+
+%end%
+
+We are able to exit the box, column and row using the keyword `%end%`.
