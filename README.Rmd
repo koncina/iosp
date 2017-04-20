@@ -41,26 +41,26 @@ In **Rstudio**, create a new `Rmd` > From template > IOSlides Plus
 The following `Rmd` code
 
 ```
-## Slide with columns as boxes
+## Slide with columns and boxes
 
-Just a proof of concept. I changed the original lua file from `ioslides_presentation`.
+IOSlides Plus extends `ioslides_presentation` and allows to easily create boxes:
 
-### Box 1{.col-4 .box .bg-red}
+### Box 1{.box-4 .bg-red}
 
 Test 1
 
-### Box 2{.col-6 .box .bg-green}
+### Box 2{.box-6 .bg-green}
 
 - line 1
 - line 2
 
-### Box 3{.col-6 .box .bg-blue}
+### Box 3{.box-6 .bg-blue}
 
-This box has again a width of 6 col: it will be rendered in a new row
+This box has again a width of 6 col: it will be rendered in a new row.
 
 %end%
 
-We are able to exit the box and row using the keyword `%end%` as suggested [here](https://github.com/koncina/iosp/issues/5).
+We are able to exit the box, column and row using the keyword `%end%`.
 ```
 
 will produce the output:
