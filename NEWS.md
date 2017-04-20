@@ -1,14 +1,23 @@
-# iosp 0.1.1
+# IOSP changelog
 
-* added a `NEWS.md` file to track changes to the package.
+## [Unreleased]
+
+### Added
+
+* `NEWS.md` file to track changes to the package.
 * modify font size using `<span class = "xx-small">` like described in the [htmlref](http://www.htmlref.com/examples/chapter10/font_properties_src.html)
-* framed colums gained a shortcut: `{.box-6}` for `{.box .col-6}`
-* `.build` attribute allows incremental display of columns and/or boxes
+* shortcut for framed colums: `{.box-6}` for `{.box .col-6}`
 
+### Fixed
 
-# iosp 0.1.0
+* `.build` attribute on columns and/or boxes now correctly allows incremental display
+* fix nested blockquotes which were not properly rendered
 
-* add footer from issue #8
-* add bg-white and bg-gray from issue #9
+## [0.1.0]
+
+### Added
+
+* footer from issue #8
+* bg-white and bg-gray colours from issue #9
 
 
