@@ -406,7 +406,7 @@ pre {
 }
 
 /* from https://codepen.io/maxds/pen/DcveB */
-article > blockquote {
+slides > slide article blockquote {
   display: block;
   background: #f9f9f9;
   padding: 15px 20px 15px 45px;
@@ -424,7 +424,7 @@ article > blockquote {
   box-shadow: 10px 10px 8px 1px rgba(0, 0, 0, 0.2), 1px 3px 3px 2px rgba(0, 0, 0, 0.5);
 }
 
-article > blockquote::before {
+slides > slide article blockquote::before {
   content: "\201C"; /*Unicode for Left Double Quote*/
 
   /*Font*/
@@ -439,12 +439,12 @@ article > blockquote::before {
   top:5px;
 }
 
-blockquote::after {
+slides > slide article blockquote::after {
   /*Reset to make sure*/
   content: "";
 }
 
-slides > slide > article blockquote > p {
+slides > slide article blockquote > p {
   margin-bottom:0;
 }
 
@@ -455,13 +455,13 @@ cite {
   font-style: italic;
 }
 
-blockquote cite {
+slides > slide article blockquote cite {
   font-size: 14px;
   display: block;
   margin-top: 5px;
 }
 
-blockquote cite:before {
+slides > slide article blockquote cite:before {
   content: "\2014 \2009";
 }
 
