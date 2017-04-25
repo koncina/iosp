@@ -12,6 +12,7 @@
 
 * `.build` attribute on columns and/or boxes now correctly allows incremental display
 * fix nested blockquotes which were not properly rendered
+* fix paragraph spacing in boxes
 
 ## [0.1.0]
 

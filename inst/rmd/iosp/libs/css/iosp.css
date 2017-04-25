@@ -182,8 +182,8 @@ slides > slide.segue article {
   font-size: 25px;
 }
 
-[class*="col-"].box > p {
-  margin-bottom: 0;
+[class*="col-"].box p {
+  margin-bottom: 0.5em;
   vertical-align: inherit;
 }
 
