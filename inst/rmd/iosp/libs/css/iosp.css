@@ -326,7 +326,7 @@ slides > slide article .chunk {
    margin-left: -15px;
 }
 
-[class*="col-"] > h3 + div.chunk {
+.box > h3 + div.chunk, [class*="col-"] > .chunk:first-child {
   margin-top: -15px;
 }
 
