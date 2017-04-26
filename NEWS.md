@@ -8,13 +8,17 @@
 * modify font size using `<span class = "xx-small">` like described in the [htmlref](http://www.htmlref.com/examples/chapter10/font_properties_src.html)
 * shortcut for framed colums: `{.box-6}` for `{.box .col-6}`
 
+### Changed
+
+* blockquotes exhibit rounded corners like boxes
+* remove shadow for all chunks or blockquotes placed in a box
+
 ### Fixed
 
 * `.build` attribute on columns and/or boxes now correctly allows incremental display
 * fix nested blockquotes which were not properly rendered
 * fix paragraph spacing in boxes
 * fix wrong top margin when chunks are placed in columns
-* remove shadow for all chunks palced in a box
 * remove css code for nested rows (not supported yet)
 
 ## [0.1.0]

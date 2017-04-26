@@ -268,8 +268,7 @@ slides > slide article .chunk {
   border: 2px solid #002240;
 }
 
-
-.box .shadow.chunk {
+.box .shadow.chunk, .box blockquote {
   box-shadow: none;
 }
 
@@ -398,7 +397,7 @@ pre {
 }
 
 /* from https://codepen.io/maxds/pen/DcveB */
-slides > slide article blockquote {
+blockquote {
   display: block;
   background: #f9f9f9;
   padding: 15px 20px 15px 45px;
@@ -411,9 +410,12 @@ slides > slide article blockquote {
   line-height: 1.2;
   /*text-align: justify;*/
 
-  border-left: 15px solid #ccc;
   /*box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7);*/
   box-shadow: 10px 10px 8px 1px rgba(0, 0, 0, 0.2), 1px 3px 3px 2px rgba(0, 0, 0, 0.5);
+
+  border-radius: 5px;
+  border: 1px solid #999;
+  border-left: 15px solid #ccc;
 }
 
 slides > slide article blockquote::before {
@@ -459,37 +461,22 @@ slides > slide article blockquote cite:before {
 
 /* blockquote colors */
 
-blockquote.bg-red {
-  border-left: 15px solid #991f00;
-}
-
 blockquote.bg-red::before {
   color : #991f00;
-}
-
-blockquote.bg-blue {
-  border-left: 15px solid #005c99;
 }
 
 blockquote.bg-blue::before {
   color : #005c99;
 }
 
-blockquote.bg-green {
-  border-left: 15px solid #1f7a1f;
-}
-
 blockquote.bg-green::before {
   color: #1f7a1f;
-}
-
-blockquote.bg-yellow {
-  border-left: 15px solid #999900;
 }
 
 blockquote.bg-yellow::before {
   color: #999900;
 }
+
 /* Style for keyboard keys */
 /* From http://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
 kbd
@@ -592,8 +579,8 @@ div.center {
   background-color: #ffff99;
 }
 
-.box.bg-yellow {
-  border: 2px solid #999900;
+.box.bg-yellow, blockquote.bg-yellow {
+  border-color: #999900;
 }
 
 .box.bg-yellow > h3:first-child {
@@ -605,8 +592,8 @@ div.center {
   background-color: #ffad99;
 }
 
-.box.bg-red {
-  border: 2px solid #991f00;
+.box.bg-red, blockquote.bg-red {
+  border-color: #991f00;
 }
 
 .box.bg-red > h3:first-child {
@@ -618,8 +605,8 @@ div.center {
   background-color: #adebad;
 }
 
-.box.bg-green {
-  border:2px solid #1f7a1f;
+.box.bg-green, blockquote.bg-green {
+  border-color: #1f7a1f;
 }
 
 .box.bg-green > h3:first-child {
@@ -629,11 +616,10 @@ div.center {
 
 .bg-blue {
   background-color: #99d6ff; /* 80% */
-
 }
 
-.box.bg-blue {
-  border: 2px solid #005c99; /* 30% */
+.box.bg-blue, blockquote.bg-blue {
+  border-color: #005c99; /* 30% */
 }
 
 .box.bg-blue > h3:first-child {
@@ -645,8 +631,8 @@ div.center {
   background-color: #002240;
 }
 
-.box.bg-cobalt {
-  border: 2px solid #002240;
+.box.bg-cobalt, blockquote.bg-cobalt {
+  border-color: #002240;
 }
 
 .box.bg-cobalt > .chunk {
@@ -671,8 +657,8 @@ https://github.com/koncina/iosp/issues/9 */
   background-color: #fafafa;
 }
 
-.box.bg-gray {
-  border: 2px solid #cecece;
+.box.bg-gray, blockquote.bg-gray {
+  border-color: #cecece;
 }
 
 .box.bg-gray > h3:first-child {
@@ -684,8 +670,8 @@ https://github.com/koncina/iosp/issues/9 */
   background-color: #ffffff;
 }
 
-.box.bg-white {
-  border: 2px solid #cecece;
+.box.bg-white, blockquote.bg-white {
+  border-color: #cecece;
 }
 
 .box.bg-white > h3:first-child {
