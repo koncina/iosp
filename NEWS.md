@@ -14,6 +14,7 @@
 * fix nested blockquotes which were not properly rendered
 * fix paragraph spacing in boxes
 * fix wrong top margin when chunks are placed in columns
+* remove shadow for all chunks palced in a box
 
 ## [0.1.0]
 

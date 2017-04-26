@@ -277,7 +277,7 @@ slides > slide article .chunk {
 }
 
 
-.box > .shadow.chunk {
+.box .shadow.chunk {
   box-shadow: none;
 }
 
