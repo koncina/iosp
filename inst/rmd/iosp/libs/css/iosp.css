@@ -146,14 +146,6 @@ slides > slide.segue article {
 .chunk > .row > .col-11 {width: 91.66%;}
 .chunk > .row > .col-12 {width: 100%;}
 
-.row .row > [class*="col-"] {
-  padding: 0;
-}
-
-.row .row {
-  margin: 0;
-}
-
 [class*="col-"] ul:last-child {
   margin-bottom: 0;
 }

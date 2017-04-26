@@ -15,6 +15,7 @@
 * fix paragraph spacing in boxes
 * fix wrong top margin when chunks are placed in columns
 * remove shadow for all chunks palced in a box
+* remove css code for nested rows (not supported yet)
 
 ## [0.1.0]
 
