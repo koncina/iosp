@@ -7,6 +7,8 @@
 * `NEWS.md` file to track changes to the package.
 * modify font size using `<span class = "xx-small">` like described in the [htmlref](http://www.htmlref.com/examples/chapter10/font_properties_src.html)
 * shortcut for framed colums: `{.box-6}` for `{.box .col-6}`
+* all chunks are now placed in a `div` container with adjustable class (`class` chunk option). Default class is now empty ("") and not "shadow" anymore (which is now a new option: see next point). The current chunk label is set as the `div` `id`.
+* add `shadow` chunk option (defaults to TRUE) to disable the rendering of a shadowed box for code outputs.
 
 ### Changed
 

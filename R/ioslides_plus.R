@@ -27,21 +27,21 @@ ioslides_plus <- function(logo = NULL,
                           box_colours = NULL,
                           box_colors = NULL,
                           ...) {
-  
+
   # base pandoc options for all output
   args <- c()
   library(iosp)
   # widescreen
   if (widescreen)
     args <- c(args, "--variable", "widescreen");
-  
+
   # pagedtables
   if (identical(df_print, "paged")) {
     extra_dependencies <- append(extra_dependencies,
                                  list(rmarkdown:::html_dependency_pagedtable()))
-    
+
   }
-  
+
   # transition
   if (is.numeric(transition))
     transition <- as.character(transition)
@@ -54,18 +54,18 @@ ioslides_plus <- function(logo = NULL,
     stop('transition must be "default", "faster", "slower" or a ',
          'numeric value (representing seconds)', call. = FALSE)
   args <- c(args, rmarkdown::pandoc_variable_arg("transition", transition))
-  
+
   # additional css
   for (css_file in css)
     args <- c(args, "--css", rmarkdown::pandoc_path_arg(css_file))
-  
+
   # Path to the box_colours css file which is created in the preprocessor
   # The file will be removed after knitting
   css_colour_file <- NULL
-  
+
   # content includes
   args <- c(args, rmarkdown::includes_to_pandoc_args(includes))
-  
+
   # template path and assets
   if (!is.null(template) && file.exists(template))
     args <- c(args, "--template", template)
@@ -73,32 +73,32 @@ ioslides_plus <- function(logo = NULL,
     args <- c(args,
               "--template",
               system.file("rmd", "iosp", "default.html", package = "iosp"))
-  
+
   # html dependency for ioslides
   extra_dependencies <- append(extra_dependencies,
                                list(html_dependency_ioslides(),
                                     html_dependency_iosplus()))
-  
+
   # analytics
   if (!is.null(analytics))
     args <- c(args, rmarkdown::pandoc_variable_arg("analytics", analytics))
-  
+
   # pre-processor for arguments that may depend on the name of the
   # the input file (e.g. ones that need to copy supporting files)
   pre_processor <- function(metadata, input_file, runtime, knit_meta, files_dir,
                             output_dir) {
-    
+
     # use files_dir as lib_dir if not explicitly specified
     if (is.null(lib_dir))
       lib_dir <- files_dir
-    
+
     # extra args
     args <- c()
-    
+
     # create the files dir if it doesn't exist
     if (!rmarkdown:::dir_exists(files_dir))
       dir.create(files_dir)
-    
+
     # logo
     if (!is.null(logo)) {
       logo_path <- logo
@@ -115,10 +115,10 @@ ioslides_plus <- function(logo = NULL,
       }
       args <- c(args, "--variable", paste("logo=", logo_path, sep = ""))
     }
-    
+
     # Adding custom colours
     if (!is.null(box_colors) && is.null(box_colours)) box_colours <- box_colors
-    
+
     if (is.list(box_colours)) {
       # Calling unlist followed by as.list to support a single string argument (add_box_colour mandatory argument)
       css_content <- lapply(seq_along(box_colours), function(x) {do.call(add_box_colour, as.list(c(names(box_colours)[[x]], unlist(box_colours[[x]]))))})
@@ -131,30 +131,30 @@ ioslides_plus <- function(logo = NULL,
       error = function(...) {
         css_colour_file <<- file.path(output_dir, "box_colours.css")
       })
-      
+
       writeLines(css_content, css_colour_file, useBytes = TRUE)
       args <- c(args, rmarkdown::includes_to_pandoc_args(list(in_header = css_colour_file)))
     }
-    
+
     # return additional args
     args
   }
-  
+
   # post processor that renders our markdown using our custom lua
   # renderer and then inserts it into the main file
   post_processor <- function(metadata, input_file, output_file, clean, verbose) {
     # setup args
     args <- c()
-    
+
     # add any custom pandoc args
     args <- c(args, pandoc_args)
-    
+
     # Converting md links to html
     footer <- gsub("\\[([^\\[\\]\\(\\)]*)\\]\\(([^\\[\\]\\(\\)]*)\\)", "<a href='\\2'>\\1</a>", footer, perl = TRUE)
     # Creating html links from urls (http://stackoverflow.com/questions/3809401/what-is-a-good-regular-expression-to-match-a-url)
     footer <- gsub("(?<!href=')(https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*))", "<a href=\\1>\\1</a>", footer, perl = TRUE)
     # logo will be handled using javascript and pandoc template (I don't know how to get the appropriate path to the logo from here...)
-    
+
     # attempt to create the output writer alongside input file
     lua_writer <- file.path(dirname(input_file), "ioslides_presentation.lua")
     tryCatch({
@@ -169,11 +169,11 @@ ioslides_plus <- function(logo = NULL,
                                "ioslides_presentation.lua")
     })
     on.exit(unlink(lua_writer), add = TRUE)
-    
+
     # determine whether we need to run citeproc
     input_lines <- readLines(input_file, warn = FALSE)
     run_citeproc <- rmarkdown:::citeproc_required(metadata, input_lines)
-    
+
     # write settings to file
     settings <- c()
     add_setting <- function(name, value) {
@@ -185,17 +185,17 @@ ioslides_plus <- function(logo = NULL,
     add_setting("smaller", smaller)
     add_setting("smart", smart)
     add_setting("mathjax", !is.null(mathjax))
-    
+
     # Set level of slide header (used by ioslides_presentation.lua)
     settings <- c(settings, sprintf("local slide_level = %s", slide_level))
     # Adding footer to lua (paste0 will handle NULL or character(0) better than sprintf)
     settings <- c(settings, paste0("local footer = \"", footer, "\""))
-    
+
     writeLines(settings, lua_writer, useBytes = TRUE)
-    
+
     # For consistency add as pandoc argument
     args <- c(args, "--slide-level", as.character(slide_level))
-    
+
     # append main body of script
     file.append(lua_writer,
                 system.file("rmd", "iosp", "ioslides_plus.lua", package = "iosp"))
@@ -210,16 +210,16 @@ ioslides_plus <- function(logo = NULL,
       # 'chcp' returns e.g., "Active code page: 437"; strip characters and parse
       # the number
       codepage <- as.numeric(gsub("\\D", "", system2("chcp", stdout = TRUE)))
-      
+
       if (!is.na(codepage)) {
         # if we got a valid codepage, restore it on exit
         on.exit(system2("chcp", args = codepage, stdout = TRUE), add = TRUE)
-        
+
         # change to the UTF-8 codepage
         system2("chcp", args = 65001, stdout = TRUE)
       }
     }
-    
+
     rmarkdown::pandoc_convert(input = input_file,
                               to = rmarkdown::relative_to(dirname(input_file), lua_writer),
                               from = rmarkdown:::from_rmarkdown(fig_caption),
@@ -227,19 +227,19 @@ ioslides_plus <- function(logo = NULL,
                               options = args,
                               citeproc = run_citeproc,
                               verbose = verbose)
-    
+
     # read the slides
     slides_lines <- readLines(output_tmpfile, warn = FALSE, encoding = "UTF-8")
-    
+
     # base64 encode if needed
     if (self_contained) {
       base64_encoder <- rmarkdown:::base64_image_encoder()
       slides_lines <- base64_encoder(slides_lines)
     }
-    
+
     # read the output file
     output_lines <- readLines(output_file, warn = FALSE, encoding = "UTF-8")
-    
+
     # substitute slides for the sentinel line
     sentinel_line <- grep("^RENDERED_SLIDES$", output_lines)
     if (length(sentinel_line) == 1) {
@@ -250,16 +250,16 @@ ioslides_plus <- function(logo = NULL,
     } else {
       stop("Slides placeholder not found in slides HTML", call. = FALSE)
     }
-    
+
     output_file
   }
-  
+
   hook_chunk <- function(x, options) {
     # Adapted from the knitr hook_chunk (hooks-md.R)
     fence_char = '`'
     fence = paste(rep(fence_char, 3), collapse = '')
     x = gsub(paste0('[\n]{2,}(', fence, '|    )'), '\n\n\\1', x)
-    
+
     # If "row" is set (TRUE or a vector with 2 values), we wrap the chunk in a row.
     if (options$engine == "R" && is.numeric(options$row) && length(options$row) == 2 && sum(options$row) < 13) {
       row <- TRUE
@@ -268,7 +268,7 @@ ioslides_plus <- function(logo = NULL,
       row <- TRUE
       col_width <- c(6, 6)
     } else row <- FALSE
-    
+
     # Should I change the following lines and use options$engine instead of the hardcoded r?
     if (row) {
       # Trying to detect multiple source chunks to place them in different rows
@@ -288,22 +288,25 @@ ioslides_plus <- function(logo = NULL,
       }
       x <- paste0("\n<div class = \"row\">", x, "</div>\n", collapse = "\n")
     }
-    
+
     # If code chunks are present we wrap them in a container div
     if (grepl("\n+```(r)?\n+", x)) {
-      x <- paste0("\n<div class = \"chunk ", paste(options$class, collapse = " "), "\">\n", x, "\n</div>\n")
+      options$class <- c(options$class, "chunk")
+      if (isTRUE(options$shadow)) options$class <- c(options$class, "shadow")
     }
+    x <- paste0("\n<div id = \"", options$label, "\" class = \"", paste(options$class, collapse = " "), " \">\n", x, "\n</div>\n")
     x = gsub('[\n]+$', '', x)
     x = gsub('^[\n]+', '\n', x)
     if (is.null(s <- options$indent)) return(x)
     knitr:::line_prompt(x, prompt = s, continue = s)
   }
-  
+
   knitr = rmarkdown::knitr_options_html(fig_width, fig_height, fig_retina, keep_md, dev)
   knitr$knit_hooks$chunk  <- hook_chunk
   knitr$opts_chunk$comment <- NA
-  knitr$opts_chunk$class <- "shadow"
-  
+  knitr$opts_chunk$shadow <- TRUE
+  knitr$opts_chunk$class <- ""
+
   # return format
   rmarkdown::output_format(
     knitr = knitr,
