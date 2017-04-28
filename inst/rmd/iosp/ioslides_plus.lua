@@ -286,7 +286,7 @@ function Header(lev, s, attr)
     local col_offset = string.match(attr["class"], "offset%-(%d+)")
     
     local row_class = ""
-    if string.find(attr["class"], "build") or build_slide then
+    if string.find(attr["class"], "build") then
       row_class = " build"
       attr["class"] = string.gsub(attr["class"], "build", "")
     end
@@ -320,8 +320,8 @@ function Header(lev, s, attr)
       in_row = true
     end
 
-      -- if header is empty we open the box but do not set the h3 header
-      if (s == "") then
+    -- if header is empty we open the box but do not set the h3 header
+    if (s == "") then
       header =  s
     else
       header = "<h3>" .. s .. "</h3>"

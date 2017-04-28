@@ -18,6 +18,7 @@
 ### Fixed
 
 * `.build` attribute on columns and/or boxes now correctly allows incremental display
+* `.build` attribute on slices enables display row by row
 * fix nested blockquotes which were not properly rendered
 * fix paragraph spacing in boxes
 * fix wrong top margin when chunks are placed in columns
