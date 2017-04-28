@@ -22,6 +22,7 @@
 * fix paragraph spacing in boxes
 * fix wrong top margin when chunks are placed in columns
 * remove css code for nested rows (not supported yet)
+* fix top margin for first `img` in column to align with the top of a box
 
 ## [0.1.0]
 
