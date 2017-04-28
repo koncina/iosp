@@ -317,7 +317,7 @@ slides > slide article .chunk {
    margin-left: -15px;
 }
 
-.box > h3 + div.chunk, [class*="col-"] > .chunk:first-child {
+.box > h3 + div.chunk, [class*="col-"] > div.chunk:first-child {
   margin-top: -15px;
 }
 
