@@ -54,13 +54,35 @@ h1 {
 }
 
 slides > slide > hgroup:not(.auto-fadein) {
-  height: 45px;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+  background: gray;
+  min-height: 45px;
 }
 
 slides > slide.title-slide hgroup h1 {
   line-height: 1;
 }
 
+slides > slide > hgroup > h2, slides > slide > hgroup > h3 {
+  line-height: 100%;
+  font-size: 30px;
+}
+
+
+slides > slide > hgroup > h2 {
+  background: green;
+}
+
+slides > slide > hgroup > h3 {
+  background: yellow;
+  font-style: italic;
+  text-align: right;
+}
+
+/*
 slides > slide > hgroup > h2 {
   font-size: 30px;
   line-height: 25px;
@@ -76,7 +98,7 @@ slides > slide:not(.segue) > hgroup > h3 {
   text-align: right;
   z-index: 999;
 }
-
+*/
 slides > slide.segue article {
   text-align: right;
 }
@@ -279,9 +301,8 @@ slides > slide article .chunk {
 }
 
 [class^="col-"] > .chunk {
-   /*margin: -15px;*/
-   margin-right: -15px;
-   margin-left: -15px;
+  margin-right: -15px;
+  margin-left: -15px;
 }
 
 .box > h3 + div.chunk, [class^="col-"] > div.chunk:first-child, [class^="col-"] > img:first-child {
@@ -349,8 +370,8 @@ pre {
 }
 
 .codefont pre {
-    font-size: 11px;
-    line-height: 9px;
+  font-size: 11px;
+  line-height: 9px;
 }
 
 .wrapper {
@@ -467,7 +488,10 @@ slides > slide article ul > li > ul {
 }
 
 slides > slide > hgroup + article {
+  background: red;
+  overflow: auto;
   margin-top: 0;
+  height: calc(100% - 45px);
 }
 
 .vs1 {
