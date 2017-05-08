@@ -288,13 +288,13 @@ function Header(lev, s, attr)
 
     local col_width = string.match(attr["class"], "col%-(%d+)")
     local col_offset = string.match(attr["class"], "offset%-(%d+)")
-    
+
     local row_class = ""
     if string.find(attr["class"], "build") then
       row_class = " build"
       attr["class"] = string.gsub(attr["class"], "build", "")
     end
-    
+
     -- Setting default box width to 6
     if (col_width == nil and string.find(attr["class"], "box")) then
       col_width = 6
@@ -354,6 +354,13 @@ function Header(lev, s, attr)
 
     -- start a new slide
     in_slide = true
+
+    -- extract slide colour if present
+    local slide_colour = string.match(attr["class"], "(bg%-%w+)")
+    if slide_colour then
+      attr["class"] = string.gsub(attr["class"], "(bg%-%w+)", "")
+      slide_class = slide_colour
+    end
 
     -- update build flag (used by ol and ul)
     if attr["class"] and string.find(attr["class"], "build") then

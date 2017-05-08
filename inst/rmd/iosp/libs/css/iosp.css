@@ -58,7 +58,6 @@ slides > slide > hgroup:not(.auto-fadein) {
   display: -webkit-flex;
   justify-content: space-between;
   -webkit-justify-content: space-between;
-  background: gray;
   min-height: 45px;
 }
 
@@ -71,34 +70,11 @@ slides > slide > hgroup > h2, slides > slide > hgroup > h3 {
   font-size: 30px;
 }
 
-
-slides > slide > hgroup > h2 {
-  background: green;
-}
-
 slides > slide > hgroup > h3 {
-  background: yellow;
   font-style: italic;
   text-align: right;
 }
 
-/*
-slides > slide > hgroup > h2 {
-  font-size: 30px;
-  line-height: 25px;
-}
-
-slides > slide:not(.segue) > hgroup > h3 {
-  font-style: italic;
-  line-height: 25px;
-  position: relative;
-  top: -1em;
-  left: 50%;
-  width: 50%;
-  text-align: right;
-  z-index: 999;
-}
-*/
 slides > slide.segue article {
   text-align: right;
 }
@@ -488,10 +464,10 @@ slides > slide article ul > li > ul {
 }
 
 slides > slide > hgroup + article {
-  background: red;
-  overflow: auto;
-  margin-top: 0;
+  display: inline-block;
+  width: 100%;
   height: calc(100% - 45px);
+  margin-top: 0;
 }
 
 .vs1 {
