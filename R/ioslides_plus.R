@@ -39,7 +39,6 @@ ioslides_plus <- function(logo = NULL,
   if (identical(df_print, "paged")) {
     extra_dependencies <- append(extra_dependencies,
                                  list(rmarkdown:::html_dependency_pagedtable()))
-
   }
 
   # transition
@@ -59,9 +58,12 @@ ioslides_plus <- function(logo = NULL,
   for (css_file in css)
     args <- c(args, "--css", rmarkdown::pandoc_path_arg(css_file))
 
-  # Path to the box_colours css file which is created in the preprocessor
+  # Path to the box_colours css file which is created in the pre_processor
   # The file will be removed after knitting
   css_colour_file <- NULL
+  
+  # Path to the logo file (will be updated in the pre_processor)
+  logo_path <- NULL
 
   # content includes
   args <- c(args, rmarkdown::includes_to_pandoc_args(includes))
@@ -109,9 +111,9 @@ ioslides_plus <- function(logo = NULL,
           logo_ext <- "png"
         logo_path <- file.path(files_dir, paste("logo", logo_ext, sep = "."))
         file.copy(from = logo, to = logo_path)
-        logo_path <- rmarkdown:::normalized_relative_to(output_dir, logo_path)
+        logo_path <<- rmarkdown:::normalized_relative_to(output_dir, logo_path)
       } else {
-        logo_path <- rmarkdown::pandoc_path_arg(logo_path)
+        logo_path <<- rmarkdown::pandoc_path_arg(logo_path)
       }
       args <- c(args, "--variable", paste("logo=", logo_path, sep = ""))
     }
@@ -153,7 +155,6 @@ ioslides_plus <- function(logo = NULL,
     footer <- gsub("\\[([^\\[\\]\\(\\)]*)\\]\\(([^\\[\\]\\(\\)]*)\\)", "<a href='\\2'>\\1</a>", footer, perl = TRUE)
     # Creating html links from urls (http://stackoverflow.com/questions/3809401/what-is-a-good-regular-expression-to-match-a-url)
     footer <- gsub("(?<!href=')(https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*))", "<a href=\\1>\\1</a>", footer, perl = TRUE)
-    # logo will be handled using javascript and pandoc template (I don't know how to get the appropriate path to the logo from here...)
 
     # attempt to create the output writer alongside input file
     lua_writer <- file.path(dirname(input_file), "ioslides_presentation.lua")
@@ -190,6 +191,7 @@ ioslides_plus <- function(logo = NULL,
     settings <- c(settings, sprintf("local slide_level = %s", slide_level))
     # Adding footer to lua (paste0 will handle NULL or character(0) better than sprintf)
     settings <- c(settings, paste0("local footer = \"", footer, "\""))
+    if (!is.null(logo_path))  settings <- c(settings, paste0("local logo = \"", logo_path, "\""))
 
     writeLines(settings, lua_writer, useBytes = TRUE)
 

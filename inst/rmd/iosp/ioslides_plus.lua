@@ -1,3 +1,7 @@
+-- footer and logo_path are added by the post_processor to the top of this script
+if logo then
+  footer = "<img src=\"" .. logo .. "\">" .. footer
+end
 
 -- Table to store footnotes, so they can be included at the end.
 local notes = {}

@@ -145,19 +145,6 @@ $if(mathjax-url)$
 </script>
 $endif$
 
-$if(logo)$
-<script>
-  (function () {
-    footers = document.getElementsByClassName('footer');
-    //imgsrc = document.getElementsByClassName("gdbar")[0].getElementsByTagName('img')[0].src;
-    [].slice.call(footers).forEach(function (footer) {
-      footer.innerHTML = "<img src=$logo$>" + footer.innerHTML; // This is the same behaviour as the standard ioslides: logo is not self-contained
-      //footer.innerHTML = "<img src=\"" + imgsrc + "\">" + footer.innerHTML; // disabling to avoid binary data replication...
-    });
-  })();
-</script>
-$endif$
-
 <!-- map slide visiblity events into shiny -->
 <script>
   (function() {
