@@ -121,6 +121,17 @@ ioslides_plus <- function(logo = NULL,
     # Adding custom colours
     if (!is.null(box_colors) && is.null(box_colours)) box_colours <- box_colors
 
+    # Trying to lazy load colours
+    lazy_colours <- unique(sub(".*\\.bg-(\\w+).*", "\\1", grep("\\.bg-(\\w+)", readLines(input_file), value = TRUE)))
+    # filtering out iosp colours and colours not in colors()
+    lazy_colours <- lazy_colours[!lazy_colours %in% c("red", "green", "blue", "yellow", "cobalt", "gray", "white") & lazy_colours %in% colors()]
+    if (is.list(box_colours)) {
+      # filtering out colours defined in the header
+      lazy_colours <- lazy_colours[!lazy_colours %in% sub("^bg-", "", names(box_colours))]
+    }
+    
+    box_colours <- c(box_colours, as.list(setNames(lazy_colours, nm = lazy_colours)))
+
     if (is.list(box_colours)) {
       # Calling unlist followed by as.list to support a single string argument (add_box_colour mandatory argument)
       css_content <- lapply(seq_along(box_colours), function(x) {do.call(add_box_colour, as.list(c(names(box_colours)[[x]], unlist(box_colours[[x]]))))})

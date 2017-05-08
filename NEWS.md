@@ -9,11 +9,13 @@
 * shortcut for framed colums: `{.box-6}` for `{.box .col-6}`
 * all chunks are now placed in a `div` container with adjustable class (`class` chunk option). Default class is now empty ("") and not "shadow" anymore (which is now a new option: see next point). The current chunk label is set as the `div` `id`.
 * add `shadow` chunk option (defaults to TRUE) to disable the rendering of a shadowed box for code outputs.
+* add lazy colour definition: colours listed in colors() can be used without definition in the header
 
 ### Changed
 
 * blockquotes exhibit rounded corners like boxes
 * remove shadow for all chunks or blockquotes placed in a box
+* footer logo is directly integrated in HTML and not using javascript
 
 ### Fixed
 
