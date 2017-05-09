@@ -1,4 +1,4 @@
-/* Adjusting logo */
+/* Title slide */
 slides > slide > .gdbar img {
   width: auto;
   height: 150px;
@@ -11,7 +11,62 @@ slides > slide > .gdbar {
   height: 170px;
 }
 
+slides > slide.title-slide hgroup h1 {
+  line-height: 1;
+}
+
+/* segue slide */
+
+slides > slide.segue article {
+  text-align: right;
+}
+
+
+
+/* slide */
+
+slides > slide {
+  color: black;
+}
+
+slides > slide ul {
+  line-height: 1em;
+}
+
+slides > slide article ul li::before {
+  content: '';
+}
+
+slides > slide article ul {
+  list-style-type: disc;
+}
+
+slides > slide article ul > li > ul {
+  list-style-type: circle;
+}
+
+/* header */
+
+slides > slide > hgroup:not(.auto-fadein) {
+  display: flex;
+  display: -webkit-flex;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+  min-height: 45px;
+}
+
+slides > slide > hgroup > h2, slides > slide > hgroup > h3 {
+  line-height: 100%;
+  font-size: 30px;
+}
+
+slides > slide > hgroup > h3 {
+  font-style: italic;
+  text-align: right;
+}
+
 /* Footer */
+
 slides > .nobackground > .footer  {
    visibility: hidden;
 }
@@ -48,38 +103,28 @@ slides > slide > .footer > a {
   border-bottom: none;
 }
 
-/* Headers */
-h1 {
-  font-size: 20pt;
-}
+/* article */
 
-slides > slide > hgroup:not(.auto-fadein) {
+slides > slide > hgroup + article {
   display: flex;
   display: -webkit-flex;
-  justify-content: space-between;
-  -webkit-justify-content: space-between;
-  min-height: 45px;
+  flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  align-items: flex-start;
+  -webkit-align-items: flex-start;
+  width: 100%;
+  max-height: calc(100% - 45px);
+  margin-top: 0;
 }
 
-slides > slide.title-slide hgroup h1 {
-  line-height: 1;
+slides > slide > article > p {
+  width: 100%;
 }
 
-slides > slide > hgroup > h2, slides > slide > hgroup > h3 {
-  line-height: 100%;
-  font-size: 30px;
+p:last-child, ul:last-child {
+  margin-bottom: 0;
 }
 
-slides > slide > hgroup > h3 {
-  font-style: italic;
-  text-align: right;
-}
-
-slides > slide.segue article {
-  text-align: right;
-}
-
-/* End of headers */
 
 /*
   Bootstrap like grid
@@ -103,23 +148,6 @@ slides > slide.segue article {
 .col-11 {width: 89.66%;}
 .col-12 {width: 98%;}
 
-.chunk > .row > .col-1 {width: 8.33%;}
-.chunk > .row > .col-2 {width: 16.66%;}
-.chunk > .row > .col-3 {width: 25%;}
-.chunk > .row > .col-4 {width: 33.33%;}
-.chunk > .row > .col-5 {width: 41.66%;}
-.chunk > .row > .col-6 {width: 50%;}
-.chunk > .row > .col-7 {width: 58.33%;}
-.chunk > .row > .col-8 {width: 66.66%;}
-.chunk > .row > .col-9 {width: 75%;}
-.chunk > .row > .col-10 {width: 83.33%;}
-.chunk > .row > .col-11 {width: 91.66%;}
-.chunk > .row > .col-12 {width: 100%;}
-
-[class^="col-"] ul:last-child {
-  margin-bottom: 0;
-}
-
 [class^="col-"].offset-1 {margin-left: 9.33%;}
 [class^="col-"].offset-2 {margin-left: 17.66%;}
 [class^="col-"].offset-3 {margin-left: 26%;}
@@ -133,22 +161,15 @@ slides > slide.segue article {
 [class^="col-"].offset-11 {margin-left: 92.66%;}
 
 [class^="col-"] {
-  float: left;
-  padding: 15px;
-  margin: 0 1%;
+  margin: 0.5em 1%;
 }
 
 [class^="col-"] > h3 {
-  position: relative;
   line-height: 35px;
   font-size: 25px;
 }
 
-[class^="col-"].box p {
-  margin-bottom: 0.5em;
-  vertical-align: inherit;
-}
-
+/* boxes */
 [class^="col-"].box > h3:first-child {
   margin: -15px -15px 10px -15px;
   padding-left: 10px;
@@ -156,211 +177,21 @@ slides > slide.segue article {
 }
 
 [class^="col-"].box {
-  box-shadow: 10px 10px 8px 1px rgba(0, 0, 0, 0.2), 1px 3px 3px 2px rgba(0, 0, 0, 0.5);
+  padding: 15px;
+}
+
+[class^="col-"].box {
   border-radius: 5px;
   border: 1px solid lightgray;
-  z-index: 10;
-}
-
-[class^="col-"] img {
-  max-width: 100%;
-  max-height: 100%;
-}
-
-[class^="col-"].nofit img {
-  max-width: none;
-  max-height: none;
-}
-
-div.box > ul {
-  margin-bottom: 0;
-  line-height: 1em;
-}
-
-.row {
-  display: flex;
-  display: -webkit-flex;
-  margin-bottom: 0.5em;
-  margin-top: 0.5em;
-}
-
-.row::after {
-  content: "";
-  clear: both;
-  display: block;
-}
-
-.row + p {
-  margin-top: 1em;
-}
-
-div.row > div, div.row > div.top {
-  align-self: flex-start;
-  -webkit-align-self: flex-start;
-}
-
-div.row > div.stretch {
-  align-self: stretch;
-  -webkit-align-self: stretch;
-}
-
-div.row > div.bottom {
-  align-self: flex-end;
-  -webkit-align-self: flex-end;
-}
-
-div.row > div.middle {
-  align-self: center;
-  -webkit-align-self: center;
-}
-
-slides > slide article strong {
-  font-weight: bold;
-}
-
-slides > slide article em {
-  font-style: italic;
-}
-
-slides > slide article pre + p, slides > slide article table + p {
-  margin-top: 1em; /* Increase space between code, table and next paragraph*/
-}
-
-/* Custom prettyprint colors: cobalt*/
-
-slides > slide article .chunk {
-  padding: 10px 10px 10px 10px;
-  padding: 0;
-  margin: 0.5em 1%;
-  border-radius: 5px;
-  background: #bfccd7;
-  overflow: hidden;
-  border: 2px solid #002240;
-}
-
-.box .shadow.chunk, .box blockquote {
-  box-shadow: none;
-}
-
-.chunk > div.row {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  display: -webkit-flex;
-}
-
-.chunk p {
-  margin: 0;
-}
-
-.chunk img {
-  padding: 10px;
-  display: block;
-  margin: auto;
-}
-
-.chunk > div.row > div {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  display: -webkit-flex;
-  align-self: stretch;
-  -webkit-align-self: stretch;
-  flex-direction: column;
-  -webkit-flex-direction: column;
-}
-
-.chunk > div.row > div pre {
-  height: 100%;
-  flex: 1;
-  -webkit-flex: 1;
-}
-
-[class^="col-"] > .chunk {
-  margin-right: -15px;
-  margin-left: -15px;
-}
-
-.box > h3 + div.chunk, [class^="col-"] > div.chunk:first-child, [class^="col-"] > img:first-child {
-  margin-top: -15px;
-}
-
-[class^="col-"] > div.chunk:last-child {
-  margin-bottom: -15px;
-}
-
-pre.prettyprint {
-  background: #2b557a;
-  color: #ffffff;
-  border-left: 15px solid #002240;
-}
-
-pre.prettyprint .str { color: #3ad900; } /* string      */
-pre.prettyprint .kwd { color: #ff9d00; } /* keyword     */
-pre.prettyprint .com { color: #0088ff; } /* comment     */
-pre.prettyprint .typ { color: #bfa4a4; } /* type        */
-pre.prettyprint .lit { color: #ff80e1; } /* literal     */
-pre.prettyprint .pun { color: #bed6ff; } /* punctuation */
-pre.prettyprint .pln { /* plaintext   */
-  color: #9effff;
-  font-weight: bold;
-}
-pre.prettyprint .tag { color: #9effff; } /* tag         */
-pre.prettyprint .dec { color: #fff; }    /* declaration #ff9d00*/
-/* End of prettyprint*/
-
-pre:not(.prettyprint) {
-  color: #51283e;
-  background: #bfccd7;
-  padding-left: 10px;
-  border-left: 15px solid #5a7184;
-}
-
-.codefont pre {
-  font-size: 11px;
-  line-height: 9px;
-}
-
-code {
-  color: #c7254e;
-  /*white-space: pre;*/
-  background-color: rgba(0, 0, 0, 0.04);
-  border-color: black;
-}
-
-pre {
-  margin-bottom: 0;
-  margin-top: 0;
-  padding: 5px 0 5px 10px;
-  width: 100%;
-  left: 0;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-}
-
-.shadow {
   box-shadow: 10px 10px 8px 1px rgba(0, 0, 0, 0.2), 1px 3px 3px 2px rgba(0, 0, 0, 0.5);
-  padding: 5px 10px 5px 10px;
-  margin: 20px;
-  border-radius: 5px;
 }
 
-.codefont pre {
-  font-size: 11px;
-  line-height: 9px;
-}
 
-.wrapper {
-  text-align: center;
-}
-
-.red-quote {
-  border-left: 15px solid red;
-  background-color: #ffad99;
-}
+/* blockquotes */
 
 /* from https://codepen.io/maxds/pen/DcveB */
-blockquote {
+
+article blockquote {
   display: block;
   background: #f9f9f9;
   padding: 15px 20px 15px 45px;
@@ -375,7 +206,8 @@ blockquote {
   border-left: 15px solid #ccc;
 }
 
-slides > slide article blockquote::before {
+
+article blockquote::before {
   content: "\201C"; /*Unicode for Left Double Quote*/
   font-family: Georgia, serif;
   font-size: 60px;
@@ -391,244 +223,24 @@ slides > slide article blockquote::after {
   content: "";
 }
 
-slides > slide article blockquote > p {
-  margin-bottom:0;
-}
-
 /* Cite styling adapted from http://www.webmaster-source.com/2012/04/24/pure-css-blockquote-styling/ */
 cite {
   font-style: italic;
-}
-
-slides > slide article blockquote cite {
   font-size: 14px;
   display: block;
   margin-top: 5px;
 }
 
-slides > slide article blockquote cite:before {
+cite:before {
   content: "\2014 \2009";
 }
 
-/* blockquote colors */
+/*
+slides > slide article blockquote cite {
 
-blockquote.bg-red::before {
-  color : #991f00;
-}
-
-blockquote.bg-blue::before {
-  color : #005c99;
 }
 
-blockquote.bg-green::before {
-  color: #1f7a1f;
+slides > slide article blockquote cite:before {
+  content: "\2014 \2009";
 }
-
-blockquote.bg-yellow::before {
-  color: #999900;
-}
-
-/* Style for keyboard keys */
-/* From http://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-kbd
-{
-    -moz-border-radius:3px;
-    -moz-box-shadow:0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-    -webkit-border-radius:3px;
-    -webkit-box-shadow:0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-    background-color:#f7f7f7;
-    border:1px solid #ccc;
-    border-radius:3px;
-    box-shadow:0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-    color:#333;
-    display:inline-block;
-    font-family:Arial,Helvetica,sans-serif;
-    /*font-size:11px;*/
-    line-height:1.4;
-    margin:0 .1em;
-    padding:.1em .6em;
-    text-shadow:0 1px 0 #fff;
-}
-
-
-slides > slide article ul li ul li::before, slides > slide article ul > li::before {
-  content: '';
-}
-
-slides > slide article ul {
-  list-style-type: disc;
-}
-
-slides > slide article ul > li > ul {
-  list-style-type: circle;
-}
-
-slides > slide > hgroup + article {
-  display: inline-block;
-  width: 100%;
-  height: calc(100% - 45px);
-  margin-top: 0;
-}
-
-.vs1 {
-  margin-top: 1em;
-}
-
-.vs2 {
-  margin-top: 2em;
-}
-
-.vs3 {
-  margin-top: 3em;
-}
-
-slides > slide {
-  color: black;
-}
-
-div.center {
-  display: block;
-  margin-left:auto;
-  margin-right:auto;
-}
-
-.vmiddle {
-  vertical-align: middle;
-}
-
-/* Background colors (for the boxes) */
-/* red, green are already defined by ioslides for font-colors */
-
-.bg-yellow {
-  background-color: #ffff99;
-}
-
-.box.bg-yellow, blockquote.bg-yellow {
-  border-color: #999900;
-}
-
-.box.bg-yellow > h3:first-child {
-  background-color: #999900;
-  color: black;
-}
-
-.bg-red {
-  background-color: #ffad99;
-}
-
-.box.bg-red, blockquote.bg-red {
-  border-color: #991f00;
-}
-
-.box.bg-red > h3:first-child {
-  background: #991f00;
-  color: #fff;
-}
-
-.bg-green {
-  background-color: #adebad;
-}
-
-.box.bg-green, blockquote.bg-green {
-  border-color: #1f7a1f;
-}
-
-.box.bg-green > h3:first-child {
-  background-color: #1f7a1f;
-  color: #fff;
-}
-
-.bg-blue {
-  background-color: #99d6ff; /* 80% */
-}
-
-.box.bg-blue, blockquote.bg-blue {
-  border-color: #005c99; /* 30% */
-}
-
-.box.bg-blue > h3:first-child {
-  background-color: #005c99; /* 30% */
-  color: #fff;
-}
-
-.bg-cobalt {
-  background-color: #002240;
-}
-
-.box.bg-cobalt, blockquote.bg-cobalt {
-  border-color: #002240;
-}
-
-.box.bg-cobalt > .chunk {
-  border: none;
-  margin-top: 0;
-  border-radius: 0;
-}
-
-.box.bg-cobalt > h3 + .chunk {
-  margin-top: -10px;
-}
-
-.box.bg-cobalt > h3:first-child {
-  background-color: #002240;
-  color: #fff;
-}
-
-/* bg-gray and bg-white are from the suggestion of instantkaffee
-https://github.com/koncina/iosp/issues/9 */
-
-.bg-gray {
-  background-color: #fafafa;
-}
-
-.box.bg-gray, blockquote.bg-gray {
-  border-color: #cecece;
-}
-
-.box.bg-gray > h3:first-child {
-  background-color: #cecece;
-  color: black;
-}
-
-.bg-white {
-  background-color: #ffffff;
-}
-
-.box.bg-white, blockquote.bg-white {
-  border-color: #cecece;
-}
-
-.box.bg-white > h3:first-child {
-  background-color: #cecece;
-  color: black;
-}
-
-/* added font-size from http://www.htmlref.com/examples/chapter10/font_properties_src.html */
-
-.xx-small {
-  font-size: xx-small;
-}
-.x-small {
-  font-size: x-small;
-}
-.small {
-  font-size: small;
-}
-.medium {
-  font-size: medium;
-}
-.large {
-  font-size: large;
-}
-.x-large {
-  font-size: x-large;
-}
-.xx-large {
-  font-size: xx-large;
-}
-.smaller {
-  font-size: smaller;
-}
-.larger {
-  font-size: larger;
-}
+*/

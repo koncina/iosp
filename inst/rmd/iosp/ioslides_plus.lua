@@ -9,8 +9,6 @@ local notes = {}
 -- Rendering state
 local in_slide = false
 local in_column = false
-local in_row = false
-local col_count = 0
 local build_slide = false
 local in_notes = false
 
@@ -87,20 +85,10 @@ local function CompleteColumn()
   end
 end
 
-local function CompleteRow()
-  if (in_row) then
-    in_row = false
-    col_count = 0
-    return  "</div>"
-  else
-    return ""
-  end
-end
-
 local function CompleteSlide()
   if (in_slide) then
     in_slide = false
-    return  CompleteColumn() .. CompleteRow() .. '</article><div class = "footer">' .. footer .. '</div></slide>'
+    return  CompleteColumn() .. '</article><div class = "footer">' .. footer .. '</div></slide>'
   else
     return ""
   end
@@ -250,7 +238,7 @@ end
 
 function Para(s)
   if (s == "%end%") then -- %end% keyword will exit a column and row
-    return CompleteColumn() .. CompleteRow()
+    return CompleteColumn()
   end
   return "<p>" .. s .. "</p>"
 end
@@ -289,12 +277,6 @@ function Header(lev, s, attr)
     local col_width = string.match(attr["class"], "col%-(%d+)")
     local col_offset = string.match(attr["class"], "offset%-(%d+)")
 
-    local row_class = ""
-    if string.find(attr["class"], "build") then
-      row_class = " build"
-      attr["class"] = string.gsub(attr["class"], "build", "")
-    end
-
     -- Setting default box width to 6
     if (col_width == nil and string.find(attr["class"], "box")) then
       col_width = 6
@@ -311,25 +293,12 @@ function Header(lev, s, attr)
         col_offset = 0
       end
 
-      col_count = col_count + tonumber(col_offset) + tonumber(col_width)
-
-      if (col_count > 12) then
-        preface = preface .. CompleteRow() .. "<div class = 'row" .. row_class .. "'>"
-        col_count = tonumber(col_offset) + tonumber(col_width)
-        in_row = true
+      -- if header is empty we open the box but do not set the h3 header
+      if (s == "") then
+        header =  s
+      else
+        header = "<h3>" .. s .. "</h3>"
       end
-
-      if (in_row == false) then
-      preface = preface .. "<div class = 'row" .. row_class .. "'>"
-      in_row = true
-    end
-
-    -- if header is empty we open the box but do not set the h3 header
-    if (s == "") then
-      header =  s
-    else
-      header = "<h3>" .. s .. "</h3>"
-    end
 
       return preface .. "<div class = '" .. attr["class"] .. "'>" .. header
     end

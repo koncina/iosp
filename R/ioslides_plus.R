@@ -118,13 +118,24 @@ ioslides_plus <- function(logo = NULL,
       args <- c(args, "--variable", paste("logo=", logo_path, sep = ""))
     }
 
+    # Generate the list of box colours that we ship with iosp
+    iosp_colours <- list(
+      red = list(bg = "#ffad99", header_bg = "#991f00"),
+      green = list(bg = "#adebad", header_bg = "#1f7a1f"),
+      blue = list(bg = "#99d6ff", header_bg = "#005c99"),
+      yellow = list(bg = "#ffec8b", header_bg = "#eeb422"),
+      gray = list(bg = "#fafafa", header_bg = "#cecece"),
+      white = list(bg = "#ffffff", header_bg = "#cecece"),
+      cobalt = list(bg = "#002240", header_bg = "#002240")
+    )
+    
     # Adding custom colours
     if (!is.null(box_colors) && is.null(box_colours)) box_colours <- box_colors
 
     # Trying to lazy load colours
     lazy_colours <- unique(sub(".*\\.bg-(\\w+).*", "\\1", grep("\\.bg-(\\w+)", readLines(input_file), value = TRUE)))
     # filtering out iosp colours and colours not in colors()
-    lazy_colours <- lazy_colours[!lazy_colours %in% c("red", "green", "blue", "yellow", "cobalt", "gray", "white") & lazy_colours %in% colors()]
+    lazy_colours <- lazy_colours[!lazy_colours %in% names(iosp_colours) & lazy_colours %in% colors()]
     if (is.list(box_colours)) {
       # filtering out colours defined in the header
       lazy_colours <- lazy_colours[!lazy_colours %in% sub("^bg-", "", names(box_colours))]
@@ -132,6 +143,9 @@ ioslides_plus <- function(logo = NULL,
     
     box_colours <- c(box_colours, as.list(setNames(lazy_colours, nm = lazy_colours)))
 
+    # Allow override of standard iosp colours
+    box_colours <- c(box_colours, iosp_colours[!names(iosp_colours) %in% names(box_colours)])
+    
     if (is.list(box_colours)) {
       # Calling unlist followed by as.list to support a single string argument (add_box_colour mandatory argument)
       css_content <- lapply(seq_along(box_colours), function(x) {do.call(add_box_colour, as.list(c(names(box_colours)[[x]], unlist(box_colours[[x]]))))})

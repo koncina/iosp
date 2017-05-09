@@ -49,9 +49,19 @@ add_box_colour <- function(name, bg, header_bg = NULL, text = NULL, header_text 
   .box.%s > h3:first-child {
     background-color: %s;
     color: %s;
+  }
+                        
+  blockquote.%s::before {
+    color : %s;
+  }
+ 
+  blockquote.%s {
+    color: %s;
+    border-color: %s;
   }",
                         name, colour_bg, name, colour_header_bg, colour_text,
-                        name, colour_header_bg, colour_header_text)
+                        name, colour_header_bg, colour_header_text,
+                        name, colour_header_bg, name, colour_text, colour_header_bg)
   
   if (isTRUE(getOption('knitr.in.progress'))) class(css_colour) <- "box_colour"
   
