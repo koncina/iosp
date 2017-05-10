@@ -126,7 +126,7 @@ ioslides_plus <- function(logo = NULL,
       yellow = list(bg = "#ffec8b", header_bg = "#eeb422"),
       gray = list(bg = "#fafafa", header_bg = "#cecece"),
       white = list(bg = "#ffffff", header_bg = "#cecece"),
-      cobalt = list(bg = "#002240", header_bg = "#002240")
+      cobalt = list(bg = "#2b557a", header_bg = "#002240")
     )
     
     # Adding custom colours
@@ -309,17 +309,15 @@ ioslides_plus <- function(logo = NULL,
       x <- lapply(x, function(s) {p <- regexpr("\n+```[^r]\n+", s) + 4; c(substr(s, 1, p), substr(s, p, nchar(s)))})
       if (isTRUE(options$collapse)) {
         x <- lapply(1:2, function(i) gsub(paste0('\n([', fence_char, ']{3,})\n+\\1(r)?\n'), "\n", paste0(unlist(lapply(x, `[[`, i)), collapse = "\n")))
-        x <- paste0("\n<div class = \"col-", col_width, "\">\n", x, "\n</div>\n", collapse = "\n")
+        x <- paste0("\n<div class = \"col col-", col_width, "\">\n", x, "\n</div>\n", collapse = "\n")
       } else {
-        x <- lapply(x, function(v) paste0("\n<div class = \"col-", col_width, "\">\n", v, "\n</div>\n", collapse = "\n"))
+        x <- lapply(x, function(v) paste0("\n<div class = \"col col-", col_width, "\">\n", v, "\n</div>\n", collapse = "\n"))
       }
-      x <- paste0("\n<div class = \"row\">", x, "</div>\n", collapse = "\n")
     }
 
     # If code chunks are present we wrap them in a container div
     if (grepl("\n+```(r)?\n+", x)) {
-      options$class <- c(options$class, "chunk")
-      if (isTRUE(options$shadow)) options$class <- c(options$class, "shadow")
+      options$class <- c("col", paste("col", options$width, sep = "-"), "box", "chunk", "bg-cobalt", options$class)
     }
     x <- paste0("\n<div id = \"", options$label, "\" class = \"", paste(options$class, collapse = " "), " \">\n", x, "\n</div>\n")
     x = gsub('[\n]+$', '', x)
@@ -331,7 +329,7 @@ ioslides_plus <- function(logo = NULL,
   knitr = rmarkdown::knitr_options_html(fig_width, fig_height, fig_retina, keep_md, dev)
   knitr$knit_hooks$chunk  <- hook_chunk
   knitr$opts_chunk$comment <- NA
-  knitr$opts_chunk$shadow <- TRUE
+  knitr$opts_chunk$width <- 12
   knitr$opts_chunk$class <- ""
 
   # return format

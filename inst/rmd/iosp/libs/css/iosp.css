@@ -203,9 +203,7 @@ p:last-child, ul:last-child {
 
 .col.box {
   padding: 15px;
-}
-
-.col.box {
+  overflow: hidden;
   border-radius: 5px;
   border: 1px solid lightgray;
   box-shadow: 10px 10px 8px 1px rgba(0, 0, 0, 0.2), 1px 3px 3px 2px rgba(0, 0, 0, 0.5);
@@ -259,6 +257,76 @@ cite {
 cite:before {
   content: "\2014 \2009";
 }
+
+/* code chunks */
+.chunk {
+  padding: 0 !important;
+}
+
+.chunk > * {
+  overflow: hidden;
+}
+
+.chunk pre {
+  height: 100%;
+  left: 0;
+  padding: 0 15px;
+  margin: 0;
+}
+
+.chunk pre:first-child {
+  padding-top: 15px;
+}
+
+.chunk pre:last-child {
+  padding-bottom: 15px;
+}
+
+.box.chunk {
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+}
+
+.chunk .col {
+  margin: 0;
+  padding: 0;
+}
+
+pre.prettyprint {
+  background: #2b557a;
+  color: #ffffff;
+  /*border-left: 15px solid #002240;*/
+}
+
+pre.prettyprint .str { color: #3ad900; } /* string      */
+pre.prettyprint .kwd { color: #ff9d00; } /* keyword     */
+pre.prettyprint .com { color: #0088ff; } /* comment     */
+pre.prettyprint .typ { color: #bfa4a4; } /* type        */
+pre.prettyprint .lit { color: #ff80e1; } /* literal     */
+pre.prettyprint .pun { color: #bed6ff; } /* punctuation */
+pre.prettyprint .pln { /* plaintext   */
+  color: #9effff;
+  font-weight: bold;
+}
+pre.prettyprint .tag { color: #9effff; } /* tag         */
+pre.prettyprint .dec { color: #fff; }    /* declaration #ff9d00*/
+/* End of prettyprint*/
+
+pre:not(.prettyprint) {
+  color: #51283e;
+  background: #bfccd7;
+  /*padding-left: 10px;
+  border-left: 15px solid #5a7184;*/
+}
+
+.codefont pre {
+  font-size: 11px;
+  line-height: 9px;
+}
+
+
 
 /*
 slides > slide article blockquote cite {
