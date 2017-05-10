@@ -148,39 +148,64 @@ p:last-child, ul:last-child {
 .col-11 {width: 89.66%;}
 .col-12 {width: 98%;}
 
-[class^="col-"].offset-1 {margin-left: 9.33%;}
-[class^="col-"].offset-2 {margin-left: 17.66%;}
-[class^="col-"].offset-3 {margin-left: 26%;}
-[class^="col-"].offset-4 {margin-left: 34.33%;}
-[class^="col-"].offset-5 {margin-left: 42.66%;}
-[class^="col-"].offset-6 {margin-left: 51%;}
-[class^="col-"].offset-7 {margin-left: 59.33%;}
-[class^="col-"].offset-8 {margin-left: 67.66%;}
-[class^="col-"].offset-9 {margin-left: 76%;}
-[class^="col-"].offset-10 {margin-left: 84.33%;}
-[class^="col-"].offset-11 {margin-left: 92.66%;}
+.col.offset-1 {margin-left: 9.33%;}
+.col.offset-2 {margin-left: 17.66%;}
+.col.offset-3 {margin-left: 26%;}
+.col.offset-4 {margin-left: 34.33%;}
+.col.offset-5 {margin-left: 42.66%;}
+.col.offset-6 {margin-left: 51%;}
+.col.offset-7 {margin-left: 59.33%;}
+.col.offset-8 {margin-left: 67.66%;}
+.col.offset-9 {margin-left: 76%;}
+.col.offset-10 {margin-left: 84.33%;}
+.col.offset-11 {margin-left: 92.66%;}
 
-[class^="col-"] {
+.col .col-1 {width: 8.33%;}
+.col .col-2 {width: 16.66%;}
+.col .col-3 {width: 25%;}
+.col .col-4 {width: 33.33%;}
+.col .col-5 {width: 41.66%;}
+.col .col-6 {width: 50%;}
+.col .col-7 {width: 58.33%;}
+.col .col-8 {width: 66.66%;}
+.col .col-9 {width: 75%;}
+.col .col-10 {width: 83.33%;}
+.col .col-11 {width: 91.66%;}
+.col .col-12 {width: 100%;}
+
+.col .offset-1 {margin-left: 8.33%;}
+.col .offset-2 {margin-left: 16.66%;}
+.col .offset-3 {margin-left: 25%;}
+.col .offset-4 {margin-left: 33.33%;}
+.col .offset-5 {margin-left: 41.66%;}
+.col .offset-6 {margin-left: 50%;}
+.col .offset-7 {margin-left: 58.33%;}
+.col .offset-8 {margin-left: 66.66%;}
+.col .offset-9 {margin-left: 75%;}
+.col .offset-10 {margin-left: 83.33%;}
+.col .offset-11 {margin-left: 91.66%;}
+
+.col {
   margin: 0.5em 1%;
 }
 
-[class^="col-"] > h3 {
+.col > h3 {
   line-height: 35px;
   font-size: 25px;
 }
 
 /* boxes */
-[class^="col-"].box > h3:first-child {
+.col.box > h3:first-child {
   margin: -15px -15px 10px -15px;
   padding-left: 10px;
   padding-bottom: 5px;
 }
 
-[class^="col-"].box {
+.col.box {
   padding: 15px;
 }
 
-[class^="col-"].box {
+.col.box {
   border-radius: 5px;
   border: 1px solid lightgray;
   box-shadow: 10px 10px 8px 1px rgba(0, 0, 0, 0.2), 1px 3px 3px 2px rgba(0, 0, 0, 0.5);
