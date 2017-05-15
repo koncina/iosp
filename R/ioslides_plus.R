@@ -320,7 +320,7 @@ ioslides_plus <- function(logo = NULL,
       options$class <- c("col", paste("col", options$width, sep = "-"), "box", "chunk", "bg-cobalt", options$class)
     }
     if (!is.null(options$title)) x <- paste0("<h3>", options$title, "</h3>", x)
-    x <- paste0("\n<div id = \"", options$label, "\" class = \"", paste(options$class, collapse = " "), " \">\n", x, "\n</div>\n")
+    x <- paste0("\n<div id = \"", options$label, "\" class = \"", paste(options$class, collapse = " "), " \">\n", paste(x, collapse = "\n"), "\n</div>\n")
     x = gsub('[\n]+$', '', x)
     x = gsub('^[\n]+', '\n', x)
     if (is.null(s <- options$indent)) return(x)
