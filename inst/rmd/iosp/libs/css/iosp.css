@@ -332,14 +332,6 @@ cite:before {
   margin: 0;
 }
 
-.chunk pre:first-child {
-  padding-top: 15px;
-}
-
-.chunk pre:last-child {
-  padding-bottom: 15px;
-}
-
 .box.chunk {
   display: flex;
   display: -webkit-flex;
@@ -347,8 +339,25 @@ cite:before {
   -webkit-flex-wrap: wrap;
 }
 
+.chunk > pre:first-child {
+  padding-top: 15px;
+}
+
+.chunk > pre:last-child {
+  padding-bottom: 15px;
+}
+
+.chunk .col:nth-last-child(1), .chunk .col:nth-last-child(2) {
+  padding-bottom: 15px;
+}
+
+.chunk .col:nth-child(1), .chunk .col:nth-child(2) {
+  padding-top: 15px;
+}
+
 .chunk .col {
   margin: 0;
+  /*padding: 15px 0;*/
   padding: 0;
 }
 
@@ -357,7 +366,21 @@ cite:before {
   width: 100%;
 }
 
-pre{
+.chunk .r-output {
+  display: flex;
+  display: -webkit-flex;
+  align-items: flex-end;
+  -webkit-align-items: flex-end;
+  background: #bfccd7;
+}
+
+.chunk img {
+  display: block;
+  margin: auto;
+  padding: 5px 0;
+}
+
+pre {
   white-space: pre-wrap;
   word-wrap: break-word;
 }

@@ -309,9 +309,9 @@ ioslides_plus <- function(logo = NULL,
       x <- lapply(x, function(s) {p <- regexpr("\n+```[^r]\n+", s) + 4; c(substr(s, 1, p), substr(s, p, nchar(s)))})
       if (isTRUE(options$collapse)) {
         x <- lapply(1:2, function(i) gsub(paste0('\n([', fence_char, ']{3,})\n+\\1(r)?\n'), "\n", paste0(unlist(lapply(x, `[[`, i)), collapse = "\n")))
-        x <- paste0("\n<div class = \"col col-", col_width, "\">\n", x, "\n</div>\n", collapse = "\n")
+        x <- paste0("\n<div class = \"col col-", col_width, c(" r-source", " r-output"), "\">\n", x, "\n</div>\n", collapse = "\n")
       } else {
-        x <- lapply(x, function(v) paste0("\n<div class = \"col col-", col_width, "\">\n", v, "\n</div>\n", collapse = "\n"))
+        x <- lapply(x, function(v) paste0("\n<div class = \"col col-", col_width, c(" r-source", " r-output"), "\">\n", v, "\n</div>\n", collapse = "\n"))
       }
     }
 
@@ -327,6 +327,7 @@ ioslides_plus <- function(logo = NULL,
     knitr:::line_prompt(x, prompt = s, continue = s)
   }
 
+  
   knitr = rmarkdown::knitr_options_html(fig_width, fig_height, fig_retina, keep_md, dev)
   knitr$knit_hooks$chunk  <- hook_chunk
   knitr$opts_chunk$comment <- NA
