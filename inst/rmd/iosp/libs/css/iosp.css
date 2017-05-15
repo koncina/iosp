@@ -117,14 +117,22 @@ slides > slide > hgroup + article {
   margin-top: 0;
 }
 
-slides > slide > article > p {
+slides > slide article strong {
+  font-weight: bold;
+}
+
+slides > slide article em {
+  font-style: italic;
+}
+
+slides > slide > hgroup + article p {
+  margin-bottom: 0.5em;
   width: 100%;
 }
 
 p:last-child, ul:last-child {
   margin-bottom: 0;
 }
-
 
 /*
   Bootstrap like grid
@@ -186,13 +194,24 @@ p:last-child, ul:last-child {
 .col .offset-11 {margin-left: 91.66%;}
 
 .col {
-  margin: 0.5em 1%;
+  margin: 0.25em 1%;
 }
 
 .col > h3 {
   line-height: 35px;
   font-size: 25px;
 }
+
+.col img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.nofit img {
+  max-width: none;
+  max-height: none;
+}
+
 
 /* boxes */
 .col.box > h3:first-child {
@@ -209,6 +228,9 @@ p:last-child, ul:last-child {
   box-shadow: 10px 10px 8px 1px rgba(0, 0, 0, 0.2), 1px 3px 3px 2px rgba(0, 0, 0, 0.5);
 }
 
+.box .box {
+  box-shadow: none;
+}
 
 /* blockquotes */
 
@@ -218,7 +240,7 @@ article blockquote {
   display: block;
   background: #f9f9f9;
   padding: 15px 20px 15px 45px;
-  margin: 0 0 20px;
+  margin: 0.25em 1%;
   position: relative;
   font-family: Georgia, serif;
   font-size: 16px;
@@ -228,7 +250,6 @@ article blockquote {
   border: 1px solid #999;
   border-left: 15px solid #ccc;
 }
-
 
 article blockquote::before {
   content: "\201C"; /*Unicode for Left Double Quote*/
@@ -294,6 +315,16 @@ cite:before {
   padding: 0;
 }
 
+.box.chunk > h3:first-child {
+  margin: 0;
+  width: 100%;
+}
+
+pre{
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
 pre.prettyprint {
   background: #2b557a;
   color: #ffffff;
@@ -317,8 +348,6 @@ pre.prettyprint .dec { color: #fff; }    /* declaration #ff9d00*/
 pre:not(.prettyprint) {
   color: #51283e;
   background: #bfccd7;
-  /*padding-left: 10px;
-  border-left: 15px solid #5a7184;*/
 }
 
 .codefont pre {
@@ -326,14 +355,53 @@ pre:not(.prettyprint) {
   line-height: 9px;
 }
 
-
-
-/*
-slides > slide article blockquote cite {
-
+/* Style for keyboard keys */
+/* From http://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+kbd
+{
+  -moz-border-radius:3px;
+  -moz-box-shadow:0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+  -webkit-border-radius:3px;
+  -webkit-box-shadow:0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+  background-color:#f7f7f7;
+  border:1px solid #ccc;
+  border-radius:3px;
+  box-shadow:0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+  color:#333;
+  display:inline-block;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size: calc(100% - 0.2em);
+  margin:0 .1em;
+  padding:.1em .6em;
+  text-shadow:0 1px 0 #fff;
 }
 
-slides > slide article blockquote cite:before {
-  content: "\2014 \2009";
+/* added font-size from http://www.htmlref.com/examples/chapter10/font_properties_src.html */
+
+.xx-small {
+  font-size: xx-small;
 }
-*/
+.x-small {
+  font-size: x-small;
+}
+.small {
+  font-size: small;
+}
+.medium {
+  font-size: medium;
+}
+.large {
+  font-size: large;
+}
+.x-large {
+  font-size: x-large;
+}
+.xx-large {
+  font-size: xx-large;
+}
+.smaller {
+  font-size: smaller;
+}
+.larger {
+  font-size: larger;
+}

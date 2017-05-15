@@ -319,6 +319,7 @@ ioslides_plus <- function(logo = NULL,
     if (grepl("\n+```(r)?\n+", x)) {
       options$class <- c("col", paste("col", options$width, sep = "-"), "box", "chunk", "bg-cobalt", options$class)
     }
+    if (!is.null(options$title)) x <- paste0("<h3>", options$title, "</h3>", x)
     x <- paste0("\n<div id = \"", options$label, "\" class = \"", paste(options$class, collapse = " "), " \">\n", x, "\n</div>\n")
     x = gsub('[\n]+$', '', x)
     x = gsub('^[\n]+', '\n', x)
@@ -331,6 +332,7 @@ ioslides_plus <- function(logo = NULL,
   knitr$opts_chunk$comment <- NA
   knitr$opts_chunk$width <- 12
   knitr$opts_chunk$class <- ""
+  knitr$opts_chunk$title <- NULL
 
   # return format
   rmarkdown::output_format(
