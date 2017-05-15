@@ -117,6 +117,28 @@ slides > slide > hgroup + article {
   margin-top: 0;
 }
 
+slides > slide > .column {
+  flex-direction: column;
+  -webkit-flex-direction: column;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+}
+
+slides > slide > .column.bottom {
+  justify-content: flex-end;
+  -webkit-justify-content: flex-end;
+}
+
+slides > slide > .column.top {
+  justify-content: flex-start;
+  -webkit-justify-content: flex-start;
+}
+
+slides > slide > .column.middle {
+  justify-content: center;
+  -webkit-justify-content: center;
+}
+
 slides > slide article strong {
   font-weight: bold;
 }
@@ -230,6 +252,21 @@ p:last-child, ul:last-child {
 
 .box .box {
   box-shadow: none;
+}
+
+.box.stretch {
+  align-self: stretch;
+  -webkit-align-self: stretch;
+}
+
+.box.bottom {
+  align-self: flex-end;
+  -webkit-align-self: flex-end;
+}
+
+.box.middle {
+  align-self: center;
+  -webkit-align-self: center;
 }
 
 /* blockquotes */
