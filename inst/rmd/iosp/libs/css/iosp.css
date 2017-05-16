@@ -326,6 +326,13 @@ cite:before {
   content: "\2014 \2009";
 }
 
+/* inline code */
+
+code {
+  color: #c7254e;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
 /* code chunks */
 .chunk {
   padding: 0 !important;
