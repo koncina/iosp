@@ -39,6 +39,15 @@ add_box_colour <- function(name, bg, header_bg = NULL, text = NULL, header_text 
   css_colour <- sprintf("
   .%s {
     background-color: %s;
+    color: %s;
+  }
+
+  slide.%s > hgroup > h2 {
+    color: %s;
+  }
+
+  slide.%s > hgroup > h3 {
+    color: %s;
   }
 
   .box.%s {
@@ -59,9 +68,13 @@ add_box_colour <- function(name, bg, header_bg = NULL, text = NULL, header_text 
     color: %s;
     border-color: %s;
   }",
-                        name, colour_bg, name, colour_header_bg, colour_text,
+                        name, colour_bg, colour_text,
+                        name, css_translucent(colour_text, 0.8),
+                        name, css_translucent(colour_text, 0.7),
+                        name, colour_header_bg, colour_text,
                         name, colour_header_bg, colour_header_text,
-                        name, colour_header_bg, name, colour_text, colour_header_bg)
+                        name, colour_header_bg,
+                        name, colour_text, colour_header_bg)
   
   if (isTRUE(getOption('knitr.in.progress'))) class(css_colour) <- "box_colour"
   
@@ -84,4 +97,8 @@ black_or_white <- function(rgb) {
   if (d < 0.5) text_colour <- "#000"
   else text_colour <- "#fff"
   text_colour
+}
+
+css_translucent <- function(rgb, alpha) {
+  sprintf("rgba(%s,%s)", paste(col2rgb("#FFFFFF"), collapse = ","), alpha)
 }
