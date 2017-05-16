@@ -1,56 +1,56 @@
 ---
-title: "IOSlides plus dev demo"
-author: "Eric Koncina"
-date: "27 novembre 2016"
+title: "IOSlides plus title"
+author: "Author"
+date: "`r Sys.Date()`"
 output:
   iosp::ioslides_plus:
     footer: "Created with [ioslides plus](https://github.com/koncina/iosp)"
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## Slide with columns as boxes
+## Slide using boxes
 
-Just a proof of concept. I changed the original lua file from `ioslides_presentation`.
+IOSlides plus (`iosp`) extends `ioslides_presentation` and allows to create columns or boxes as level 3 headers.
 
-### Box 1{.col-4 .box .bg-red}
+### Box 1{.box-4 .bg-red}
 
 Test 1
 
-### Box 2{.col-6 .box .bg-green}
+### Box 2{.box-6 .bg-green}
 
 - line 1
 - line 2
 
-### Box 3{.col-6 .box .bg-blue}
+### Box 3{.box-6 .bg-blue}
 
-This box has again a width of 6 col: it will be rendered in a new row
+This box has again a width of 6 col and wraps to a new line.
 
 %end%
 
-We are able to exit the box and row using the keyword `%end%` as suggested [here](https://github.com/koncina/iosp/issues/5).
+We are able to exit the box using the keyword `%end%`.
 
 ## Box without title bar
 
-### Box{.col-6 .box .bg-blue}
+### Box with title {.box-6 .bg-blue}
 
-This box exhibits a title bar
+A box can have a title
 
-###{.col-6 .box .bg-blue}
+###{.box-6 .bg-blue}
 
-This box not...
+Or not...
 
 %end%
 
 ## Align boxes
 
-### Box 1{.col-4 .bg-red .box}
+### Box 1{.box-4 .bg-red}
 
 A smaller box
 
-### Box 2{.col-4 .bg-red .box}
+### Box 2{.box-4 .bg-red}
 
 A bigger box
 
@@ -58,7 +58,7 @@ A bigger box
 - item 2
 - item 3
 
-### Box 3{.col-4 .bg-red .box}
+### Box 3{.box-4 .bg-red}
 
 An intermediate one...
 
@@ -66,11 +66,11 @@ An intermediate one...
 
 You can use the `stretch` class to tretch the height to the row height.
 
-### Box 1{.col-4 .bg-red .box .stretch}
+### Box 1{.box-4 .bg-red .stretch}
 
 A smaller box
 
-### Box 2{.col-4 .bg-red .box .stretch}
+### Box 2{.box-4 .bg-red .stretch}
 
 A bigger box
 
@@ -78,7 +78,7 @@ A bigger box
 - item 2
 - item 3
 
-### Box 3{.col-4 .bg-red .box .stretch}
+### Box 3{.box-4 .bg-red .stretch}
 
 An intermediate one...
 
@@ -86,11 +86,11 @@ An intermediate one...
 
 You can also use the `bottom` class
 
-### Box 1{.col-4 .bg-red .box .bottom}
+### Box 1{.box-4 .bg-red .bottom}
 
 A smaller box
 
-### Box 2{.col-4 .bg-red .box .bottom}
+### Box 2{.box-4 .bg-red .bottom}
 
 A bigger box
 
@@ -98,7 +98,7 @@ A bigger box
 - item 2
 - item 3
 
-### Box 3{.col-4 .bg-red .box .bottom}
+### Box 3{.box-4 .bg-red .bottom}
 
 An intermediate one...
 
@@ -106,11 +106,11 @@ An intermediate one...
 
 Or the `middle` class
 
-### Box 1{.col-4 .bg-red .box .middle}
+### Box 1{.box-4 .bg-red .middle}
 
 A smaller box
 
-### Box 2{.col-4 .bg-red .box .middle}
+### Box 2{.box-4 .bg-red .middle}
 
 A bigger box
 
@@ -118,7 +118,7 @@ A bigger box
 - item 2
 - item 3
 
-### Box 3{.col-4 .bg-red .box .middle}
+### Box 3{.box-4 .bg-red .middle}
 
 An intermediate one...
 
@@ -126,25 +126,25 @@ An intermediate one...
 
 You can also **mix** the classes
 
-### bottom{.col-3 .bg-red .box .bottom}
+### bottom{.box-3 .bg-red .bottom}
 
 - 1
 - 2
 - 3
 
-### top {.col-3 .bg-red .box}
+### top {.box-3 .bg-red}
 
 - 1
 - 2
 - 3
 - 4
 
-### middle{.col-3 .bg-red .box .middle}
+### middle{.box-3 .bg-red .middle}
 
 - 1
 - 2
 
-### stretch{.col-3 .bg-red .box .stretch}
+### stretch{.box-3 .bg-red .stretch}
 
 - 1
 
@@ -152,27 +152,27 @@ You can also **mix** the classes
 
 You can add an offset on the left side of a box using the `offset-x` class where $1 \leq x \leq 11$
 
-### Box{.col-4 .box .bg-red}
+### Box{.box-4 .bg-red}
 
 Test
 
-### Box{.col-4 .offset-4 .box .bg-red}
+### Box{.box-4 .offset-4 .bg-red}
 
 Test
 
-### Box{.col-2 .offset-2 .box .bg-red}
+### Box{.box-2 .offset-2 .bg-red}
 
 Test
 
-### Box{.col-8 .box .bg-red}
+### Box{.box-8 .bg-red}
 
 Test
 
-### {.col-1 .offset-11 .box .bg-blue}
+### {.box-1 .offset-11 .bg-blue}
 
 A
 
-### {.col-1 .box .bg-blue}
+### {.box-1 .bg-blue}
 
 B
 
@@ -182,9 +182,13 @@ You can specify the author of a citation using `|`
 
 > This is a citation | author
 
-You can also change the background color of the block setting a background color class
+It is possible to change the background color of the block setting a background color class
 
 > This is a citation with a red background | author{.bg-red}
+
+Blockquotes accept width and offset settings
+
+> This is a citation with a red background | author{.bg-yellow .col-4 .offset-4}
 
 ## Image size
 
@@ -255,7 +259,6 @@ x * 3
 
 ## Chunks generating plots
 
-
 ```{r, echo = TRUE}
 # This is a comment
 plot(cars)
@@ -270,21 +273,23 @@ plot(cars)
 
 ## Chunks in a column or box layout{.smaller}
 
-### Box {.col-4 .box .bg-red .stretch}
+### Box {.box-4 .bg-red .stretch}
 
 This is a red box
 
-###With a title{.col-8 .bg-cobalt .box}
+###{.col-8}
 
-```{r, echo = TRUE}
+```{r, echo = TRUE, title = "Code chunk title"}
 x <- 1:10
 x * 2
 x * 3
 ```
 
-###{.col-6}
+%end%
 
-```{r, echo = TRUE, row = TRUE}
+Code chunks can be placed in a column to restrict the width. Alternatively, the width chunk option can be adjusted.
+
+```{r, echo = TRUE, row = TRUE, width = 6, title = "Chunk with width option"}
 x <- 1:10
 x * 2
 x * 3
@@ -295,3 +300,31 @@ x * 3
 ```{r, echo = TRUE, row = c(4, 8)}
 plot(cars)
 ```
+
+## Column layout{.column}
+
+### First box {.box-6 .bg-red}
+
+Instead of populating boxes and columns by row, it is possible to arrange them by columns using the `column` class in the level 2 header.
+
+This is a first box containing multiple elements
+
+- Item 1
+- Item 2
+- Item 3
+- Item 4
+- Item 5
+
+### Second box {.box-6 .bg-yellow}
+
+Smaller box which will appear in a new column as soon as the first is full.
+
+### Third box {.box-6 .bg-green}
+
+...
+
+## Slide background colour and vertical center{.middle .bg-cobalt}
+
+### Centered box {.box-6 .offset-3 .bg-yellow}
+
+This box will appear in the middle of the slide
