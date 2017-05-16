@@ -342,13 +342,6 @@ code {
   overflow: hidden;
 }
 
-.chunk pre {
-  height: 100%;
-  left: 0;
-  padding: 0 15px;
-  margin: 0;
-}
-
 .box.chunk {
   display: flex;
   display: -webkit-flex;
@@ -398,6 +391,10 @@ code {
 }
 
 pre {
+  height: 100%;
+  left: 0;
+  padding: 0 15px;
+  margin: 0;
   white-space: pre-wrap;
   word-wrap: break-word;
 }
@@ -423,7 +420,7 @@ pre.prettyprint .dec { color: #fff; }    /* declaration #ff9d00*/
 /* End of prettyprint*/
 
 pre:not(.prettyprint) {
-  color: #51283e;
+  color: #51283e !important;;
   background: #bfccd7;
 }
 
