@@ -11,39 +11,55 @@ output:
     footer: "Created with [ioslides plus](https://github.com/koncina/iosp)"
 ---
 
-## Slide with columns as boxes
+```{r draw_box, results = "asis", echo = FALSE, eval = FALSE}
+boxes <- lapply(colours, function(x) sprintf("### %s {.box-3 .bg-%s}\nText\n\n`code`\n\n[link](http://example.com)\n", gsub("^original-", "", x), x))
+if (length(colours) > box_per_slice) boxes <- paste(boxes, c(rep("", box_per_slice - 1), "## Colours gallery"), sep = "\n")
+boxes <- paste(boxes, collapse = "\n")
+cat(paste("## Colours gallery", boxes, sep = "\n"))
+```
 
-This is a gallery of the colours that would be rendered using the colours defined in R (`colors()`)
-For the chosen colour `<colourname>` simply complete the yaml header as follows:
+## IOSP colours
+
+IOSP is able to render box colours using the color names known by _R_ (`colors()`).
+
+The colours `red`, `green`, `blue`, `yellow`, `gray` and `white` are overriden by iosp
+
+```{r, echo = FALSE}
+box_per_slice <- 12
+iosp_colours <- c("red", "green", "blue", "yellow", "gray", "white", "cobalt")
+colours <- iosp_colours
+```
+
+```{r, ref.label = "draw_box", echo = FALSE, eval = TRUE, results = "asis"}
+```
+
+## `colors()` gallery
+
+To restore the overriden colours you can redefine them in the yaml header.
 
 ```
 title: "IOSlides custom box colours"
 output:
   iosp::ioslides_plus:
     box_colours:
-      <colourname>: <colourname>
+      red: red
+      green: green
+      blue: blue
+      yellow: yellow
+      gray: gray
+      white: white
 ```
 
-To attribute the colour to the box add the appropriate class as follows: 
-
-```
-### Header {.col-x .box .bg-<colourname>}
-```
-
-## Generation of the gallery
-
-The chunks below were used to generate the gallery:
-
-```{r, results = "asis", echo = TRUE}
+```{r, results = "asis", echo = FALSE}
 # First we define all the css themes:
-css_styles <- paste(lapply(colors(), function(x) iosp::add_box_colour(x, x)), collapse = "\n")
+css_styles <- paste(lapply(head(iosp_colours, -1), function(x) iosp::add_box_colour(paste0("original-", x), x)), collapse = "\n")
 cat(paste("<style>", css_styles, "</style>"))
 ```
 
+```{r, echo = FALSE}
+colours <- colors()
+colours[colours %in% head(iosp_colours, -1)] <- paste0("original-", colours[colours %in% head(iosp_colours, -1)])
+```
 
-```{r, results = "asis", echo = TRUE}
-boxes <- lapply(colors(), function(x) sprintf("### Header {.col-3 .box .bg-%s}\n%s\n", x, x))
-boxes <- paste(boxes, c(rep("", 19), "## Colours gallery"), sep = "\n")
-boxes <- paste(boxes, collapse = "\n")
-cat(paste("## Colours gallery", boxes, sep = "\n"))
+```{r, ref.label = "draw_box", eval = TRUE, results = "asis", echo = FALSE}
 ```
