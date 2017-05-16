@@ -4,12 +4,27 @@
 
 ### Added
 
+* add lazy colour definition: colours listed in `colors()` can be used without definition in the header
+* `column` class (level 2 headers) renders the boxes by columns instead of rows.
+* background colours on level 2 headers change the slide background
+
+### Changed
+
+* boxes are rendered using the css flexbox layout
+* code chunks are displayed as boxes (`shadow` option has been removed)
+* `title` chunk option to adjust the title of the chunk box.
+
+### Fixed
+
+## [0.1.1]
+
+### Added
+
 * `NEWS.md` file to track changes to the package.
 * modify font size using `<span class = "xx-small">` like described in the [htmlref](http://www.htmlref.com/examples/chapter10/font_properties_src.html)
 * shortcut for framed colums: `{.box-6}` for `{.box .col-6}`
 * all chunks are now placed in a `div` container with adjustable class (`class` chunk option). Default class is now empty ("") and not "shadow" anymore (which is now a new option: see next point). The current chunk label is set as the `div` `id`.
 * add `shadow` chunk option (defaults to TRUE) to disable the rendering of a shadowed box for code outputs.
-* add lazy colour definition: colours listed in colors() can be used without definition in the header
 
 ### Changed
 
