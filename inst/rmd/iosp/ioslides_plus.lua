@@ -374,11 +374,13 @@ function BlockQuote(s)
     return s
   else
     -- extract optional color class (expecting only a single class attribute for now)
-    local class = string.match(s, "{%.(.*)}")
-
+    local class = string.match(s, "{%s*%.(.*)}")
     if class then
-      s = string.gsub(s, escape_lua_pattern("{." .. class .. "}"), "")
-      class = " class = '" .. class .. "'"
+      class = string.gsub(class, "%s+%.", " ")
+      class = string.gsub(class, "box%-(%d+)", "col-%1")
+      class = string.gsub(class, "col%-(%d+)", "col col-%1")
+      s = string.gsub(s, "{%s*%.(.*)}", "")
+      class = " class = \"" .. class .. "\""
     else
       class = ""
     end
