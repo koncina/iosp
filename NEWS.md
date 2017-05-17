@@ -7,6 +7,7 @@
 * add lazy colour definition: colours listed in `colors()` can be used without definition in the header
 * `column` class (level 2 headers) renders the boxes by columns instead of rows.
 * background colours on level 2 headers change the slide background
+* add inline code and link colour adjustement depending on background
 
 ### Changed
 
