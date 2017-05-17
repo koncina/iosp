@@ -222,7 +222,7 @@ p:last-child, ul:last-child {
 .col .offset-11 {margin-left: 91.66%;}
 
 .col {
-  margin: 0.25em 1%;
+  margin: 0.5em 1%;
 }
 
 .col > h3 {
@@ -287,7 +287,7 @@ article blockquote {
   display: block;
   background: #f9f9f9;
   padding: 15px 20px 15px 45px;
-  margin: 0.25em 1%;
+  margin: 0.5em 1%;
   position: relative;
   font-family: Georgia, serif;
   font-size: 16px;
@@ -330,6 +330,7 @@ cite:before {
 
 code {
   color: #c7254e;
+  padding: 0 2px;
   background-color: rgba(255, 255, 255, 0.3);
 }
 
@@ -347,6 +348,15 @@ code {
   display: -webkit-flex;
   flex-wrap: wrap;
   -webkit-flex-wrap: wrap;
+}
+
+.chunk > pre {
+  margin: 0;
+}
+
+.chunk > pre:not(.prettyprint) {
+  background: #bfccd7;
+  padding-bottom: 15px;
 }
 
 .chunk > pre:first-child {
@@ -394,7 +404,6 @@ pre {
   height: 100%;
   left: 0;
   padding: 0 15px;
-  margin: 0;
   white-space: pre-wrap;
   word-wrap: break-word;
 }
@@ -421,7 +430,6 @@ pre.prettyprint .dec { color: #fff; }    /* declaration #ff9d00*/
 
 pre:not(.prettyprint) {
   color: #51283e !important;;
-  background: #bfccd7;
 }
 
 .codefont pre {

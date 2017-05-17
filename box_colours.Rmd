@@ -58,7 +58,7 @@ Box with a _springgreen4_ background colour and a _gold_ (`#FFD700`) header text
 
 Set the chunk `results` option to `"asis"` (you might also want to hide the chunk with `echo = FALSE`).
 
-```{r, results = "asis"}
+```{r, results = "asis", warning = FALSE}
 iosp::add_box_colour("my_colour4", "snow3", text = "violetred")
 #  equivalent to iosp::add_box_colour("bg-my_colour4", "snow3", text = "violetred")
 ```
