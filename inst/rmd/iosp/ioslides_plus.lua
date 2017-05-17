@@ -407,8 +407,6 @@ function CodeBlock(s, attr)
     local class = attr["class"]
     if string.len(class) > 0 then
       class_attrib = "class = 'prettyprint lang-" .. class .. "'"
-    else
-      class_attrib = "class = 'col box bg-cobalt'"
     end
   end
 
