@@ -350,13 +350,17 @@ code {
   -webkit-flex-wrap: wrap;
 }
 
-.chunk > pre {
+pre {
   margin: 0;
+}
+
+slides > slide > article > pre {
+  margin-bottom: 0.5em;
 }
 
 .chunk > pre:not(.prettyprint) {
   background: #bfccd7;
-  padding-bottom: 15px;
+  /*padding-bottom: 15px;*/
 }
 
 .chunk > pre:first-child {
