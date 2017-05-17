@@ -162,10 +162,6 @@ p:last-child, ul:last-child {
   margin-bottom: 0;
 }
 
-p + .box {
-  margin-top: 0;
-}
-
 /*
   Bootstrap like grid
   from http://www.w3schools.com/css/css_rwd_grid.asp
