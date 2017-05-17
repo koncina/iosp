@@ -103,7 +103,7 @@ add_box_colour <- function(name, bg, header_bg = NULL, text = NULL, header_text 
   .box.%s > h3:first-child > code {
     background-color: rgba(255, 255, 255, %s);
   }
-  .box.%s > h3:first-child > a{
+  .box.%s > h3:first-child > a {
     color: rgb(%s);
     border-bottom: 1px solid rgba(%s, 0.5);
   }
@@ -112,7 +112,25 @@ add_box_colour <- function(name, bg, header_bg = NULL, text = NULL, header_text 
                                       name, link_colour, link_colour
                                       ))
 
-  css_colour <- paste(css_colour, collapse = "\n")
+
+  # Fade out box if contrast is not good enough
+  # if (any(apply(matrix(c(bg, text, header_bg, header_text), ncol = 2), 2, get_contrast_ratio) < 4.5)) {
+  #   css_colour <- c(css_colour, sprintf("
+  # .box.%s {
+  #   opacity: 0.2;
+  # }
+  # .box.%s:hover {
+  #   opacity: 1;
+  # }",
+  #                                       name, name))
+  # }
+  # 
+
+  css_colour <- paste(css_colour, collapse = "\n")  
+  
+  
+  contrast_warning(c(bg, text), message = FALSE)
+  contrast_warning(c(header_bg, header_text), message = FALSE)
   
   if (isTRUE(getOption('knitr.in.progress'))) class(css_colour) <- "box_colour"
   css_colour
@@ -135,4 +153,23 @@ invert_to_white <- function(colour) {
   d = 1 - (0.299 * rgb[1] + 0.587 * rgb[2] + 0.114 * rgb[3])/255;
   if (d < 0.5) return(FALSE)
   TRUE
+}
+
+# Adapted from https://www.w3.org/TR/WCAG20/
+#' @export
+get_contrast_ratio <- function(colours, show_warning = FALSE) {
+  if (length(colours) > 2 || !is.vector(colours)) stop("Argument is a vector of length > 2!")
+  r <- col2rgb(colours) / 255
+  r[r <= 0.03928] <- r[r <= 0.03928] / 12.92
+  r[r > 0.03928] <- ((r[r > 0.03928] + 0.055) / 1.055)^2.4
+  r <- r * c(0.2126, 0.7152, 0.0722)
+  r <- apply(r, 2, sum) + 0.05
+  max(r) / min(r)
+}
+
+contrast_warning <- function(colours, message = TRUE) {
+  r <- get_contrast_ratio(colours)
+  if (r < 4.5) warning("Fails WCAG 2.0 level AA")
+  else if (message & r < 7) message("WCAG 2.0 level AA")
+  else if (message) message("WCAG 2.0 level AAA")
 }
