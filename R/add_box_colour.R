@@ -111,14 +111,12 @@ add_box_colour <- function(name, bg, header_bg = NULL, text = NULL, header_text 
                                       name, code_alpha,
                                       name, link_colour, link_colour
                                       ))
-  
-  
 
-
+  css_colour <- paste(css_colour, collapse = "\n")
   
   if (isTRUE(getOption('knitr.in.progress'))) class(css_colour) <- "box_colour"
+  css_colour
   
-  paste(css_colour, collapse = "\n")
 }
 
 #' @rdname add_box_colour
