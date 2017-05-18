@@ -36,102 +36,32 @@ add_box_colour <- function(name, bg, header_bg = NULL, text = NULL, header_text 
     header_text <- ifelse(invert_to_white(header_bg), "#FFFFFF", "#000000")
   } else header_text <- do.call(rgb, as.list(c(col2rgb(header_text), maxColorValue = 255)))
 
-  css_colour <- sprintf("
-  .%s {
-    background-color: %s;
-    color: %s;
-  }
-
-  .box.%s {
-    border: 2px solid %s;
-    color: %s;
-  }
-
-  .box.%s > h3:first-child {
-    background-color: %s;
-    color: %s;
-  }
-                        
-  blockquote.%s::before {
-    color : %s;
-  }
- 
-  blockquote.%s {
-    color: %s;
-    border-color: %s;
-  }",
-                        name, bg, text,
-                        name, header_bg, text,
-                        name, header_bg, header_text,
-                        name, header_bg,
-                        name, text, header_bg)
   
+  # Creating css code using template files and a mapping list
+  
+  colour_map <- list(name = name, bg = bg, header_bg = header_bg, text = text, link_rgb = "42, 124, 223", code_alpha = 0.3,
+                     header_text = header_text, header_link_rgb = "42, 124, 223", header_code_alpha = 0.3,
+                     slide_header_rgb = "0, 0, 0")
   
   if (invert_to_white(bg)) {
-    # We should enhance the output for code and links in the box
-    css_colour <- c(css_colour, sprintf("
-  slide.%s > hgroup > h2 {
-    color: rgba(255, 255, 255, 0.8);
+    colour_map["slide_header_rgb"] <- "255, 255, 255"
+    colour_map["link_rgb"] <- "200, 240, 250"
+    colour_map["code_alpha"] <- 0.7
   }
-
-  slide.%s > hgroup > h3 {
-    color: rgba(255, 255, 255, 0.7);
-  }
-
-  .%s a {
-    color: rgb(200, 240, 255);
-    border-bottom: 1px solid rgba(200, 240, 255, 0.5);
-  }
-
-  .%s code {
-    background-color: rgba(255, 255, 255, 0.7);
-  }
-                                        ",
-                                        name, name, name, name))
-  }
-  
   
   if (invert_to_white(header_bg)) {
-    code_alpha <- 0.7
-    link_colour <- "200, 240, 250"
-  } else {
-    code_alpha <- 0.3
-    link_colour <- "42, 124, 223"
+    colour_map["header_link_rgb"] <- "200, 240, 250"
+    colour_map["header_code_alpha"] <- 0.7
   }
   
-  css_colour <- c(css_colour, sprintf(" 
-  .box.%s > h3:first-child > code {
-    background-color: rgba(255, 255, 255, %s);
+  css_colour <- readLines(system.file("rmd", "iosp", "box_colour.css", package = "iosp"), warn = FALSE)
+  
+  for (i in seq_along(colour_map)) {
+    css_colour <- gsub(paste0("\\$", names(colour_map)[i], "\\$"), colour_map[[i]], css_colour)
   }
-  .box.%s > h3:first-child > a {
-    color: rgb(%s);
-    border-bottom: 1px solid rgba(%s, 0.5);
-  }
-                                      ",
-                                      name, code_alpha,
-                                      name, link_colour, link_colour
-                                      ))
-
-
-  # Fade out box if contrast is not good enough
-  # if (any(apply(matrix(c(bg, text, header_bg, header_text), ncol = 2), 2, get_contrast_ratio) < 4.5)) {
-  #   css_colour <- c(css_colour, sprintf("
-  # .box.%s {
-  #   opacity: 0.2;
-  # }
-  # .box.%s:hover {
-  #   opacity: 1;
-  # }",
-  #                                       name, name))
-  # }
-  # 
 
   css_colour <- paste(css_colour, collapse = "\n")  
-  
-  
-  contrast_warning(c(bg, text), message = FALSE)
-  contrast_warning(c(header_bg, header_text), message = FALSE)
-  
+
   if (isTRUE(getOption('knitr.in.progress'))) class(css_colour) <- "box_colour"
   css_colour
   

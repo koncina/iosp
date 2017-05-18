@@ -1,0 +1,58 @@
+/* $name$ colour */
+
+.$name$ {
+  background-color: $bg$;
+  color: $text$;
+}
+
+.$name$ a {
+  color: rgb($link_rgb$);
+  border-bottom: 1px solid rgba($link_rgb$, 0.5);
+}
+
+.$name$ a:hover {
+  color: $text$ !important;
+}
+
+.box.$name$ {
+  border: 2px solid $header_bg$;
+}
+
+.box.$name$ > h3:first-child {
+  background-color: $header_bg$;
+  color: $header_text$;
+}
+                        
+blockquote.$name$::before {
+  color : $header_bg$;
+}
+ 
+blockquote.$name$ {
+  color: $text$;
+  border-color: $header_bg$;
+}
+
+.box.$name$ > h3:first-child > code {
+  background-color: rgba(255, 255, 255, $header_code_alpha$);
+}
+
+.box.$name$ > h3:first-child > a {
+  color: rgb($header_link_rgb$);
+  border-bottom: 1px solid rgba($header_link_rgb$, 0.5);
+}
+
+.box.$name$ > h3:first-child > a:hover {
+  color: $header_text$ !important;
+}
+  
+slide.$name$ > hgroup > h2 {
+  color: rgba($slide_header_rgb$, 0.8);
+}
+
+slide.$name$ > hgroup > h3 {
+  color: rgba($slide_header_rgb$, 0.7);
+}
+
+.$name$ code {
+  background-color: rgba(255, 255, 255, $code_alpha$);
+}
