@@ -141,8 +141,6 @@ slides > slide > .column.middle {
 
 slides > slide > .middle {
   min-height: calc(100% - 90px);
-  align-content: center;
-  -webkit-align-content: center;
 }
 
 slides > slide article strong {
@@ -274,7 +272,7 @@ p:last-child, ul:last-child {
   -webkit-align-self: flex-end;
 }
 
-.box.middle {
+.box.middle, .middle > .box {
   align-self: center;
   -webkit-align-self: center;
 }
