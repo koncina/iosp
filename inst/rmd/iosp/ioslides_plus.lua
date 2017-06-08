@@ -273,7 +273,7 @@ function Header(lev, s, attr)
     attr["class"] = string.gsub(attr["class"], "box%-(%d+)%-(%d+)%-(%w+)", "box col-%1 offset-%2 bg-%3") -- width, offset and colour
     attr["class"] = string.gsub(attr["class"], "box%-(%d+)%-(%w+)", "box col-%1 bg-%2") -- width and colour
     attr["class"] = string.gsub(attr["class"], "box%-(%d+)", "box col-%1") -- width alone
-    
+
     local col_width = string.match(attr["class"], "col%-(%d+)")
     local col_offset = string.match(attr["class"], "offset%-(%d+)")
 
@@ -282,7 +282,7 @@ function Header(lev, s, attr)
       col_width = 6
       attr["class"] = attr["class"] .. " col-6"
     end
-    
+
     -- Replacing col-x by col col-x (to avoid attribute selectors)
     attr["class"] = string.gsub(attr["class"], "col%-(%d+)", "col col-%1")
 
@@ -317,6 +317,10 @@ function Header(lev, s, attr)
   local header = "<h" .. lev ..  ">" .. s .. "</h" .. lev .. ">"
   if string.len(subtitle) > 0 then
     header = header .. "<h3>" .. subtitle .. "</h3>"
+  end
+
+  if string.len(hgroup_class) == 0 and (string.len(s) > 0 or string.len(subtitle) > 0) then
+    hgroup_class = " class = 'title-bar'"
   end
 
   -- treat level 2 headers as slides
