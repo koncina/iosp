@@ -9,6 +9,7 @@ local notes = {}
 -- Rendering state
 local in_slide = false
 local in_column = false
+local in_box = false
 local build_slide = false
 local in_notes = false
 
@@ -77,7 +78,11 @@ function Blocksep()
 end
 
 local function CompleteColumn()
-  if (in_column) then
+  if (in_box) then
+    in_box = false
+    in_column = false
+    return  "</div></div>"
+  elseif (in_column) then
     in_column = false
     return  "</div>"
   else
@@ -276,7 +281,7 @@ function Header(lev, s, attr)
 
     local col_width = string.match(attr["class"], "col%-(%d+)")
     local col_offset = string.match(attr["class"], "offset%-(%d+)")
-
+    
     -- Setting default box width to 6
     if (col_width == nil and string.find(attr["class"], "box")) then
       col_width = 6
@@ -292,6 +297,7 @@ function Header(lev, s, attr)
       -- start a new column
       in_column = true
 
+
       if not col_offset then
         col_offset = 0
       end
@@ -302,7 +308,12 @@ function Header(lev, s, attr)
       else
         header = "<h3>" .. s .. "</h3>"
       end
-
+      
+      if string.find(attr["class"], "box") then
+        in_box = true
+        header = header .. "<div class = 'box-body'>"
+      end
+      
       return preface .. "<div class = '" .. attr["class"] .. "'>" .. header
     end
   end
