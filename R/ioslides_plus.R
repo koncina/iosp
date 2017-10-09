@@ -301,7 +301,8 @@ ioslides_plus <- function(logo = NULL,
       # Trying to detect multiple source chunks to place them in different rows
       # Matching the fence and extracting positions
       m <- gregexpr(paste0("\n([", fence_char, "]{3,})\n+\\1r\n"), x)[[1]]
-      if (m != -1) {
+      
+      if (length(m) > 1 & m[1] != -1) {
         m <-  c(1, m + 4, nchar(x))
         x <- lapply(1:(length(m) - 1), function(i) substr(x, m[i], m[i + 1]))
       }
@@ -316,7 +317,9 @@ ioslides_plus <- function(logo = NULL,
     }
 
     # If code chunks are present we wrap them in a container div
-    if (grepl("\n+```(r)?\n+", x)) {
+    
+    # Detecting if R source code is present and setting the box class
+    if (any(grepl("\n+```(r)?\n+", x))) {
       options$class <- c("col", paste("col", options$width, sep = "-"), "box", "chunk", "bg-cobalt", options$class)
     }
     x <- paste(x, collapse = "\n")
