@@ -288,7 +288,9 @@ ioslides_plus <- function(logo = NULL,
     x = gsub(paste0('[\n]{2,}(', fence, '|    )'), '\n\n\\1', x)
 
     # If "row" is set (TRUE or a vector with 2 values), we wrap the chunk in a row.
-    if (options$engine == "R" && is.numeric(options$row) && length(options$row) == 2 && sum(options$row) < 13) {
+    if (!all(options$echo, options$eval)) {
+      row <- FALSE
+    } else if (options$engine == "R" && is.numeric(options$row) && length(options$row) == 2 && sum(options$row) < 13) {
       row <- TRUE
       col_width <- options$row
     } else if (isTRUE(options$row)) {
