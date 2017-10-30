@@ -227,7 +227,7 @@ p:last-child, ul:last-child {
 .col .offset-11 {margin-left: 91.66%;}
 
 .col {
-  margin: 0.5em 1%;
+  margin: 13px 1%;
 }
 
 .col > h3 {
@@ -292,7 +292,7 @@ article blockquote {
   display: block;
   background: #f9f9f9;
   padding: 15px 20px 15px 45px;
-  margin: 0.5em 1%;
+  margin: 13px 1%;
   position: relative;
   font-family: Georgia, serif;
   font-size: 16px;
@@ -360,7 +360,7 @@ pre {
 }
 
 slides > slide > article > pre {
-  margin-bottom: 0.5em;
+  margin-bottom: 15px;
 }
 
 .chunk > pre:not(.prettyprint) {
@@ -467,32 +467,43 @@ kbd
   text-shadow:0 1px 0 #fff;
 }
 
-/* added font-size from http://www.htmlref.com/examples/chapter10/font_properties_src.html */
+/* css font sizes xx-small to xx-large are abosolute sizes based on the browser default value
+https://www.w3schools.com/cssref/pr_font_font-size.asp 
+Here we map the names to a relative increase or decrease */
 
-.xx-small {
-  font-size: xx-small;
+article {
+  font-size: 26px; /* already defined in the main css for slide */
 }
-.x-small {
-  font-size: x-small;
+
+article.smaller {
+  font-size: 20px; /* adding the smaller variant to article to allow relative sizes */
+  line-height: 1.2em;
 }
-.small {
-  font-size: small;
+
+slides > slide article.smaller p, slides > slide article.smaller ul, slides > slide article.smaller ol {
+  line-height: 1.2em; /* overriding to allow relative line-heights...*/
 }
-.medium {
-  font-size: medium;
+
+.xx-small, article.smaller .xx-small, article.smaller .xx-small p, article.smaller .xx-small ul, article.smaller .xx-small ol {
+  font-size: 62.5%;
 }
-.large {
-  font-size: large;
+.x-small, article.smaller .x-small, article.smaller .x-small p, article.smaller .x-small ul, article.smaller .x-small ol {
+  font-size: 75%;
 }
-.x-large {
-  font-size: x-large;
+.small, article.smaller .small, article.smaller .small p, article.smaller .small ul, article.smaller .small ol {
+  font-size: 87.5%;
 }
-.xx-large {
-  font-size: xx-large;
+.medium, article.smaller .medium, article.smaller .medium p, article.smaller .medium ul, article.smaller .medium ol {
+  font-size: 100%;
 }
-.smaller {
-  font-size: smaller;
+.large, article.smaller .large, article.smaller .large p, article.smaller .large ul, article.smaller .large ol {
+  font-size: 112.5%;
 }
-.larger {
-  font-size: larger;
+.x-large, article.smaller .x-large, article.smaller .x-large p, article.smaller .x-large ul, article.smaller .x-large ol {
+  font-size: 125%;
 }
+.xx-large, article.smaller .xx-large, article.smaller .xx-large p, article.smaller .xx-large ul, article.smaller .xx-large ol {
+  font-size: 150%;
+}
+
+
