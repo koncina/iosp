@@ -1,0 +1,19 @@
+---
+title: "Issue 015"
+author: "Eric Koncina"
+date: "`r Sys.Date()`"
+output:
+  iosp::ioslides_plus:
+    self_contained: no
+    footer: "Created with [ioslides plus](https://github.com/koncina/iosp)"
+---
+
+##
+
+### Box with title {.box-6 .bg-blue}
+
+A box can have a title
+
+%end%
+
+[This is a link](https://github.com/koncina/iosp)
