@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Issue 014</title>
+
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="generator" content="pandoc" />
+
+
+
+  <meta name="date" content="2017-11-10" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <base target="_blank">
+
+  <script type="text/javascript">
+    var SLIDE_CONFIG = {
+      // Slide settings
+      settings: {
+                title: 'Issue <a href="https://github.com/koncina/iosp/issues/14">014</a>',
+                        useBuilds: true,
+        usePrettify: true,
+        enableSlideAreas: true,
+        enableTouch: true,
+                      },
+
+      // Author information
+      presenters: [
+            {
+        name:  'Eric Koncina' ,
+        company: '',
+        gplus: '',
+        twitter: '',
+        www: '',
+        github: ''
+      },
+            ]
+    };
+  </script>
+
+  <style type="text/css">
+
+    b, strong {
+      font-weight: bold;
+    }
+
+    em {
+      font-style: italic;
+    }
+
+    slides > slide {
+      -webkit-transition: all 0.4s ease-in-out;
+      -moz-transition: all 0.4s ease-in-out;
+      -o-transition: all 0.4s ease-in-out;
+      transition: all 0.4s ease-in-out;
+    }
+
+    .auto-fadein {
+      -webkit-transition: opacity 0.6s ease-in;
+      -webkit-transition-delay: 0.4s;
+      -moz-transition: opacity 0.6s ease-in 0.4s;
+      -o-transition: opacity 0.6s ease-in 0.4s;
+      transition: opacity 0.6s ease-in 0.4s;
+      opacity: 0;
+    }
+  </style>
+
+
+  <link href="issue_014_files/ioslides-13.5.1/fonts/fonts.css" rel="stylesheet" />
+  <link href="issue_014_files/ioslides-13.5.1/theme/css/default.css" rel="stylesheet" />
+  <link href="issue_014_files/ioslides-13.5.1/theme/css/phone.css" rel="stylesheet" />
+  <script src="issue_014_files/ioslides-13.5.1/js/modernizr.custom.45394.js"></script>
+  <script src="issue_014_files/ioslides-13.5.1/js/prettify/prettify.js"></script>
+  <script src="issue_014_files/ioslides-13.5.1/js/prettify/lang-yaml.js"></script>
+  <script src="issue_014_files/ioslides-13.5.1/js/hammer.js"></script>
+  <script src="issue_014_files/ioslides-13.5.1/js/slide-controller.js"></script>
+  <script src="issue_014_files/ioslides-13.5.1/js/slide-deck.js"></script>
+  <link href="issue_014_files/iosp-0.1/css/iosp.css" rel="stylesheet" />
+  <script src="issue_014_files/iosp-0.1/js/lang-r.js"></script>
+  <style type="text/css">
+  /* bg-red colour */
+  
+  .bg-red {
+    background-color: #FFAD99;
+    color: #000000;
+  }
+  
+  .bg-red a {
+    color: rgb(42, 124, 223);
+    border-bottom: 1px solid rgba(42, 124, 223, 0.5);
+  }
+  
+  .bg-red a:hover {
+    color: #000000 !important;
+  }
+  
+  .box.bg-red {
+    border: 2px solid #991F00;
+  }
+  
+  .box.bg-red > h3:first-child {
+    background-color: #991F00;
+    color: #FFFFFF;
+  }
+                          
+  blockquote.bg-red::before {
+    color : #991F00;
+  }
+   
+  blockquote.bg-red {
+    color: #000000;
+    border-color: #991F00;
+  }
+  
+  .box.bg-red > h3:first-child > code {
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .box.bg-red > h3:first-child > a {
+    color: rgb(200, 240, 250);
+    border-bottom: 1px solid rgba(200, 240, 250, 0.5);
+  }
+  
+  .box.bg-red > h3:first-child > a:hover {
+    color: #FFFFFF !important;
+  }
+    
+  slide.bg-red > hgroup > h2 {
+    color: rgba(0, 0, 0, 0.8);
+  }
+  
+  slide.bg-red > hgroup > h3 {
+    color: rgba(0, 0, 0, 0.7);
+  }
+  
+  .bg-red code {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  /* bg-green colour */
+  
+  .bg-green {
+    background-color: #ADEBAD;
+    color: #000000;
+  }
+  
+  .bg-green a {
+    color: rgb(42, 124, 223);
+    border-bottom: 1px solid rgba(42, 124, 223, 0.5);
+  }
+  
+  .bg-green a:hover {
+    color: #000000 !important;
+  }
+  
+  .box.bg-green {
+    border: 2px solid #1F7A1F;
+  }
+  
+  .box.bg-green > h3:first-child {
+    background-color: #1F7A1F;
+    color: #FFFFFF;
+  }
+                          
+  blockquote.bg-green::before {
+    color : #1F7A1F;
+  }
+   
+  blockquote.bg-green {
+    color: #000000;
+    border-color: #1F7A1F;
+  }
+  
+  .box.bg-green > h3:first-child > code {
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .box.bg-green > h3:first-child > a {
+    color: rgb(200, 240, 250);
+    border-bottom: 1px solid rgba(200, 240, 250, 0.5);
+  }
+  
+  .box.bg-green > h3:first-child > a:hover {
+    color: #FFFFFF !important;
+  }
+    
+  slide.bg-green > hgroup > h2 {
+    color: rgba(0, 0, 0, 0.8);
+  }
+  
+  slide.bg-green > hgroup > h3 {
+    color: rgba(0, 0, 0, 0.7);
+  }
+  
+  .bg-green code {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  /* bg-blue colour */
+  
+  .bg-blue {
+    background-color: #99D6FF;
+    color: #000000;
+  }
+  
+  .bg-blue a {
+    color: rgb(42, 124, 223);
+    border-bottom: 1px solid rgba(42, 124, 223, 0.5);
+  }
+  
+  .bg-blue a:hover {
+    color: #000000 !important;
+  }
+  
+  .box.bg-blue {
+    border: 2px solid #005C99;
+  }
+  
+  .box.bg-blue > h3:first-child {
+    background-color: #005C99;
+    color: #FFFFFF;
+  }
+                          
+  blockquote.bg-blue::before {
+    color : #005C99;
+  }
+   
+  blockquote.bg-blue {
+    color: #000000;
+    border-color: #005C99;
+  }
+  
+  .box.bg-blue > h3:first-child > code {
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .box.bg-blue > h3:first-child > a {
+    color: rgb(200, 240, 250);
+    border-bottom: 1px solid rgba(200, 240, 250, 0.5);
+  }
+  
+  .box.bg-blue > h3:first-child > a:hover {
+    color: #FFFFFF !important;
+  }
+    
+  slide.bg-blue > hgroup > h2 {
+    color: rgba(0, 0, 0, 0.8);
+  }
+  
+  slide.bg-blue > hgroup > h3 {
+    color: rgba(0, 0, 0, 0.7);
+  }
+  
+  .bg-blue code {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  /* bg-yellow colour */
+  
+  .bg-yellow {
+    background-color: #FFEC8B;
+    color: #000000;
+  }
+  
+  .bg-yellow a {
+    color: rgb(42, 124, 223);
+    border-bottom: 1px solid rgba(42, 124, 223, 0.5);
+  }
+  
+  .bg-yellow a:hover {
+    color: #000000 !important;
+  }
+  
+  .box.bg-yellow {
+    border: 2px solid #EEB422;
+  }
+  
+  .box.bg-yellow > h3:first-child {
+    background-color: #EEB422;
+    color: #000000;
+  }
+                          
+  blockquote.bg-yellow::before {
+    color : #EEB422;
+  }
+   
+  blockquote.bg-yellow {
+    color: #000000;
+    border-color: #EEB422;
+  }
+  
+  .box.bg-yellow > h3:first-child > code {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  .box.bg-yellow > h3:first-child > a {
+    color: rgb(42, 124, 223);
+    border-bottom: 1px solid rgba(42, 124, 223, 0.5);
+  }
+  
+  .box.bg-yellow > h3:first-child > a:hover {
+    color: #000000 !important;
+  }
+    
+  slide.bg-yellow > hgroup > h2 {
+    color: rgba(0, 0, 0, 0.8);
+  }
+  
+  slide.bg-yellow > hgroup > h3 {
+    color: rgba(0, 0, 0, 0.7);
+  }
+  
+  .bg-yellow code {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  /* bg-gray colour */
+  
+  .bg-gray {
+    background-color: #FAFAFA;
+    color: #000000;
+  }
+  
+  .bg-gray a {
+    color: rgb(42, 124, 223);
+    border-bottom: 1px solid rgba(42, 124, 223, 0.5);
+  }
+  
+  .bg-gray a:hover {
+    color: #000000 !important;
+  }
+  
+  .box.bg-gray {
+    border: 2px solid #CECECE;
+  }
+  
+  .box.bg-gray > h3:first-child {
+    background-color: #CECECE;
+    color: #000000;
+  }
+                          
+  blockquote.bg-gray::before {
+    color : #CECECE;
+  }
+   
+  blockquote.bg-gray {
+    color: #000000;
+    border-color: #CECECE;
+  }
+  
+  .box.bg-gray > h3:first-child > code {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  .box.bg-gray > h3:first-child > a {
+    color: rgb(42, 124, 223);
+    border-bottom: 1px solid rgba(42, 124, 223, 0.5);
+  }
+  
+  .box.bg-gray > h3:first-child > a:hover {
+    color: #000000 !important;
+  }
+    
+  slide.bg-gray > hgroup > h2 {
+    color: rgba(0, 0, 0, 0.8);
+  }
+  
+  slide.bg-gray > hgroup > h3 {
+    color: rgba(0, 0, 0, 0.7);
+  }
+  
+  .bg-gray code {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  /* bg-white colour */
+  
+  .bg-white {
+    background-color: #FFFFFF;
+    color: #000000;
+  }
+  
+  .bg-white a {
+    color: rgb(42, 124, 223);
+    border-bottom: 1px solid rgba(42, 124, 223, 0.5);
+  }
+  
+  .bg-white a:hover {
+    color: #000000 !important;
+  }
+  
+  .box.bg-white {
+    border: 2px solid #CECECE;
+  }
+  
+  .box.bg-white > h3:first-child {
+    background-color: #CECECE;
+    color: #000000;
+  }
+                          
+  blockquote.bg-white::before {
+    color : #CECECE;
+  }
+   
+  blockquote.bg-white {
+    color: #000000;
+    border-color: #CECECE;
+  }
+  
+  .box.bg-white > h3:first-child > code {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  .box.bg-white > h3:first-child > a {
+    color: rgb(42, 124, 223);
+    border-bottom: 1px solid rgba(42, 124, 223, 0.5);
+  }
+  
+  .box.bg-white > h3:first-child > a:hover {
+    color: #000000 !important;
+  }
+    
+  slide.bg-white > hgroup > h2 {
+    color: rgba(0, 0, 0, 0.8);
+  }
+  
+  slide.bg-white > hgroup > h3 {
+    color: rgba(0, 0, 0, 0.7);
+  }
+  
+  .bg-white code {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  /* bg-cobalt colour */
+  
+  .bg-cobalt {
+    background-color: #2B557A;
+    color: #FFFFFF;
+  }
+  
+  .bg-cobalt a {
+    color: rgb(200, 240, 250);
+    border-bottom: 1px solid rgba(200, 240, 250, 0.5);
+  }
+  
+  .bg-cobalt a:hover {
+    color: #FFFFFF !important;
+  }
+  
+  .box.bg-cobalt {
+    border: 2px solid #002240;
+  }
+  
+  .box.bg-cobalt > h3:first-child {
+    background-color: #002240;
+    color: #FFFFFF;
+  }
+                          
+  blockquote.bg-cobalt::before {
+    color : #002240;
+  }
+   
+  blockquote.bg-cobalt {
+    color: #FFFFFF;
+    border-color: #002240;
+  }
+  
+  .box.bg-cobalt > h3:first-child > code {
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .box.bg-cobalt > h3:first-child > a {
+    color: rgb(200, 240, 250);
+    border-bottom: 1px solid rgba(200, 240, 250, 0.5);
+  }
+  
+  .box.bg-cobalt > h3:first-child > a:hover {
+    color: #FFFFFF !important;
+  }
+    
+  slide.bg-cobalt > hgroup > h2 {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  slide.bg-cobalt > hgroup > h3 {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .bg-cobalt code {
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+  </style>
+
+</head>
+
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+  <slide class="title-slide segue nobackground">
+        <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title><!-- populated from slide_config.json --></h1>
+      <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+            <p style="margin-top: 6px; margin-left: -2px;">2017-11-10</p>
+          </hgroup>
+  </slide>
+
+<slide class=''><hgroup><h2></h2></hgroup><article  id="section">
+
+<div id="unnamed-chunk-1">
+</div>
+
+<div class = 'box col col-4 bg-blue xx-small'><h3><code>xx-small</code> size</h3><div class = 'box-body'>
+
+<p>Lorem ipsum dolor sit amet</p>
+
+</div></div><div class = 'box col col-4 bg-blue x-small'><h3><code>x-small</code> size</h3><div class = 'box-body'>
+
+<p>Lorem ipsum dolor sit amet</p>
+
+</div></div><div class = 'box col col-4 bg-blue small'><h3><code>small</code> size</h3><div class = 'box-body'>
+
+<p>Lorem ipsum dolor sit amet</p>
+
+</div></div><div class = 'offset-4 box col col-4 bg-blue'><h3>Normal box</h3><div class = 'box-body'>
+
+<p>Lorem ipsum dolor sit amet</p>
+
+</div></div><div class = 'col col-4'>
+
+<!-- FIXIT: offset-4 will not work here and we need to insert a column instead to force a new line
+Using %end% in the master branch will create a new row. The dev branch using flexboxes will not... -->
+
+</div><div class = 'box col col-4 bg-blue large'><h3><code>large</code> size</h3><div class = 'box-body'>
+
+<p>Lorem ipsum dolor sit amet</p>
+
+</div></div><div class = 'box col col-4 bg-blue x-large'><h3><code>x-large</code> size</h3><div class = 'box-body'>
+
+<p>Lorem ipsum dolor sit amet</p>
+
+</div></div><div class = 'box col col-4 bg-blue xx-large'><h3><code>xx-large</code> size</h3><div class = 'box-body'>
+
+<p>Lorem ipsum dolor sit amet</p>
+
+</div></div></article><div class = "footer">Examples for <a href='https://github.com/koncina/iosp/issues/14'>issue 014</a></div></slide><slide class='bg-cobalt'><hgroup class = 'title-bar'><h2>Slide background colour and vertical center</h2></hgroup><article  id="slide-background-colour-and-vertical-center" class="middle ">
+
+<div id="unnamed-chunk-2">
+</div>
+
+<div class = 'box col col-6 offset-3 bg-yellow'><h3>Centered box</h3><div class = 'box-body'>
+
+<p>This box will appear in the middle of the slide</p></div></div></article><div class = "footer">Examples for <a href='https://github.com/koncina/iosp/issues/14'>issue 014</a></div></slide>
+
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+<!-- map slide visiblity events into shiny -->
+<script>
+  (function() {
+    if (window.jQuery) {
+       window.jQuery(document).on('slideleave', function(e) {
+         window.jQuery(e.target).trigger('hidden');
+      });
+       window.jQuery(document).on('slideenter', function(e) {
+         window.jQuery(e.target).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+---
+title: "Issue [014](https://github.com/koncina/iosp/issues/14)"
+author: "Eric Koncina"
+date: "`r Sys.Date()`"
+output:
+  iosp::ioslides_plus:
+    wide: yes
+    self_contained: no
+    footer: "Examples for [issue 014](https://github.com/koncina/iosp/issues/14)"
+---
+
+##
+
+```{block, echo = FALSE}
+Enables to use xx-small, x-small, small, large, x-large and xx-large classes on boxes to adjust text size.
+Use with commit > [ec75e34](https://github.com/koncina/iosp/commit/ec75e34b7fe6c5740cfc82bab0bb1dc623cec6cb)
+```
+
+### `xx-small` size {.box-4 .bg-blue .xx-small}
+
+Lorem ipsum dolor sit amet
+
+### `x-small` size {.box-4 .bg-blue .x-small}
+
+Lorem ipsum dolor sit amet
+
+### `small` size {.box-4 .bg-blue .small}
+
+Lorem ipsum dolor sit amet
+
+### Normal box {.offset-4 .box-4 .bg-blue}
+
+Lorem ipsum dolor sit amet
+
+###{.col-4}
+
+<!-- FIXIT: offset-4 will not work here and we need to insert a column instead to force a new line
+Using %end% in the master branch will create a new row. The dev branch using flexboxes will not... -->
+
+### `large` size {.box-4 .bg-blue .large}
+
+Lorem ipsum dolor sit amet
+
+### `x-large` size {.box-4 .bg-blue .x-large}
+
+Lorem ipsum dolor sit amet
+
+### `xx-large` size {.box-4 .bg-blue .xx-large}
+
+Lorem ipsum dolor sit amet
+
+
+## Slide background colour and vertical center{.middle .bg-cobalt}
+
+```{block, echo = FALSE}
+Example which is already in the template: Should render a box in the middle of the slide.
+`.middle` is specified on the slide and ajusts the vertical alignment.
+To center the box horizontally, we are using `.offset` values.
+```
+
+### Centered box {.box-6 .offset-3 .bg-yellow}
+
+This box will appear in the middle of the slide
