@@ -1,7 +1,7 @@
 Package: iosp
 Type: Package
 Title: IO Slides Plus
-Version: 0.1.1
+Version: 0.1.1.9000
 Author:  person("Eric", "Koncina", , "mail@koncina.eu", c("aut", "cre"))
 Maintainer: Eric Koncina <mail@koncina.eu>
 Description: Extends ioslides_presentation with a custom css and a fixed

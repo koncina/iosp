@@ -61,7 +61,7 @@ ioslides_plus <- function(logo = NULL,
   # Path to the box_colours css file which is created in the pre_processor
   # The file will be removed after knitting
   css_colour_file <- NULL
-  
+
   # Path to the logo file (will be updated in the pre_processor)
   logo_path <- NULL
 
@@ -128,7 +128,7 @@ ioslides_plus <- function(logo = NULL,
       white = list(bg = "#ffffff", header_bg = "#cecece"),
       cobalt = list(bg = "#2b557a", header_bg = "#002240")
     )
-    
+
     # Adding custom colours
     if (!is.null(box_colors) && is.null(box_colours)) box_colours <- box_colors
 
@@ -140,12 +140,12 @@ ioslides_plus <- function(logo = NULL,
       # filtering out colours defined in the header
       lazy_colours <- lazy_colours[!lazy_colours %in% sub("^bg-", "", names(box_colours))]
     }
-    
+
     box_colours <- c(box_colours, as.list(setNames(lazy_colours, nm = lazy_colours)))
 
     # Allow override of standard iosp colours
     box_colours <- c(box_colours, iosp_colours[!names(iosp_colours) %in% names(box_colours)])
-    
+
     if (is.list(box_colours)) {
       # Calling unlist followed by as.list to support a single string argument (add_box_colour mandatory argument)
       css_content <- lapply(seq_along(box_colours), function(x) {do.call(add_box_colour, as.list(c(names(box_colours)[[x]], unlist(box_colours[[x]]))))})
@@ -318,7 +318,7 @@ ioslides_plus <- function(logo = NULL,
     }
 
     # If code chunks are present we wrap them in a container div
-    
+
     # Detecting if R source code is present and setting the box class
     if (any(grepl("\n+```(r)?\n+", x))) {
       options$class <- c("col", paste("col", options$width, sep = "-"), "box", "chunk", "bg-cobalt", options$class)
@@ -332,7 +332,7 @@ ioslides_plus <- function(logo = NULL,
     knitr:::line_prompt(x, prompt = s, continue = s)
   }
 
-  
+
   knitr = rmarkdown::knitr_options_html(fig_width, fig_height, fig_retina, keep_md, dev)
   knitr$knit_hooks$chunk  <- hook_chunk
   knitr$opts_chunk$comment <- NA
@@ -383,7 +383,7 @@ html_dependency_ioslides <- function() {
 html_dependency_iosplus <- function() {
   htmltools::htmlDependency(
     name = "iosp",
-    version = "0.1",
+    version = packageVersion("iosp"),
     src = system.file("rmd", "iosp", "libs", package = "iosp"),
     script = c(
       "js/lang-r.js"
