@@ -343,7 +343,12 @@ function Header(lev, s, attr)
     in_slide = true
 
     -- extract slide colour if present
-    local slide_colour = string.match(attr["class"], "(bg%-%w+)")
+    local slide_colour = nil
+    
+    if attr["class"] then
+      slide_colour = string.match(attr["class"], "(bg%-%w+)")
+    end
+    
     if slide_colour then
       attr["class"] = string.gsub(attr["class"], "(bg%-%w+)", "")
       slide_class = slide_colour
