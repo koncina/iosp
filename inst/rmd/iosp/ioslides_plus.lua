@@ -281,7 +281,7 @@ function Header(lev, s, attr)
 
     local col_width = string.match(attr["class"], "col%-(%d+)")
     local col_offset = string.match(attr["class"], "offset%-(%d+)")
-    
+
     -- Setting default box width to 6
     if (col_width == nil and string.find(attr["class"], "box")) then
       col_width = 6
@@ -308,12 +308,12 @@ function Header(lev, s, attr)
       else
         header = "<h3>" .. s .. "</h3>"
       end
-      
+
       if string.find(attr["class"], "box") then
         in_box = true
         header = header .. "<div class = 'box-body'>"
       end
-      
+
       return preface .. "<div class = '" .. attr["class"] .. "'>" .. header
     end
   end
@@ -344,11 +344,11 @@ function Header(lev, s, attr)
 
     -- extract slide colour if present
     local slide_colour = nil
-    
+
     if attr["class"] then
       slide_colour = string.match(attr["class"], "(bg%-%w+)")
     end
-    
+
     if slide_colour then
       attr["class"] = string.gsub(attr["class"], "(bg%-%w+)", "")
       slide_class = slide_colour
@@ -497,15 +497,15 @@ function Table(caption, aligns, widths, headers, rows)
   local function add(s)
     table.insert(buffer, s)
   end
-  add("<table class = 'rmdtable'>")
+  add("<table class = 'table'>")
   if caption ~= "" then
     add("<caption>" .. caption .. "</caption>")
   end
-  if widths and widths[1] ~= 0 then
-    for _, w in pairs(widths) do
-      add('<col width="' .. string.format("%d%%", w * 100) .. '" />')
-    end
-  end
+  -- if widths and widths[1] ~= 0 then
+  --  for _, w in pairs(widths) do
+  --    add('<col width="' .. string.format("%d%%", w * 100) .. '" />')
+  --  end
+  -- end
   local header_row = {}
   local empty_header = true
   for i, h in pairs(headers) do
@@ -516,16 +516,15 @@ function Table(caption, aligns, widths, headers, rows)
   if empty_header then
     head = ""
   else
-    add('<tr class="header">')
+    add('<thead><tr>')
     for _,h in pairs(header_row) do
       add(h)
     end
-    add('</tr>')
+    add('</tr></thead>')
   end
   local class = "even"
   for _, row in pairs(rows) do
-    class = (class == "even" and "odd") or "even"
-    add('<tr class="' .. class .. '">')
+    add('<tr>')
     for i,c in pairs(row) do
       add('<td align="' .. html_align(aligns[i]) .. '">' .. c .. '</td>')
     end

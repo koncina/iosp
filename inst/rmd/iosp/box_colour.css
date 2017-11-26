@@ -22,11 +22,11 @@
   background-color: $header_bg$;
   color: $header_text$;
 }
-                        
+
 blockquote.$name$::before {
   color : $header_bg$;
 }
- 
+
 blockquote.$name$ {
   color: $text$;
   border-color: $header_bg$;
@@ -44,7 +44,7 @@ blockquote.$name$ {
 .box.$name$ > h3:first-child > a:hover {
   color: $header_text$ !important;
 }
-  
+
 slide.$name$ > hgroup > h2 {
   color: rgba($slide_header_rgb$, 0.8);
 }
@@ -55,4 +55,22 @@ slide.$name$ > hgroup > h3 {
 
 .$name$ code {
   background-color: rgba(255, 255, 255, $code_alpha$);
+}
+
+.$name$ .table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #f9f9f9;
+}
+
+
+
+.$name$ .table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: rgba($slide_header_rgb$, 0.1);
+}
+
+.$name$ table th {
+  color: rgba($slide_header_rgb$, 0.7);
+}
+
+.$name$ .table, .$name$ .table th, .$name$ .table td, .table thead tr div {
+  border-color: $header_bg$ !important;
 }

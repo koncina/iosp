@@ -284,6 +284,87 @@ p:last-child, ul:last-child {
   -webkit-align-self: center;
 }
 
+/* tables */
+
+/* adapted from the bootstrap theme to allow compatibility with kableExtra */
+
+table {
+  background-color: transparent;
+}
+
+caption {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  text-align: left;
+}
+
+.table {
+  border-collapse: collapse !important;
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+}
+
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+  padding: 8px;
+  line-height: 1.42857143;
+  vertical-align: top;
+  border-top: 1px solid #ddd;
+}
+.table > thead > tr > th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #ddd;
+}
+
+.table > caption + thead > tr:first-child > th,
+.table > colgroup + thead > tr:first-child > th,
+.table > thead:first-child > tr:first-child > th,
+.table > caption + thead > tr:first-child > td,
+.table > colgroup + thead > tr:first-child > td,
+.table > thead:first-child > tr:first-child > td {
+  border-top: 0;
+}
+
+.table-condensed > thead > tr > th,
+.table-condensed > tbody > tr > th,
+.table-condensed > tfoot > tr > th,
+.table-condensed > thead > tr > td,
+.table-condensed > tbody > tr > td,
+.table-condensed > tfoot > tr > td {
+  padding: 5px;
+}
+
+.table-bordered > thead > tr > th,
+.table-bordered > thead > tr > td {
+  border-bottom-width: 2px;
+}
+
+/* default as in bootstrap: overriden by box colours*/
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #f9f9f9;
+}
+
+/* Default border colour is #ddd as in bootstrap: overriden by box colours*/
+
+.table-bordered, .table-bordered th, .table-bordered td{
+  border: 1px solid #ddd;
+}
+.table-bordered > thead > tr > th,
+.table-bordered > tbody > tr > th,
+.table-bordered > tfoot > tr > th,
+.table-bordered > thead > tr > td,
+.table-bordered > tbody > tr > td,
+.table-bordered > tfoot > tr > td {
+  border: 1px solid #ddd;
+}
+
+
 /* blockquotes */
 
 /* from https://codepen.io/maxds/pen/DcveB */
@@ -468,7 +549,7 @@ kbd
 }
 
 /* css font sizes xx-small to xx-large are abosolute sizes based on the browser default value
-https://www.w3schools.com/cssref/pr_font_font-size.asp 
+https://www.w3schools.com/cssref/pr_font_font-size.asp
 Here we map the names to a relative increase or decrease */
 
 article {
