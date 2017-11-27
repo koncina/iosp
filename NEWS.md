@@ -8,14 +8,20 @@
 * `column` class (level 2 headers) renders the boxes by columns instead of rows.
 * background colours on level 2 headers change the slide background
 * add inline code and link colour adjustement depending on background
+* add `striped`, `condensed` and `bordered` bootstrap table themes to support fancy tables using `kableExtra`.
 
 ### Changed
 
 * boxes are rendered using the css flexbox layout
 * code chunks are displayed as boxes (`shadow` option has been removed)
 * `title` chunk option to adjust the title of the chunk box.
+* version number now uses .9000 for the development branch. The `iosp` library folder is named according to the current version number.
+* replaced the `rmdtable` css class by the `table` one (adapted from bootstrap).
+
 
 ### Fixed
+
+* knit does not fail anymore when using a horizontal rule (generates a new slide)
 
 ## [0.1.1]
 
