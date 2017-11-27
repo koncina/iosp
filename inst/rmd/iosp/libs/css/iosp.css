@@ -561,6 +561,10 @@ article.smaller {
   line-height: 1.2em;
 }
 
+article.smaller .table td, article.smaller .table th {
+  font-size: inherit;
+}
+
 slides > slide article.smaller p, slides > slide article.smaller ul, slides > slide article.smaller ol {
   line-height: 1.2em; /* overriding to allow relative line-heights...*/
 }
