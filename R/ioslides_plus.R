@@ -74,7 +74,7 @@ ioslides_plus <- function(logo = NULL,
   else
     args <- c(args,
               "--template",
-              system.file("rmd", "iosp", "default.html", package = "iosp"))
+              rmarkdown::pandoc_path_arg(system.file("rmd", "iosp", "default.html", package = "iosp")))
 
   # html dependency for ioslides
   extra_dependencies <- append(extra_dependencies,
@@ -260,8 +260,7 @@ ioslides_plus <- function(logo = NULL,
 
     # base64 encode if needed
     if (self_contained) {
-      base64_encoder <- rmarkdown:::base64_image_encoder()
-      slides_lines <- base64_encoder(slides_lines)
+      slides_lines <- rmarkdown:::base64_image_encode(slides_lines)
     }
 
     # read the output file
