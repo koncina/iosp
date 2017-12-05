@@ -9,6 +9,7 @@
 * background colours on level 2 headers change the slide background
 * add inline code and link colour adjustement depending on background
 * add `striped`, `condensed` and `bordered` bootstrap table themes to support fancy tables using `kableExtra`.
+* support for the IOSlides image background feature ([from rmarkdown >= 1.7](https://github.com/rstudio/rmarkdown/pull/687))
 
 ### Changed
 
@@ -17,11 +18,13 @@
 * `title` chunk option to adjust the title of the chunk box.
 * version number now uses .9000 for the development branch. The `iosp` library folder is named according to the current version number.
 * replaced the `rmdtable` css class by the `table` one (adapted from bootstrap).
-
+* merged changes from IOSlides in rmarkdown 1.8
+* updated rmarkdown dependency to 1.8
 
 ### Fixed
 
 * knit does not fail anymore when using a horizontal rule (generates a new slide)
+* knit works again with rmarkdown 1.8 when `self_contained` is TRUE (base64 encoding issue).
 
 ## [0.1.1]
 
