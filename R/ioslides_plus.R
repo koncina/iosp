@@ -38,7 +38,7 @@ ioslides_plus <- function(logo = NULL,
   # pagedtables
   if (identical(df_print, "paged")) {
     extra_dependencies <- append(extra_dependencies,
-                                 list(rmarkdown:::html_dependency_pagedtable()))
+                                 list(rmarkdown::html_dependency_pagedtable()))
   }
 
   # transition
@@ -98,7 +98,8 @@ ioslides_plus <- function(logo = NULL,
     args <- c()
 
     # create the files dir if it doesn't exist
-    if (!rmarkdown:::dir_exists(files_dir))
+    # Expanding the helper function dir_exists() found in util.R (rmarkdown package)
+    if (!utils::file_test('-d', files_dir))
       dir.create(files_dir)
 
     # logo
@@ -249,7 +250,7 @@ ioslides_plus <- function(logo = NULL,
 
     rmarkdown::pandoc_convert(input = input_file,
                               to = rmarkdown::relative_to(dirname(input_file), lua_writer),
-                              from = rmarkdown:::from_rmarkdown(fig_caption),
+                              from = rmarkdown::from_rmarkdown(fig_caption),
                               output = output_tmpfile,
                               options = args,
                               citeproc = run_citeproc,
@@ -343,7 +344,7 @@ ioslides_plus <- function(logo = NULL,
   rmarkdown::output_format(
     knitr = knitr,
     pandoc = rmarkdown::pandoc_options(to = "html",
-                                       from = rmarkdown:::from_rmarkdown(fig_caption, md_extensions),
+                                       from = rmarkdown::from_rmarkdown(fig_caption, md_extensions),
                                        args = args),
     keep_md = keep_md,
     clean_supporting = self_contained,
@@ -362,7 +363,7 @@ html_dependency_ioslides <- function() {
   htmltools::htmlDependency(
     name = "ioslides",
     version = "13.5.1",
-    src = rmarkdown:::rmarkdown_system_file("rmd/ioslides/ioslides-13.5.1"),
+    src = system.file("rmd/ioslides/ioslides-13.5.1", package = "rmarkdown"),
     script = c(
       "js/modernizr.custom.45394.js",
       "js/prettify/prettify.js",
