@@ -370,8 +370,8 @@ html_dependency_ioslides <- function() {
       #"js/prettify/lang-r.js", # Removing lang-r as we will override it
       "js/prettify/lang-yaml.js",
       "js/hammer.js",
-      "js/slide-controller.js",
-      "js/slide-deck.js"
+      "js/slide-controller.js"#,
+      #"js/slide-deck.js" # overriding in iosp to change build behaviour
     ),
     stylesheet = c(
       "fonts/fonts.css",
@@ -386,7 +386,8 @@ html_dependency_iosplus <- function() {
     version = packageVersion("iosp"),
     src = system.file("rmd", "iosp", "libs", package = "iosp"),
     script = c(
-      "js/lang-r.js"
+      "js/lang-r.js",
+      "js/slide-deck.js"
     ),
     stylesheet = c(
       "css/iosp.css"
