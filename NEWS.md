@@ -10,6 +10,7 @@
 * add inline code and link colour adjustement depending on background
 * add `striped`, `condensed` and `bordered` bootstrap table themes to support fancy tables using `kableExtra`.
 * support for the IOSlides image background feature ([from rmarkdown >= 1.7](https://github.com/rstudio/rmarkdown/pull/687))
+* add `show` class to ignore parent's `build` class on a specific child
 
 ### Changed
 
@@ -20,11 +21,13 @@
 * replaced the `rmdtable` css class by the `table` one (adapted from bootstrap).
 * merged changes from IOSlides in rmarkdown 1.8
 * updated rmarkdown dependency to 1.8
+* moved `slide-deck.js` from rmarkdown to iosp
 
 ### Fixed
 
 * knit does not fail anymore when using a horizontal rule (generates a new slide)
 * knit works again with rmarkdown 1.8 when `self_contained` is TRUE (base64 encoding issue).
+* do not build css `style` tags (which do not show up on the slide anyway).
 
 ## [0.1.1]
 

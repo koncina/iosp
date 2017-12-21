@@ -322,6 +322,9 @@ ioslides_plus <- function(logo = NULL,
     # Detecting if R source code is present and setting the box class
     if (any(grepl("\n+```(r)?\n+", x))) {
       options$class <- c("col", paste("col", options$width, sep = "-"), "box", "chunk", "bg-cobalt", options$class)
+    } else if (options$engine == "css") {
+      # If it is a css chunk without source we do not want a container around it.
+      return(paste(x, collapse = "\n"))
     }
     x <- paste(x, collapse = "\n")
     if (!is.null(options$title)) x <- paste0("<h3>", options$title, "</h3>", x)

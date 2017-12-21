@@ -694,7 +694,7 @@ SlideDeck.prototype.updateSlideClass_ = function(slideNo, className) {
  */
 SlideDeck.prototype.makeBuildLists_ = function () {
   for (var i = this.curSlide_, slide; slide = this.slides[i]; ++i) {
-    var items = slide.querySelectorAll('.build > *');
+    var items = slide.querySelectorAll('.build > *:not(style):not(.show)');
     for (var j = 0, item; item = items[j]; ++j) {
       if (item.classList) {
         item.classList.add('to-build');
