@@ -376,7 +376,12 @@ function Header(lev, s, attr)
 
       if string.find(attr["class"], "box") then
         in_box = true
-        header = header .. "<div class = 'box-body'>"
+        if string.find(attr["class"], "build") then
+          attr["class"] = string.gsub(attr["class"], "build", "")
+          header = header .. "<div class = 'box-body build'>"
+        else
+          header = header .. "<div class = 'box-body'>"
+        end
       end
 
       return preface .. "<div class = '" .. attr["class"] .. "'>" .. header

@@ -22,6 +22,7 @@
 * merged changes from IOSlides in rmarkdown 1.8
 * updated rmarkdown dependency to 1.8
 * moved `slide-deck.js` from rmarkdown to iosp
+* propagate `build` class to the body of boxes leaving the box header visible.
 
 ### Fixed
 
