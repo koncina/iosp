@@ -105,6 +105,28 @@ local function grep(f, l)
   return res
 end
 
+-- Helper function to allow better gsub matching
+-- Lua does not provide regex
+-- the match should start on the left (^) or follow a space
+local function gsub_class(attr, c)
+  local res
+  res = string.gsub(attr, "^" .. c, "")
+  res = string.gsub(attr, "%s" .. c, "")
+  return res
+end
+
+
+local function find_class(attr, c)
+  local res
+  res = string.find(attr, "^" .. c)
+  if (not res) then
+    res = string.find(attr, "%s" .. c)
+  end
+  
+  return res
+  
+end
+
 -- Blocksep is used to separate block elements.
 function Blocksep()
   return "\n\n"
@@ -374,10 +396,10 @@ function Header(lev, s, attr)
         header = "<h3>" .. s .. "</h3>"
       end
 
-      if string.find(attr["class"], "box") then
+      if find_class(attr["class"], "box") then
         in_box = true
-        if string.find(attr["class"], "build") then
-          attr["class"] = string.gsub(attr["class"], "build", "")
+        if find_class(attr["class"], "build") then
+          attr["class"] = gsub_class(attr["class"], "build")
           header = header .. "<div class = 'box-body build'>"
         else
           header = header .. "<div class = 'box-body'>"
