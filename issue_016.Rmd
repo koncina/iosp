@@ -1,0 +1,62 @@
+---
+title: "Issue [016](https://github.com/koncina/iosp/issues/16)"
+author: "Eric Koncina"
+date: "`r Sys.Date()`"
+output:
+  iosp::ioslides_plus:
+    wide: yes
+    footer: "Example for [issue 016](https://github.com/koncina/iosp/issues/16)"
+    self_contained: false
+---
+
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Highlighting a box | lasting
+
+```{css}
+slides > slide > article .highlight:not(.to-build) {
+  box-shadow: 0px 0px 5px 10px rgba(255, 234, 0, 1), 0px 0px 0px 999px rgba(0, 0, 0, 0.45) !important;
+  z-index: 999 !important;
+}
+```
+
+Use the css code above and set the classes `to-build` and `highlight` to highlight a specific box after pressing a key.
+
+### Box 1{.box-4 .bg-red}
+
+This box will not be highlighted
+
+### Box 2{.box-6 .bg-green .offset-2 .to-build .highlight}
+
+Some important message you might want to highlight
+
+### Box 3{.box-6 .bg-blue}
+
+Example
+
+## Highlighting a box | transient
+
+```{css}
+slides > slide > article .highlight2.build-current {
+  box-shadow: 0px 0px 5px 10px rgba(255, 10, 0, 1), 0px 0px 0px 999px rgba(0, 0, 0, 0.45) !important;
+  z-index: 999 !important;
+}
+```
+
+Use the css code above and set the classes `to-build` and `highlight` to highlight a specific box after pressing a key.
+
+### Box 1{.box-4 .bg-red}
+
+This box will not be highlighted
+
+### Box 2{.box-6 .bg-green .offset-2 .to-build .highlight2}
+
+Some important message you might want to highlight
+
+### Box 3{.box-6 .bg-blue}
+
+Example
+

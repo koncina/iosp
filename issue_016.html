@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Issue 016</title>
+
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="generator" content="pandoc" />
+
+
+
+  <meta name="date" content="2018-01-16" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <base target="_blank">
+
+  <script type="text/javascript">
+    var SLIDE_CONFIG = {
+      // Slide settings
+      settings: {
+                title: 'Issue <a href="https://github.com/koncina/iosp/issues/16">016</a>',
+                        useBuilds: true,
+        usePrettify: true,
+        enableSlideAreas: true,
+        enableTouch: true,
+                      },
+
+      // Author information
+      presenters: [
+            {
+        name:  'Eric Koncina' ,
+        company: '',
+        gplus: '',
+        twitter: '',
+        www: '',
+        github: ''
+      },
+            ]
+    };
+  </script>
+
+  <style type="text/css">
+
+    b, strong {
+      font-weight: bold;
+    }
+
+    em {
+      font-style: italic;
+    }
+
+    slides > slide {
+      -webkit-transition: all 0.4s ease-in-out;
+      -moz-transition: all 0.4s ease-in-out;
+      -o-transition: all 0.4s ease-in-out;
+      transition: all 0.4s ease-in-out;
+    }
+
+    .auto-fadein {
+      -webkit-transition: opacity 0.6s ease-in;
+      -webkit-transition-delay: 0.4s;
+      -moz-transition: opacity 0.6s ease-in 0.4s;
+      -o-transition: opacity 0.6s ease-in 0.4s;
+      transition: opacity 0.6s ease-in 0.4s;
+      opacity: 0;
+    }
+  </style>
+
+
+  <link href="issue_016_files/ioslides-13.5.1/fonts/fonts.css" rel="stylesheet" />
+  <link href="issue_016_files/ioslides-13.5.1/theme/css/default.css" rel="stylesheet" />
+  <link href="issue_016_files/ioslides-13.5.1/theme/css/phone.css" rel="stylesheet" />
+  <script src="issue_016_files/ioslides-13.5.1/js/modernizr.custom.45394.js"></script>
+  <script src="issue_016_files/ioslides-13.5.1/js/prettify/prettify.js"></script>
+  <script src="issue_016_files/ioslides-13.5.1/js/prettify/lang-yaml.js"></script>
+  <script src="issue_016_files/ioslides-13.5.1/js/hammer.js"></script>
+  <script src="issue_016_files/ioslides-13.5.1/js/slide-controller.js"></script>
+  <script src="issue_016_files/ioslides-13.5.1/js/slide-deck.js"></script>
+  <link href="issue_016_files/iosp-0.1.1.9000/css/iosp.css" rel="stylesheet" />
+  <script src="issue_016_files/iosp-0.1.1.9000/js/lang-r.js"></script>
+  <script src="issue_016_files/iosp-0.1.1.9000/js/slide-deck_oride.js"></script>
+  <style type="text/css">
+  /* bg-red colour */
+  
+  .bg-red {
+    background-color: #FFAD99;
+    color: #000000;
+  }
+  
+  .bg-red a {
+    color: rgb(42, 124, 223);
+    border-bottom: 1px solid rgba(42, 124, 223, 0.5);
+  }
+  
+  .bg-red a:hover {
+    color: #000000 !important;
+  }
+  
+  .box.bg-red {
+    border: 2px solid #991F00;
+  }
+  
+  .box.bg-red > h3:first-child {
+    background-color: #991F00;
+    color: #FFFFFF;
+  }
+  
+  blockquote.bg-red::before {
+    color : #991F00;
+  }
+  
+  blockquote.bg-red {
+    color: #000000;
+    border-color: #991F00;
+  }
+  
+  .box.bg-red > h3:first-child > code {
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .box.bg-red > h3:first-child > a {
+    color: rgb(200, 240, 250);
+    border-bottom: 1px solid rgba(200, 240, 250, 0.5);
+  }
+  
+  .box.bg-red > h3:first-child > a:hover {
+    color: #FFFFFF !important;
+  }
+  
+  slide.bg-red > hgroup > h2 {
+    color: rgba(0, 0, 0, 0.8);
+  }
+  
+  slide.bg-red > hgroup > h3 {
+    color: rgba(0, 0, 0, 0.7);
+  }
+  
+  .bg-red code {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  .bg-red .table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+  }
+  
+  
+  
+  .bg-red .table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  .bg-red table th {
+    color: rgba(0, 0, 0, 0.7);
+  }
+  
+  .bg-red .table, .bg-red .table th, .bg-red .table td, .table thead tr div {
+    border-color: #991F00 !important;
+  }
+  /* bg-green colour */
+  
+  .bg-green {
+    background-color: #ADEBAD;
+    color: #000000;
+  }
+  
+  .bg-green a {
+    color: rgb(42, 124, 223);
+    border-bottom: 1px solid rgba(42, 124, 223, 0.5);
+  }
+  
+  .bg-green a:hover {
+    color: #000000 !important;
+  }
+  
+  .box.bg-green {
+    border: 2px solid #1F7A1F;
+  }
+  
+  .box.bg-green > h3:first-child {
+    background-color: #1F7A1F;
+    color: #FFFFFF;
+  }
+  
+  blockquote.bg-green::before {
+    color : #1F7A1F;
+  }
+  
+  blockquote.bg-green {
+    color: #000000;
+    border-color: #1F7A1F;
+  }
+  
+  .box.bg-green > h3:first-child > code {
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .box.bg-green > h3:first-child > a {
+    color: rgb(200, 240, 250);
+    border-bottom: 1px solid rgba(200, 240, 250, 0.5);
+  }
+  
+  .box.bg-green > h3:first-child > a:hover {
+    color: #FFFFFF !important;
+  }
+  
+  slide.bg-green > hgroup > h2 {
+    color: rgba(0, 0, 0, 0.8);
+  }
+  
+  slide.bg-green > hgroup > h3 {
+    color: rgba(0, 0, 0, 0.7);
+  }
+  
+  .bg-green code {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  .bg-green .table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+  }
+  
+  
+  
+  .bg-green .table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  .bg-green table th {
+    color: rgba(0, 0, 0, 0.7);
+  }
+  
+  .bg-green .table, .bg-green .table th, .bg-green .table td, .table thead tr div {
+    border-color: #1F7A1F !important;
+  }
+  /* bg-blue colour */
+  
+  .bg-blue {
+    background-color: #99D6FF;
+    color: #000000;
+  }
+  
+  .bg-blue a {
+    color: rgb(42, 124, 223);
+    border-bottom: 1px solid rgba(42, 124, 223, 0.5);
+  }
+  
+  .bg-blue a:hover {
+    color: #000000 !important;
+  }
+  
+  .box.bg-blue {
+    border: 2px solid #005C99;
+  }
+  
+  .box.bg-blue > h3:first-child {
+    background-color: #005C99;
+    color: #FFFFFF;
+  }
+  
+  blockquote.bg-blue::before {
+    color : #005C99;
+  }
+  
+  blockquote.bg-blue {
+    color: #000000;
+    border-color: #005C99;
+  }
+  
+  .box.bg-blue > h3:first-child > code {
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .box.bg-blue > h3:first-child > a {
+    color: rgb(200, 240, 250);
+    border-bottom: 1px solid rgba(200, 240, 250, 0.5);
+  }
+  
+  .box.bg-blue > h3:first-child > a:hover {
+    color: #FFFFFF !important;
+  }
+  
+  slide.bg-blue > hgroup > h2 {
+    color: rgba(0, 0, 0, 0.8);
+  }
+  
+  slide.bg-blue > hgroup > h3 {
+    color: rgba(0, 0, 0, 0.7);
+  }
+  
+  .bg-blue code {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  .bg-blue .table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+  }
+  
+  
+  
+  .bg-blue .table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  .bg-blue table th {
+    color: rgba(0, 0, 0, 0.7);
+  }
+  
+  .bg-blue .table, .bg-blue .table th, .bg-blue .table td, .table thead tr div {
+    border-color: #005C99 !important;
+  }
+  /* bg-yellow colour */
+  
+  .bg-yellow {
+    background-color: #FFEC8B;
+    color: #000000;
+  }
+  
+  .bg-yellow a {
+    color: rgb(42, 124, 223);
+    border-bottom: 1px solid rgba(42, 124, 223, 0.5);
+  }
+  
+  .bg-yellow a:hover {
+    color: #000000 !important;
+  }
+  
+  .box.bg-yellow {
+    border: 2px solid #EEB422;
+  }
+  
+  .box.bg-yellow > h3:first-child {
+    background-color: #EEB422;
+    color: #000000;
+  }
+  
+  blockquote.bg-yellow::before {
+    color : #EEB422;
+  }
+  
+  blockquote.bg-yellow {
+    color: #000000;
+    border-color: #EEB422;
+  }
+  
+  .box.bg-yellow > h3:first-child > code {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  .box.bg-yellow > h3:first-child > a {
+    color: rgb(42, 124, 223);
+    border-bottom: 1px solid rgba(42, 124, 223, 0.5);
+  }
+  
+  .box.bg-yellow > h3:first-child > a:hover {
+    color: #000000 !important;
+  }
+  
+  slide.bg-yellow > hgroup > h2 {
+    color: rgba(0, 0, 0, 0.8);
+  }
+  
+  slide.bg-yellow > hgroup > h3 {
+    color: rgba(0, 0, 0, 0.7);
+  }
+  
+  .bg-yellow code {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  .bg-yellow .table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+  }
+  
+  
+  
+  .bg-yellow .table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  .bg-yellow table th {
+    color: rgba(0, 0, 0, 0.7);
+  }
+  
+  .bg-yellow .table, .bg-yellow .table th, .bg-yellow .table td, .table thead tr div {
+    border-color: #EEB422 !important;
+  }
+  /* bg-gray colour */
+  
+  .bg-gray {
+    background-color: #FAFAFA;
+    color: #000000;
+  }
+  
+  .bg-gray a {
+    color: rgb(42, 124, 223);
+    border-bottom: 1px solid rgba(42, 124, 223, 0.5);
+  }
+  
+  .bg-gray a:hover {
+    color: #000000 !important;
+  }
+  
+  .box.bg-gray {
+    border: 2px solid #CECECE;
+  }
+  
+  .box.bg-gray > h3:first-child {
+    background-color: #CECECE;
+    color: #000000;
+  }
+  
+  blockquote.bg-gray::before {
+    color : #CECECE;
+  }
+  
+  blockquote.bg-gray {
+    color: #000000;
+    border-color: #CECECE;
+  }
+  
+  .box.bg-gray > h3:first-child > code {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  .box.bg-gray > h3:first-child > a {
+    color: rgb(42, 124, 223);
+    border-bottom: 1px solid rgba(42, 124, 223, 0.5);
+  }
+  
+  .box.bg-gray > h3:first-child > a:hover {
+    color: #000000 !important;
+  }
+  
+  slide.bg-gray > hgroup > h2 {
+    color: rgba(0, 0, 0, 0.8);
+  }
+  
+  slide.bg-gray > hgroup > h3 {
+    color: rgba(0, 0, 0, 0.7);
+  }
+  
+  .bg-gray code {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  .bg-gray .table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+  }
+  
+  
+  
+  .bg-gray .table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  .bg-gray table th {
+    color: rgba(0, 0, 0, 0.7);
+  }
+  
+  .bg-gray .table, .bg-gray .table th, .bg-gray .table td, .table thead tr div {
+    border-color: #CECECE !important;
+  }
+  /* bg-white colour */
+  
+  .bg-white {
+    background-color: #FFFFFF;
+    color: #000000;
+  }
+  
+  .bg-white a {
+    color: rgb(42, 124, 223);
+    border-bottom: 1px solid rgba(42, 124, 223, 0.5);
+  }
+  
+  .bg-white a:hover {
+    color: #000000 !important;
+  }
+  
+  .box.bg-white {
+    border: 2px solid #CECECE;
+  }
+  
+  .box.bg-white > h3:first-child {
+    background-color: #CECECE;
+    color: #000000;
+  }
+  
+  blockquote.bg-white::before {
+    color : #CECECE;
+  }
+  
+  blockquote.bg-white {
+    color: #000000;
+    border-color: #CECECE;
+  }
+  
+  .box.bg-white > h3:first-child > code {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  .box.bg-white > h3:first-child > a {
+    color: rgb(42, 124, 223);
+    border-bottom: 1px solid rgba(42, 124, 223, 0.5);
+  }
+  
+  .box.bg-white > h3:first-child > a:hover {
+    color: #000000 !important;
+  }
+  
+  slide.bg-white > hgroup > h2 {
+    color: rgba(0, 0, 0, 0.8);
+  }
+  
+  slide.bg-white > hgroup > h3 {
+    color: rgba(0, 0, 0, 0.7);
+  }
+  
+  .bg-white code {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  .bg-white .table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+  }
+  
+  
+  
+  .bg-white .table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  .bg-white table th {
+    color: rgba(0, 0, 0, 0.7);
+  }
+  
+  .bg-white .table, .bg-white .table th, .bg-white .table td, .table thead tr div {
+    border-color: #CECECE !important;
+  }
+  /* bg-cobalt colour */
+  
+  .bg-cobalt {
+    background-color: #2B557A;
+    color: #FFFFFF;
+  }
+  
+  .bg-cobalt a {
+    color: rgb(200, 240, 250);
+    border-bottom: 1px solid rgba(200, 240, 250, 0.5);
+  }
+  
+  .bg-cobalt a:hover {
+    color: #FFFFFF !important;
+  }
+  
+  .box.bg-cobalt {
+    border: 2px solid #002240;
+  }
+  
+  .box.bg-cobalt > h3:first-child {
+    background-color: #002240;
+    color: #FFFFFF;
+  }
+  
+  blockquote.bg-cobalt::before {
+    color : #002240;
+  }
+  
+  blockquote.bg-cobalt {
+    color: #FFFFFF;
+    border-color: #002240;
+  }
+  
+  .box.bg-cobalt > h3:first-child > code {
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .box.bg-cobalt > h3:first-child > a {
+    color: rgb(200, 240, 250);
+    border-bottom: 1px solid rgba(200, 240, 250, 0.5);
+  }
+  
+  .box.bg-cobalt > h3:first-child > a:hover {
+    color: #FFFFFF !important;
+  }
+  
+  slide.bg-cobalt > hgroup > h2 {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  slide.bg-cobalt > hgroup > h3 {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .bg-cobalt code {
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .bg-cobalt .table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+  }
+  
+  
+  
+  .bg-cobalt .table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .bg-cobalt table th {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .bg-cobalt .table, .bg-cobalt .table th, .bg-cobalt .table td, .table thead tr div {
+    border-color: #002240 !important;
+  }
+  </style>
+
+</head>
+
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+  <slide class="title-slide segue nobackground">
+        <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title><!-- populated from slide_config.json --></h1>
+      <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+            <p style="margin-top: 6px; margin-left: -2px;">2018-01-16</p>
+          </hgroup>
+  </slide>
+
+<slide class=""><hgroup class = 'title-bar'><h2>Highlighting a box </h2><h3> lasting</h3></hgroup><article  id="highlighting-a-box-lasting">
+
+<style type="text/css">
+slides > slide > article .highlight:not(.to-build) {
+  box-shadow: 0px 0px 5px 10px rgba(255, 234, 0, 1), 0px 0px 0px 999px rgba(0, 0, 0, 0.45) !important;
+  z-index: 999 !important;
+}
+</style>
+
+<p>Use the css code above and set the classes <code>to-build</code> and <code>highlight</code> to highlight a specific box after pressing a key.</p>
+
+<div class = 'box col col-4 bg-red'><h3>Box 1</h3><div class = 'box-body'>
+
+<p>This box will not be highlighted</p>
+
+</div></div><div class = 'box col col-6 bg-green offset-2 to-build highlight'><h3>Box 2</h3><div class = 'box-body'>
+
+<p>Some important message you might want to highlight</p>
+
+</div></div><div class = 'box col col-6 bg-blue'><h3>Box 3</h3><div class = 'box-body'>
+
+<p>Example</p>
+
+</div></div></article><div class = "footer">Example for <a href='https://github.com/koncina/iosp/issues/16'>issue 016</a></div></slide><slide class=""><hgroup class = 'title-bar'><h2>Highlighting a box </h2><h3> transient</h3></hgroup><article  id="highlighting-a-box-transient">
+
+<style type="text/css">
+slides > slide > article .highlight2.build-current {
+  box-shadow: 0px 0px 5px 10px rgba(255, 10, 0, 1), 0px 0px 0px 999px rgba(0, 0, 0, 0.45) !important;
+  z-index: 999 !important;
+}
+</style>
+
+<p>Use the css code above and set the classes <code>to-build</code> and <code>highlight</code> to highlight a specific box after pressing a key.</p>
+
+<div class = 'box col col-4 bg-red'><h3>Box 1</h3><div class = 'box-body'>
+
+<p>This box will not be highlighted</p>
+
+</div></div><div class = 'box col col-6 bg-green offset-2 to-build highlight2'><h3>Box 2</h3><div class = 'box-body'>
+
+<p>Some important message you might want to highlight</p>
+
+</div></div><div class = 'box col col-6 bg-blue'><h3>Box 3</h3><div class = 'box-body'>
+
+<p>Example</p></div></div></article><div class = "footer">Example for <a href='https://github.com/koncina/iosp/issues/16'>issue 016</a></div></slide>
+
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+<!-- map slide visiblity events into shiny -->
+<script>
+  (function() {
+    if (window.jQuery) {
+       window.jQuery(document).on('slideleave', function(e) {
+         window.jQuery(e.target).trigger('hidden');
+      });
+       window.jQuery(document).on('slideenter', function(e) {
+         window.jQuery(e.target).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+</body>
+</html>
