@@ -251,13 +251,13 @@ p:last-child, ul:last-child {
 
 
 /* boxes */
-.col.box > h3:first-child {
+.box > h3:first-child {
   margin: -15px -15px 10px -15px;
   padding-left: 10px;
   padding-bottom: 5px;
 }
 
-.col.box {
+.box {
   padding: 15px;
   overflow: hidden;
   border-radius: 5px;
