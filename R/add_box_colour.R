@@ -2,7 +2,7 @@
 #'
 #' This function generates the css code to support additional box colours
 #' 
-#' @param name The name of the colour. The `bg-` prefix is added if it is missing to avoid a collapse with other defined colours.
+#' @param name The name of the colour. If missing, `.prefix` is prepended.
 #' 
 #' @param bg The background colour defined as a colour name, hexadecimal string or a positive integer as supported by the `col2rgb()` function.
 #' 
@@ -12,13 +12,19 @@
 #' 
 #' @param header_text The optional header bar text colour. If missing, the function will determine if the text should be rendered in black or white.
 #' 
+#' @param .prefix [character(1): "bg-"] \cr Set the prefix which is prepended to the name in order to avoid conflicts with already defined colours.
+#' 
 #' @return css code to be included in the ioslides_plus HTML document.
 #' 
 #' @export
-add_box_colour <- function(name, bg, header_bg = NULL, text = NULL, header_text = NULL) {
+add_box_colour <- function(name, bg, header_bg = NULL, text = NULL, header_text = NULL, .prefix = "bg-") {
+  
+  .prefix <- as.character(.prefix)[1]
+  
   if (any(lapply(list(name, bg, header_bg, text, header_text), length) > 1)) stop("Only vectors of length 1 are supported")
   # To avoid any collapse with already defined css colours we are prepending "bg-" to the name if it is missing
-  if (!grepl("^bg-.*", name)) name <- paste0("bg-", name)
+  
+  if (!grepl(paste0("^", .prefix, ".*"), name)) name <- paste0(.prefix, name)
   
   # We are calling col2rgb and rgb (to get hexcode colours from the colours defined in R)
   bg <- do.call("rgb", c(as.list(col2rgb(bg)), maxColorValue = 255))

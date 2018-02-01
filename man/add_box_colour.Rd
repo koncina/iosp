@@ -6,12 +6,13 @@
 \title{Generate additional ioslides_plus box colours}
 \usage{
 add_box_colour(name, bg, header_bg = NULL, text = NULL,
-  header_text = NULL)
+  header_text = NULL, .prefix = "bg-")
 
-add_box_color(name, bg, header_bg = NULL, text = NULL, header_text = NULL)
+add_box_color(name, bg, header_bg = NULL, text = NULL, header_text = NULL,
+  .prefix = "bg-")
 }
 \arguments{
-\item{name}{The name of the colour. The `bg-` prefix is added if it is missing to avoid a collapse with other defined colours.}
+\item{name}{The name of the colour. If missing, `.prefix` is prepended.}
 
 \item{bg}{The background colour defined as a colour name, hexadecimal string or a positive integer as supported by the `col2rgb()` function.}
 
@@ -20,6 +21,8 @@ add_box_color(name, bg, header_bg = NULL, text = NULL, header_text = NULL)
 \item{text}{The optional text colour. If missing, the function will determine if the text should be rendered in black or white.}
 
 \item{header_text}{The optional header bar text colour. If missing, the function will determine if the text should be rendered in black or white.}
+
+\item{.prefix}{[character(1): "bg-"] \cr Set the prefix which is prepended to the name in order to avoid conflicts with already defined colours.}
 }
 \value{
 css code to be included in the ioslides_plus HTML document.
