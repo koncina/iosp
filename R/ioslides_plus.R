@@ -1,3 +1,8 @@
+#' @importFrom stats setNames
+#' @importFrom utils packageVersion
+
+NULL
+
 #' @export
 ioslides_plus <- function(logo = NULL,
                           slide_level = 2,

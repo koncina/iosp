@@ -2,5 +2,11 @@
 
 export(add_box_color)
 export(add_box_colour)
+export(get_contrast_ratio)
 export(ioslides_plus)
 export(knit_print.box_colour)
+importFrom(grDevices,col2rgb)
+importFrom(grDevices,colors)
+importFrom(grDevices,rgb)
+importFrom(stats,setNames)
+importFrom(utils,packageVersion)

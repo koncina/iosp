@@ -1,3 +1,7 @@
+#' @importFrom grDevices col2rgb colors rgb
+
+NULL
+
 #' Generate additional ioslides_plus box colours
 #'
 #' This function generates the css code to support additional box colours
