@@ -362,8 +362,6 @@ function Header(lev, s, attr)
   if lev == 3 then
 
     -- Expanding css class for simplified box calls
-    attr["class"] = string.gsub(attr["class"], "box%-(%d+)%-(%d+)%-(%w+)", "box col-%1 offset-%2 bg-%3") -- width, offset and colour
-    attr["class"] = string.gsub(attr["class"], "box%-(%d+)%-(%w+)", "box col-%1 bg-%2") -- width and colour
     attr["class"] = string.gsub(attr["class"], "box%-(%d+)", "box col-%1") -- width alone
 
     local col_width = string.match(attr["class"], "col%-(%d+)")
