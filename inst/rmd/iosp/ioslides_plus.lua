@@ -432,16 +432,10 @@ function Header(lev, s, attr)
     -- start a new slide
     in_slide = true
 
-    -- extract slide colour if present
-    local slide_colour = nil
-
-    if attr["class"] then
-      slide_colour = string.match(attr["class"], "(bg%-%w+)")
-    end
-
-    if slide_colour then
-      attr["class"] = string.gsub(attr["class"], "(bg%-%w+)", "")
-      slide_class = slide_colour
+    -- extract slide class if present
+    if attr["class"] and  string.find(attr["class"], "slide%-") then
+      slide_class = string.match(attr["class"], "slide%-[%-%w]+")
+      attr["class"] = string.gsub(attr["class"], "slide%-[%-%w]+", "")
     end
 
     -- update build flag (used by ol and ul)

@@ -6,7 +6,8 @@
 
 * add lazy colour definition: colours listed in `colors()` can be used without definition in the header
 * `column` class (level 2 headers) renders the boxes by columns instead of rows.
-* background colours on level 2 headers change the slide background
+* added support for slide classes. In a level 2 header, a class attribute starting with `slide-` will be associated to the slide instead of the article.
+* ~~background colours on level 2 headers change the slide background~~ (removed/changed by the previously described feature: now use `slide-<box-colour>` to use the box background)
 * add inline code and link colour adjustement depending on background
 * add `striped`, `condensed` and `bordered` bootstrap table themes to support fancy tables using `kableExtra`.
 * support for the IOSlides image background feature ([from rmarkdown >= 1.7](https://github.com/rstudio/rmarkdown/pull/687))
@@ -23,6 +24,7 @@
 * updated rmarkdown dependency to 1.8
 * moved `slide-deck.js` from rmarkdown to iosp
 * propagate `build` class to the body of boxes leaving the box header visible.
+* removed unrecommended very compact box shortcuts (`.box-<width>-<offset>-<colour>` and `.box-<width>-<colour>`)
 
 ### Fixed
 
