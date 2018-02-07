@@ -432,10 +432,19 @@ function Header(lev, s, attr)
     -- start a new slide
     in_slide = true
 
-    -- extract slide class if present
+    -- use slide class attribute if present
+    if attr["slide-class"] then
+      local slide = split(attr["slide-class"])
+      slide_class = table.concat(uniq(slide), " ")
+      attr["slide-class"] = nil
+    end
+    -- extract slide class shortcut if present
     if attr["class"] and  string.find(attr["class"], "slide%-") then
-      slide_class = string.match(attr["class"], "slide%-[%-%w]+")
-      attr["class"] = string.gsub(attr["class"], "slide%-[%-%w]+", "")
+      local slide = split(attr["class"])
+      local article = grep(function (v) if v:match("^slide%-[%-%w]+") then return false else return true end end, slide)  
+      slide = grep(function (v) if v:match("^slide%-[%-%w]+") then return true else return false end end, slide)
+      slide_class = slide_class .. " " .. table.concat(uniq(slide), " ")
+      attr["class"] = table.concat(uniq(article), " ")
     end
 
     -- update build flag (used by ol and ul)
