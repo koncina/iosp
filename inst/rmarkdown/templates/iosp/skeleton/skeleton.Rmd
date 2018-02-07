@@ -182,13 +182,13 @@ You can specify the author of a citation using `|`
 
 > This is a citation | author
 
-It is possible to change the background color of the block setting a background color class
+It is possible to change the background colour by using a box colour class
 
 > This is a citation with a red background | author{.bg-red}
 
 Blockquotes accept width and offset settings
 
-> This is a citation with a red background | author{.bg-yellow .col-4 .offset-4}
+> This is a citation with a yellow background | author{.bg-yellow .col-4 .offset-4}
 
 ## Image size
 
@@ -323,8 +323,8 @@ Smaller box which will appear in a new column as soon as the first is full.
 
 ...
 
-## Slide background colour and vertical center{.middle .bg-cobalt}
+## Slide background colour and vertical center{.middle .slide-bg-cobalt}
 
 ### Centered box {.box-6 .offset-3 .bg-yellow}
 
-This box will appear in the middle of the slide
+This box will appear in the middle of the slide.

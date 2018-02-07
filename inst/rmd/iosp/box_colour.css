@@ -29,6 +29,7 @@ blockquote.$name$::before {
 }
 
 blockquote.$name$ {
+  background-color: $bg$;
   color: $text$;
   border-color: $header_bg$;
 }
@@ -46,11 +47,11 @@ blockquote.$name$ {
   color: $header_text$ !important;
 }
 
-slide.$name$ > hgroup > h2 {
+slide.slide-$name$ > hgroup > h2 {
   color: rgba($slide_header_rgb$, 0.8);
 }
 
-slide.$name$ > hgroup > h3 {
+slide.slide-$name$ > hgroup > h3 {
   color: rgba($slide_header_rgb$, 0.7);
 }
 
@@ -61,8 +62,6 @@ slide.$name$ > hgroup > h3 {
 .$name$ .table-striped > tbody > tr:nth-of-type(odd) {
   background-color: #f9f9f9;
 }
-
-
 
 .$name$ .table-striped > tbody > tr:nth-of-type(odd) {
   background-color: rgba($slide_header_rgb$, 0.1);
