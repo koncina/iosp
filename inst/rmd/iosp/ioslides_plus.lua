@@ -403,8 +403,8 @@ function Header(lev, s, attr)
           header = header .. "<div class = 'box-body'>"
         end
       end
-
-      return preface .. "<div class = '" .. attr["class"] .. "'>" .. header
+      
+      return preface .. "<div id=\"".. attr["id"] .. "\" class = '" .. attr["class"] .. "'>" .. header
     end
   end
 
