@@ -591,4 +591,6 @@ slides > slide article.smaller p, slides > slide article.smaller ul, slides > sl
   font-size: 150%;
 }
 
-
+article .to-build {
+  visibility: hidden;
+}
