@@ -1,7 +1,7 @@
 /* $name$ colour */
 
 .slide-$name$ {
-  background-color: $bg$;
+  background: none $bg$;
 }
 
 .$name$ a {
