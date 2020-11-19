@@ -266,7 +266,7 @@ ioslides_plus <- function(logo = NULL,
 
     # base64 encode if needed
     if (self_contained) {
-      slides_lines <- rmarkdown:::base64_image_encode(slides_lines)
+      slides_lines <- rmarkdown:::base64_encode_images(slides_lines)
     }
 
     # read the output file
